@@ -4,10 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Objects;
 
-@Entity
+//@Entity
 public class Cat {
 
-    @Id
+//    @Id
     private Long id;
 
     private String nameCat;
