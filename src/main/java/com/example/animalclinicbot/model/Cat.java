@@ -5,11 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.util.Objects;
 
-@Entity
+//@Entity
 public class Cat {
+
 
     @Id
     @GeneratedValue
+
+
     private Long id;
 
     private String nameCat;
