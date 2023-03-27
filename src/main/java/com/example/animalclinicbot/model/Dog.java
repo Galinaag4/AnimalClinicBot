@@ -6,25 +6,24 @@ import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
-public class Cat {
-
+public class Dog {
     @Id
     @GeneratedValue
     private Long id;
 
-    private String nameCat;
+    private String nameDog;
     private String breed;
     private int yearOfBirth;
     private String description;
 
-    public Cat(String nameCat, String breed, int yearOfBirth, String description) {
-        this.nameCat = nameCat;
+    public Dog(String nameDog, String breed, int yearOfBirth, String description) {
+        this.nameDog = nameDog;
         this.breed = breed;
         this.yearOfBirth = yearOfBirth;
         this.description = description;
     }
 
-    public Cat() {
+    public Dog() {
 
     }
 
@@ -36,12 +35,12 @@ public class Cat {
         this.id = id;
     }
 
-    public String getNameCat() {
-        return nameCat;
+    public String getNameDog() {
+        return nameDog;
     }
 
-    public void setNameCat(String nameCat) {
-        this.nameCat = nameCat;
+    public void setNameDog(String nameDog) {
+        this.nameDog = nameDog;
     }
 
     public String getBreed() {
@@ -71,20 +70,20 @@ public class Cat {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Cat cat)) return false;
-        return getYearOfBirth() == cat.getYearOfBirth() && Objects.equals(getId(), cat.getId()) && Objects.equals(getNameCat(), cat.getNameCat()) && Objects.equals(getBreed(), cat.getBreed()) && Objects.equals(getDescription(), cat.getDescription());
+        if (!(o instanceof Dog dog)) return false;
+        return getYearOfBirth() == dog.getYearOfBirth() && Objects.equals(getId(), dog.getId()) && Objects.equals(getNameDog(), dog.getNameDog()) && Objects.equals(getBreed(), dog.getBreed()) && Objects.equals(getDescription(), dog.getDescription());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getNameCat(), getBreed(), getYearOfBirth(), getDescription());
+        return Objects.hash(getId(), getNameDog(), getBreed(), getYearOfBirth(), getDescription());
     }
 
     @Override
     public String toString() {
-        return "Cat{" +
+        return "Dog{" +
                 "id=" + id +
-                ", nameCat='" + nameCat + '\'' +
+                ", nameDog='" + nameDog + '\'' +
                 ", breed='" + breed + '\'' +
                 ", yearOfBirth=" + yearOfBirth +
                 ", description='" + description + '\'' +
