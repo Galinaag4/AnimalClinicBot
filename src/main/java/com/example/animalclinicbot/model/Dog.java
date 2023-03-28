@@ -2,13 +2,15 @@ package com.example.animalclinicbot.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
 public class Dog {
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nameDog;
@@ -81,9 +83,9 @@ public class Dog {
 
     @Override
     public String toString() {
-        return "Dog{" +
+        return "Cat{" +
                 "id=" + id +
-                ", nameDog='" + nameDog + '\'' +
+                ", nameCat='" + nameDog + '\'' +
                 ", breed='" + breed + '\'' +
                 ", yearOfBirth=" + yearOfBirth +
                 ", description='" + description + '\'' +
