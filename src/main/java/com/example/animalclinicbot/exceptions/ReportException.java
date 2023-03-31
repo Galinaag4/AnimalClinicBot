@@ -4,9 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class DogException extends RuntimeException{
-    public DogException() {
-        super("Dog is not found!");
+public class ReportException extends RuntimeException {
+    public ReportException() {
+        super("Report is not found!");
     }
 }
-

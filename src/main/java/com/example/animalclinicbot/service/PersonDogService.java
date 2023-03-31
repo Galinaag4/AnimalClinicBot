@@ -1,4 +1,4 @@
 package com.example.animalclinicbot.service;
 
-public class CatService {
+public class PersonDogService {
 }
