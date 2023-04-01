@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 
+/**
+ * Класс сервис собаки
+ */
 @Service
 public class DogService {
     private final DogRepository dogRepository;
@@ -18,19 +21,42 @@ public class DogService {
         this.dogRepository = dogRepository;
     }
 
+    /**
+     * метод получения собаки по id
+     *
+     * @param id
+     * @return {@link DogRepository#findById(Object)}
+     * @throws DogException
+     * @see DogService
+     */
     public Dog getById(Long id) {
-        logger.info("Was invoked method to get a dog by id={}", id);
+        logger.info("Был вызван метод получения собаки по id={}", id);
         return this.dogRepository.findById(id)
                 .orElseThrow(DogException::new);
     }
 
+    /**
+     * метод создания собаки
+     *
+     * @param dog
+     * @return {@link DogRepository#save(Object)}
+     * @see DogService
+     */
     public Dog create(Dog dog) {
-        logger.info("Was invoked method to create a dog");
+        logger.info("Был вызван метод создания собаки");
         return this.dogRepository.save(dog);
     }
 
+    /**
+     * метод обновления данных собаки
+     *
+     * @param dog
+     * @return {@link DogRepository#save(Object)}
+     * @throws DogException
+     * @see DogService
+     */
     public Dog update(Dog dog) {
-        logger.info("Was invoked method to update a dog");
+        logger.info("Был вызван метод обновления данных собаки");
         if (dog.getId() != null) {
             if (getById(dog.getId()) != null) {
                 return this.dogRepository.save(dog);
@@ -39,13 +65,25 @@ public class DogService {
         throw new DogException();
     }
 
+    /**
+     * метод получения всех собак
+     *
+     * @return {@link DogRepository#findAll()}
+     * @see DogService
+     */
     public Collection<Dog> getAll() {
-        logger.info("Was invoked method to get all dogs");
+        logger.info("Был вызван метод получения всех собак");
 
         return this.dogRepository.findAll();
     }
+
+    /**
+     * метод удаления собаки по id
+     *
+     * @param id
+     */
     public void removeById(Long id) {
-        logger.info("Was invoked method to remove a dog by id={}", id);
+        logger.info("Был вызван метод удаления собаки по id={}", id);
 
         this.dogRepository.deleteById(id);
     }

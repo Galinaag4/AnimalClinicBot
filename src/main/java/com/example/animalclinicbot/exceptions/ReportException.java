@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class ReportException extends RuntimeException {
     public ReportException() {
-        super("Report is not found!");
+        super("Отчет не найден!");
     }
 }

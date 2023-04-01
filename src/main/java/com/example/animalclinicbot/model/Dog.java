@@ -5,17 +5,32 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
-
+/**
+ * Класс содержит данные о питомце
+ */
 @Entity
 public class Dog {
-
+    /**
+     * идентификатор записи
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    /**
+     * имя животного
+     */
     private String nameDog;
+    /**
+     * порода животного
+     */
     private String breed;
+    /**
+     * год рождения животного
+     */
     private int yearOfBirth;
+    /**
+     * описание животного
+     */
     private String description;
 
     public Dog(String nameDog, String breed, int yearOfBirth, String description) {
