@@ -4,24 +4,55 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.util.Objects;
-
+/**
+ * Класс с данными о владельце животного
+ */
 @Entity
 public class PersonDog {
+    /**
+     * идентификатор записи
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    /**
+     * имя хозяина животного
+     */
     private String name;
+    /**
+     * дата рождения владельца
+     */
     private int yearOfBirth;
+    /**
+     * номер телефона хозяина животного
+     */
     private String phone;
+    /**
+     * email хозяина животного
+     */
     private String mail;
+    /**
+     * адрес хозяина животного
+     */
     private String address;
+    /**
+     * идентификатор чата в телеграмм
+     */
     private Long chatId;
+    /**
+     * статус нахождения животного
+     */
     private Status status;
+    /**
+     * ID питомца
+     */
     @JsonBackReference
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dog_id")
     private Dog dog;
+    /**
+     * ID отчета
+     */
     @OneToOne(orphanRemoval = true)
     @JoinTable(name = "person_report_data",
             joinColumns = @JoinColumn(name = "person_null"),

@@ -7,26 +7,61 @@ import javax.persistence.Lob;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
-
+/**
+ * Класс отчета по животному
+ */
 @Entity
 public class Report {
+    /**
+     * идентификатор записи
+     */
     @Id
     @GeneratedValue
     private long id;
+    /**
+     * идентификатор чата в телеграмм
+     */
     private Long chatId;
+    /**
+     * рацион питомца
+     */
     private String ration;
+    /**
+     * здоровье питомца
+     */
     private String health;
+    /**
+     * привычки животного
+     */
     private String habits;
+    /**
+     * время испытательного срока
+     */
     private long days;
+    /**
+     * путь к фото
+     */
     private String filePath;
+    /**
+     * размер фото
+     */
     private long fileSize;
+    /**
+     * сам файл, массив байт
+     */
     @Lob
     private byte[] data;
+    /**
+     * подпись к фото
+     */
     private String caption;
+    /**
+     * дата последнего сообщения
+     */
     private Date lastMessage;
-    private Long lastMessageMs;
 
-    public Report(long id, Long chatId, String ration, String health, String habits, long days, String filePath, long fileSize, byte[] data, String caption, Date lastMessage, Long lastMessageMs) {
+
+    public Report(long id, Long chatId, String ration, String health, String habits, long days, String filePath, long fileSize, byte[] data, String caption, Date lastMessage) {
         this.id = id;
         this.chatId = chatId;
         this.ration = ration;
@@ -38,7 +73,7 @@ public class Report {
         this.data = data;
         this.caption = caption;
         this.lastMessage = lastMessage;
-        this.lastMessageMs = lastMessageMs;
+
     }
 
     public Report() {
@@ -133,24 +168,18 @@ public class Report {
         this.lastMessage = lastMessage;
     }
 
-    public Long getLastMessageMs() {
-        return lastMessageMs;
-    }
 
-    public void setLastMessageMs(Long lastMessageMs) {
-        this.lastMessageMs = lastMessageMs;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Report report)) return false;
-        return getId() == report.getId() && getDays() == report.getDays() && getFileSize() == report.getFileSize() && Objects.equals(getChatId(), report.getChatId()) && Objects.equals(getRation(), report.getRation()) && Objects.equals(getHealth(), report.getHealth()) && Objects.equals(getHabits(), report.getHabits()) && Objects.equals(getFilePath(), report.getFilePath()) && Arrays.equals(getData(), report.getData()) && Objects.equals(getCaption(), report.getCaption()) && Objects.equals(getLastMessage(), report.getLastMessage()) && Objects.equals(getLastMessageMs(), report.getLastMessageMs());
+        return getId() == report.getId() && getDays() == report.getDays() && getFileSize() == report.getFileSize() && Objects.equals(getChatId(), report.getChatId()) && Objects.equals(getRation(), report.getRation()) && Objects.equals(getHealth(), report.getHealth()) && Objects.equals(getHabits(), report.getHabits()) && Objects.equals(getFilePath(), report.getFilePath()) && Arrays.equals(getData(), report.getData()) && Objects.equals(getCaption(), report.getCaption()) && Objects.equals(getLastMessage(), report.getLastMessage());
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(getId(), getChatId(), getRation(), getHealth(), getHabits(), getDays(), getFilePath(), getFileSize(), getCaption(), getLastMessage(), getLastMessageMs());
+        int result = Objects.hash(getId(), getChatId(), getRation(), getHealth(), getHabits(), getDays(), getFilePath(), getFileSize(), getCaption(), getLastMessage());
         result = 31 * result + Arrays.hashCode(getData());
         return result;
     }
@@ -169,7 +198,6 @@ public class Report {
                 ", data=" + Arrays.toString(data) +
                 ", caption='" + caption + '\'' +
                 ", lastMessage=" + lastMessage +
-                ", lastMessageMs=" + lastMessageMs +
                 '}';
     }
 }
