@@ -1,8 +1,10 @@
 package com.example.animalclinicbot.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 /**
  * Класс с данными о владельце животного
@@ -46,10 +48,15 @@ public class PersonDog {
     /**
      * ID питомца
      */
-    @JsonBackReference
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dog_id")
-    private Dog dog;
+//    @JsonBackReference
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "dog_id")
+//    private Dog dog;
+
+    @OneToMany(mappedBy = "personDog")
+    @JsonManagedReference
+    private List <Dog> dogs;
+
     /**
      * ID отчета
      */
@@ -59,7 +66,9 @@ public class PersonDog {
             inverseJoinColumns = @JoinColumn(name = "report_data_id"))
     private Report report;
 
-    public PersonDog(Long id, String name, int yearOfBirth, String phone, String mail, String address, Long chatId, Status status, Dog dog, Report report) {
+
+    public PersonDog(Long id, String name, int yearOfBirth, String phone, String mail, String address,
+                     Long chatId, Status status, Dog dog, Report report,List<Dog> dogs) {
         this.id = id;
         this.name = name;
         this.yearOfBirth = yearOfBirth;
@@ -68,7 +77,8 @@ public class PersonDog {
         this.address = address;
         this.chatId = chatId;
         this.status = status;
-        this.dog = dog;
+//        this.dog = dog;
+        this.dogs = dogs;
         this.report = report;
     }
 
@@ -135,17 +145,21 @@ public class PersonDog {
         return status;
     }
 
+    public List<Dog> getDogs() {
+        return dogs;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Dog getDog() {
-        return dog;
-    }
+//    public Dog getDog() {
+//        return dog;
+//    }
 
-    public void setDog(Dog dog) {
-        this.dog = dog;
-    }
+//    public void setDog(Dog dog) {
+//        this.dog = dog;
+//    }
 
     public Report getReport() {
         return report;
@@ -159,12 +173,18 @@ public class PersonDog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof PersonDog personDog)) return false;
-        return getYearOfBirth() == personDog.getYearOfBirth() && Objects.equals(getId(), personDog.getId()) && Objects.equals(getName(), personDog.getName()) && Objects.equals(getPhone(), personDog.getPhone()) && Objects.equals(getMail(), personDog.getMail()) && Objects.equals(getAddress(), personDog.getAddress()) && Objects.equals(getChatId(), personDog.getChatId()) && getStatus() == personDog.getStatus() && Objects.equals(getDog(), personDog.getDog()) && Objects.equals(getReport(), personDog.getReport());
+        return getYearOfBirth() == personDog.getYearOfBirth() && Objects.equals(getId(), personDog.getId())
+                && Objects.equals(getName(), personDog.getName()) && Objects.equals(getPhone(),
+                personDog.getPhone()) && Objects.equals(getMail(), personDog.getMail()) &&
+                Objects.equals(getAddress(), personDog.getAddress()) && Objects.equals(getChatId(),
+                personDog.getChatId()) && getStatus() == personDog.getStatus() && Objects.equals(getDogs(),
+                personDog.getDogs()) && Objects.equals(getReport(), personDog.getReport());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getYearOfBirth(), getPhone(), getMail(), getAddress(), getChatId(), getStatus(), getDog(), getReport());
+        return Objects.hash(getId(), getName(), getYearOfBirth(), getPhone(), getMail(),
+                getAddress(), getChatId(), getStatus(), getDogs(), getReport());
     }
 
     @Override
@@ -178,7 +198,7 @@ public class PersonDog {
                 ", address='" + address + '\'' +
                 ", chatId=" + chatId +
                 ", status=" + status +
-                ", dog=" + dog +
+                ", dog=" + dogs +
                 ", report=" + report +
                 '}';
     }
