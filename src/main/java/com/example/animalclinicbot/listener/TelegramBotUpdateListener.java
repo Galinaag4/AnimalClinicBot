@@ -1,27 +1,18 @@
 package com.example.animalclinicbot.listener;
 
-import com.example.animalclinicbot.repository.DogRepository;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
-import com.pengrad.telegrambot.model.CallbackQuery;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
-import com.pengrad.telegrambot.model.User;
-import com.pengrad.telegrambot.model.request.InlineKeyboardButton;
-import com.pengrad.telegrambot.model.request.InlineKeyboardMarkup;
-import com.pengrad.telegrambot.model.request.Keyboard;
-import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.response.SendResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
-import java.util.regex.Matcher;
 
 @Service
 public class TelegramBotUpdateListener implements UpdatesListener {
@@ -29,12 +20,16 @@ public class TelegramBotUpdateListener implements UpdatesListener {
     @Autowired
     private TelegramBot telegramBot;
 
-    public TelegramBotUpdateListener(DogRepository dogRepository) {
-        this.dogRepository = dogRepository;
+    public TelegramBotUpdateListener(TelegramBot telegramBot) {
+        this.telegramBot = telegramBot;
     }
 
-    @Autowired
-    private final DogRepository dogRepository;
+//    public TelegramBotUpdateListener(DogRepository dogRepository) {
+//        this.dogRepository = dogRepository;
+//    }
+
+//    @Autowired
+//    private final DogRepository dogRepository;
 
 
     @PostConstruct
@@ -44,7 +39,34 @@ public class TelegramBotUpdateListener implements UpdatesListener {
 
 
     @Override
-    public int process(List<Update> list) {
-        return 0;
+    public int process(List<Update> updates) {
+        try {
+            updates.forEach(update -> {
+                logger.info ("Handles update: {}", update);
+                Message message = update.message();
+                Long chatId = message.chat().id();
+                String text = message.text();
+
+                if ("/start".equals(text)) {
+                    SendMessage sendMessage = new SendMessage(chatId, "Привет! Я расскажу тебе о приюте.");
+                    SendResponse sendResponse = telegramBot.execute(sendMessage);
+                    if (!sendResponse.isOk()) {
+                        logger.error("Ошибка при отправке сообщения: {}", sendResponse.description());
+                    }
+                }
+
+            });
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+        }
+        return UpdatesListener.CONFIRMED_UPDATES_ALL;
+    }
+
+    private void sendMessage(Long chatId, String message) {
+        SendMessage sendMessage = new SendMessage(chatId, "Привет! Я расскажу тебе о приюте.");
+        SendResponse sendResponse = telegramBot.execute(sendMessage);
+        if (!sendResponse.isOk()) {
+            logger.error("Ошибка при отправке сообщения: {}", sendResponse.description());
+        }
     }
 }

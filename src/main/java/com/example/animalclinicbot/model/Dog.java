@@ -1,9 +1,8 @@
 package com.example.animalclinicbot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.Objects;
 /**
  * Класс содержит данные о питомце
@@ -14,7 +13,7 @@ public class Dog {
      * идентификатор записи
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * имя животного
@@ -32,6 +31,12 @@ public class Dog {
      * описание животного
      */
     private String description;
+
+
+    @ManyToOne
+    @JoinColumn(name = "person_id")
+    @JsonBackReference
+    private PersonDog personDog;
 
     public Dog(String nameDog, String breed, int yearOfBirth, String description) {
         this.nameDog = nameDog;
