@@ -91,8 +91,8 @@ public class DogControllerTest {
     }
     @Test
     public void testGetAllDogs() throws Exception {
-        List<Dog> dogs = Arrays.asList(new Dog("Fido"), new Dog("Buddy"));
-        when(dogService.getAll()).thenReturn(dogs);
+//        List<Dog> dogs = Arrays.asList(new Dog("Fido"), new Dog("Buddy"));
+//        when(dogService.getAll()).thenReturn(dogs);
 
         mockMvc.perform(MockMvcRequestBuilders
                 .get("/dog")
