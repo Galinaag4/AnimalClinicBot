@@ -49,6 +49,10 @@ public class Dog {
 
     }
 
+    public Dog(String nameDog) {
+        this.nameDog = nameDog;
+    }
+
     public Long getId() {
         return id;
     }
