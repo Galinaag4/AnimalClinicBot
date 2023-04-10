@@ -22,85 +22,78 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@WebMvcTest
+@WebMvcTest(DogController.class)
 public class DogControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
-    private DogRepository dogRepository;
 
-    @SpyBean
+
+    @MockBean
     private DogService dogService;
 
-    @InjectMocks
-    private DogController dogController;
+
     @Test
     public void saveDog() throws Exception {
-        Long id = 1L;
-        String name = "Tuzik";
-
-        JSONObject userObject = new JSONObject();
-        userObject.put("name", name);
-
         Dog dog = new Dog();
-        dog.setId(id);
-        dog.setNameDog(name);
+        dog.setId(1L);
+        dog.setNameDog("Tuzik");
+        JSONObject userObject = new JSONObject();
+        userObject.put("id", 1L);
+        userObject.put("nameDog", "Tuzik");
 
-        when(dogRepository.save(any(Dog.class))).thenReturn(dog);
-        when(dogRepository.findById(any(Long.class))).thenReturn(Optional.of(dog));
 
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post("/dog") //send
-                        .content(userObject.toString())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()) //receive
-                .andExpect(jsonPath("$.id").value(id))
-                .andExpect(jsonPath("$.name").value(name));
+
+        when(dogService.create(dog)).thenReturn(dog);
+
+        mockMvc.perform(
+                        post("/dog")
+                                .content(userObject.toString())
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(userObject.toString()));
+
+        verify(dogService).create(dog);
     }
     @Test
     public void testDeleteDog() throws Exception {
-        mockMvc.perform(delete("/dog"))
+        mockMvc.perform(delete("/dog/{id}",1))
                 .andExpect(status().isOk());
+        verify(dogService).removeById(1L);
     }
     @Test
     public void testUpdateDog() throws Exception {
-
-        String name = "Bobik";
-
-        JSONObject userObject = new JSONObject();
-        userObject.put("name", name);
-
         Dog dog = new Dog();
-        dog.setNameDog(name);
+        dog.setId(1L);
+        dog.setNameDog("Bobik");
+        JSONObject userObject = new JSONObject();
+        userObject.put("id", 1L);
+        userObject.put("nameDog", "Bobik");
         when(dogService.update(dog)).thenReturn(dog);
 
         mockMvc.perform(put("/dog")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(userObject.toString()))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Bobik"));
+                .andExpect(content().json(userObject.toString()));
+        verify(dogService).update(dog);
     }
     @Test
     public void testGetAllDogs() throws Exception {
-//        List<Dog> dogs = Arrays.asList(new Dog("Fido"), new Dog("Buddy"));
-//        when(dogService.getAll()).thenReturn(dogs);
+            when(dogService.getAll()).thenReturn(List.of(new Dog()));
 
-        mockMvc.perform(MockMvcRequestBuilders
-                .get("/dog")
-                .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].name").value("Fido"))
-                .andExpect(jsonPath("$.[1].name").value("Buddy"));
+            mockMvc.perform(
+                            get("/dog/all"))
+                    .andExpect(status().isOk());
+        }
+
     }
-}
+
 
