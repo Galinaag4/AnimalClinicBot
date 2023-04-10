@@ -38,7 +38,7 @@ public class Dog {
     @JsonBackReference
     private PersonDog personDog;
 
-    public Dog(String nameDog, String breed, int yearOfBirth, String description) {
+    public Dog(long id, String nameDog, String breed, int yearOfBirth, String description) {
         this.nameDog = nameDog;
         this.breed = breed;
         this.yearOfBirth = yearOfBirth;
@@ -51,6 +51,12 @@ public class Dog {
 
     public Dog(String nameDog) {
         this.nameDog = nameDog;
+    }
+
+    public Dog(Long id, String nameDog) {
+        this.id = id;
+        this.nameDog = nameDog;
+
     }
 
     public Long getId() {

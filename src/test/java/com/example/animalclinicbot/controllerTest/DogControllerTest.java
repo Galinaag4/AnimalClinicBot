@@ -1,4 +1,4 @@
-package com.example.animalclinicbot;
+package com.example.animalclinicbot.controllerTest;
 
 
 import com.example.animalclinicbot.controller.DogController;
@@ -8,6 +8,7 @@ import com.example.animalclinicbot.service.DogService;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
-@WebMvcTest(DogController.class)
+@WebMvcTest(MockitoExtension.class)
 public class DogControllerTest {
 
     @Autowired
