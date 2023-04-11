@@ -1,11 +1,9 @@
-package com.example.animalclinicbot;
+package com.example.animalclinicbot.controllerTest;
 
 import com.example.animalclinicbot.controller.PersonDogController;
-import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.model.PersonDog;
-import com.example.animalclinicbot.service.DogService;
+import com.example.animalclinicbot.model.Status;
 import com.example.animalclinicbot.service.PersonDogService;
-import liquibase.pro.packaged.P;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +30,7 @@ public class PersonDogControllerTest {
     private PersonDogService personDogService;
     @Test
     public void savePersonDog() throws Exception {
-        PersonDog personDog = new PersonDog();
+        PersonDog personDog = new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH);
         personDog.setId(1L);
         personDog.setName("petr");
         JSONObject userObject = new JSONObject();
@@ -56,7 +54,7 @@ public class PersonDogControllerTest {
     }
     @Test
     public void testUpdatePersonDog() throws Exception {
-        PersonDog personDog = new PersonDog();
+        PersonDog personDog = new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH);
         personDog.setId(1L);
         personDog.setName("petr");
         JSONObject userObject = new JSONObject();
@@ -73,7 +71,7 @@ public class PersonDogControllerTest {
     }
     @Test
     public void testGetAllPersonDogs() throws Exception {
-        when(personDogService.getAll()).thenReturn(List.of(new PersonDog()));
+        when(personDogService.getAll()).thenReturn(List.of(new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH)));
 
         mockMvc.perform(
                         get("/person-dog/all"))
