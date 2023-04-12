@@ -1,9 +1,6 @@
 package com.example.animalclinicbot.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
@@ -16,8 +13,8 @@ public class Report {
      * идентификатор записи
      */
     @Id
-    @GeneratedValue
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     /**
      * идентификатор чата в телеграмм
      */
@@ -37,7 +34,7 @@ public class Report {
     /**
      * время испытательного срока
      */
-    private long days;
+    private Long days;
     /**
      * путь к фото
      */
@@ -45,7 +42,7 @@ public class Report {
     /**
      * размер фото
      */
-    private long fileSize;
+    private Long fileSize;
     /**
      * сам файл, массив байт
      */
