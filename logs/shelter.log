@@ -1841,3 +1841,793 @@ Caused by: org.postgresql.util.PSQLException: ОШИБКА: отношение "
 2023-04-13 02:06:59.504  WARN 38696 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2023-04-13 02:07:00.299  INFO 38696 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2023-04-13 02:07:00.386  INFO 38696 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 4.95 seconds (JVM running for 5.463)
+2023-04-13 02:30:08.919  INFO 38696 --- [https://t.me/Task_chat_dailyBot Telegram Connection] o.t.t.u.DefaultBotSession                : Read timed out
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803) ~[na:na]
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1460) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1064) ~[na:na]
+	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$ReaderThread.getUpdatesFromServer(DefaultBotSession.java:250) ~[telegrambots-5.6.0.jar:na]
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$ReaderThread.run(DefaultBotSession.java:189) ~[telegrambots-5.6.0.jar:na]
+
+2023-04-13 02:30:29.645  WARN 38696 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m30s119ms963µs300ns).
+2023-04-13 03:22:53.333  WARN 38696 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=42m53s544ms236µs100ns).
+2023-04-13 18:20:01.820  INFO 5868 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 5868 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 18:20:01.823  INFO 5868 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 18:20:02.630  INFO 5868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 18:20:02.676  INFO 5868 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 3 JPA repository interfaces.
+2023-04-13 18:20:02.869  INFO 5868 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 18:20:02.905  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 18:20:02.906  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:20:02.906  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:20:02.906  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:20:02.906  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:20:02.906  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:20:02.906  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:20:02.907  INFO 5868 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:20:03.207  INFO 5868 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 18:20:03.216  INFO 5868 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 18:20:03.216  INFO 5868 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 18:20:03.308  INFO 5868 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 18:20:03.309  INFO 5868 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1429 ms
+2023-04-13 18:20:03.347  INFO 5868 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 18:20:03.350  INFO 5868 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 18:20:03.555  INFO 5868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 18:20:03.727  INFO 5868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 18:20:03.850  INFO 5868 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 18:20:03.935  INFO 5868 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 18:20:04.089  INFO 5868 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 18:20:04.121  INFO 5868 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 18:20:04.206  INFO 5868 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 18:20:04.253  INFO 5868 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 18:20:04.418  INFO 5868 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 18:20:04.544  INFO 5868 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 18:20:05.149  INFO 5868 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 18:20:05.156  INFO 5868 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:20:05.161  WARN 5868 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'telegramBotConfiguration': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'bot.name' in value "${bot.name}"
+2023-04-13 18:20:05.161  INFO 5868 --- [main] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:20:05.163  INFO 5868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 18:20:05.165  INFO 5868 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 18:20:05.169  INFO 5868 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-04-13 18:20:05.179  INFO 5868 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-13 18:20:05.199 ERROR 5868 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'telegramBotConfiguration': Injection of autowired dependencies failed; nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder 'bot.name' in value "${bot.name}"
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:405) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.9.jar:2.7.9]
+	at com.example.animalclinicbot.AnimalClinicBotApplication.main(AnimalClinicBotApplication.java:10) ~[classes/:na]
+Caused by: java.lang.IllegalArgumentException: Could not resolve placeholder 'bot.name' in value "${bot.name}"
+	at org.springframework.util.PropertyPlaceholderHelper.parseStringValue(PropertyPlaceholderHelper.java:180) ~[spring-core-5.3.25.jar:5.3.25]
+	at org.springframework.util.PropertyPlaceholderHelper.replacePlaceholders(PropertyPlaceholderHelper.java:126) ~[spring-core-5.3.25.jar:5.3.25]
+	at org.springframework.core.env.AbstractPropertyResolver.doResolvePlaceholders(AbstractPropertyResolver.java:239) ~[spring-core-5.3.25.jar:5.3.25]
+	at org.springframework.core.env.AbstractPropertyResolver.resolveRequiredPlaceholders(AbstractPropertyResolver.java:210) ~[spring-core-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.PropertySourcesPlaceholderConfigurer.lambda$processProperties$0(PropertySourcesPlaceholderConfigurer.java:191) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.resolveEmbeddedValue(AbstractBeanFactory.java:936) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1332) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:657) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:640) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399) ~[spring-beans-5.3.25.jar:5.3.25]
+	... 17 common frames omitted
+
+2023-04-13 18:22:39.318  INFO 1960 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 1960 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 18:22:39.321  INFO 1960 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 18:22:39.914  INFO 1960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 18:22:39.957  INFO 1960 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2023-04-13 18:22:40.116  INFO 1960 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 18:22:40.157  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 18:22:40.158  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:22:40.159  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:22:40.159  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:22:40.159  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:22:40.159  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:22:40.159  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:22:40.159  INFO 1960 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:22:40.423  INFO 1960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 18:22:40.430  INFO 1960 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 18:22:40.430  INFO 1960 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 18:22:40.521  INFO 1960 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 18:22:40.522  INFO 1960 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1154 ms
+2023-04-13 18:22:40.555  INFO 1960 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 18:22:40.557  INFO 1960 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 18:22:40.708  INFO 1960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 18:22:40.838  INFO 1960 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 18:22:40.941  INFO 1960 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 18:22:41.020  INFO 1960 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 18:22:41.150  INFO 1960 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 18:22:41.189  INFO 1960 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 18:22:41.271  INFO 1960 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 18:22:41.317  INFO 1960 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 18:22:41.463  INFO 1960 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 18:22:41.557  INFO 1960 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 18:22:42.069  INFO 1960 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 18:22:42.077  INFO 1960 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:22:43.140  WARN 1960 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 18:22:43.930  INFO 1960 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 18:22:44.029  INFO 1960 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 5.023 seconds (JVM running for 5.52)
+2023-04-13 18:23:58.633  INFO 1960 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:23:58.636  INFO 1960 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 18:23:58.643  INFO 1960 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 18:24:01.337  INFO 11860 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 11860 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 18:24:01.340  INFO 11860 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 18:24:01.872  INFO 11860 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 18:24:01.922  INFO 11860 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 41 ms. Found 3 JPA repository interfaces.
+2023-04-13 18:24:02.084  INFO 11860 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 18:24:02.120  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 18:24:02.121  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:24:02.121  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:24:02.122  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:24:02.122  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:24:02.122  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:24:02.122  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:24:02.122  INFO 11860 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:24:02.389  INFO 11860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 18:24:02.398  INFO 11860 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 18:24:02.398  INFO 11860 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 18:24:02.490  INFO 11860 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 18:24:02.490  INFO 11860 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1111 ms
+2023-04-13 18:24:02.528  INFO 11860 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 18:24:02.530  INFO 11860 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 18:24:02.687  INFO 11860 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 18:24:02.818  INFO 11860 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 18:24:02.923  INFO 11860 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 18:24:03.000  INFO 11860 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 18:24:03.119  INFO 11860 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 18:24:03.156  INFO 11860 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 18:24:03.235  INFO 11860 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 18:24:03.271  INFO 11860 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 18:24:03.402  INFO 11860 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 18:24:03.500  INFO 11860 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 18:24:04.018  INFO 11860 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 18:24:04.026  INFO 11860 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:24:04.889  WARN 11860 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 18:24:05.694  INFO 11860 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 18:24:05.786  INFO 11860 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 4.749 seconds (JVM running for 5.285)
+2023-04-13 18:41:29.764  INFO 11860 --- [https://t.me/Task_chat_dailyBot Telegram Connection] o.t.t.u.DefaultBotSession                : Read timed out
+
+java.net.SocketTimeoutException: Read timed out
+	at java.base/sun.nio.ch.NioSocketImpl.timedRead(NioSocketImpl.java:283) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.implRead(NioSocketImpl.java:309) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl.read(NioSocketImpl.java:350) ~[na:na]
+	at java.base/sun.nio.ch.NioSocketImpl$1.read(NioSocketImpl.java:803) ~[na:na]
+	at java.base/java.net.Socket$SocketInputStream.read(Socket.java:966) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketInputRecord.read(SSLSocketInputRecord.java:478) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketInputRecord.readHeader(SSLSocketInputRecord.java:472) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketInputRecord.bytesInCompletePacket(SSLSocketInputRecord.java:70) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl.readApplicationRecord(SSLSocketImpl.java:1460) ~[na:na]
+	at java.base/sun.security.ssl.SSLSocketImpl$AppInputStream.read(SSLSocketImpl.java:1064) ~[na:na]
+	at org.apache.http.impl.io.SessionInputBufferImpl.streamRead(SessionInputBufferImpl.java:137) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.io.SessionInputBufferImpl.fillBuffer(SessionInputBufferImpl.java:153) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.io.SessionInputBufferImpl.readLine(SessionInputBufferImpl.java:280) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:138) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.conn.DefaultHttpResponseParser.parseHead(DefaultHttpResponseParser.java:56) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.io.AbstractMessageParser.parse(AbstractMessageParser.java:259) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.DefaultBHttpClientConnection.receiveResponseHeader(DefaultBHttpClientConnection.java:163) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.conn.CPoolProxy.receiveResponseHeader(CPoolProxy.java:157) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.protocol.HttpRequestExecutor.doReceiveResponse(HttpRequestExecutor.java:273) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.protocol.HttpRequestExecutor.execute(HttpRequestExecutor.java:125) ~[httpcore-4.4.16.jar:4.4.16]
+	at org.apache.http.impl.execchain.MainClientExec.execute(MainClientExec.java:272) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.execchain.ProtocolExec.execute(ProtocolExec.java:186) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.execchain.RetryExec.execute(RetryExec.java:89) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.execchain.RedirectExec.execute(RedirectExec.java:110) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.client.InternalHttpClient.doExecute(InternalHttpClient.java:185) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.apache.http.impl.client.CloseableHttpClient.execute(CloseableHttpClient.java:83) ~[httpclient-4.5.14.jar:4.5.14]
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$ReaderThread.getUpdatesFromServer(DefaultBotSession.java:250) ~[telegrambots-5.6.0.jar:na]
+	at org.telegram.telegrambots.updatesreceivers.DefaultBotSession$ReaderThread.run(DefaultBotSession.java:189) ~[telegrambots-5.6.0.jar:na]
+
+2023-04-13 18:41:47.761  WARN 11860 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m44s585ms967µs800ns).
+2023-04-13 18:54:48.813  INFO 11860 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:54:48.815  INFO 11860 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 18:54:48.818  INFO 11860 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 18:54:54.905  INFO 908 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 908 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 18:54:54.908  INFO 908 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 18:54:55.507  INFO 908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 18:54:55.554  INFO 908 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 3 JPA repository interfaces.
+2023-04-13 18:54:55.722  INFO 908 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 18:54:55.757  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 18:54:55.758  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:54:55.759  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:54:55.759  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:54:55.759  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:54:55.759  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 18:54:55.759  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:54:55.759  INFO 908 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 18:54:56.022  INFO 908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 18:54:56.029  INFO 908 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 18:54:56.030  INFO 908 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 18:54:56.125  INFO 908 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 18:54:56.125  INFO 908 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1177 ms
+2023-04-13 18:54:56.160  INFO 908 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 18:54:56.162  INFO 908 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 18:54:56.362  INFO 908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 18:54:56.516  INFO 908 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 18:54:56.648  INFO 908 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 18:54:56.725  INFO 908 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 18:54:56.845  INFO 908 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 18:54:56.883  INFO 908 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 18:54:56.961  INFO 908 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 18:54:57.006  INFO 908 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 18:54:57.147  INFO 908 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 18:54:57.263  INFO 908 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 18:54:57.814  INFO 908 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 18:54:57.822  INFO 908 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:54:58.725  WARN 908 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 18:54:59.593  INFO 908 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 18:54:59.685  INFO 908 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 5.09 seconds (JVM running for 5.676)
+2023-04-13 18:59:57.743  INFO 908 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 18:59:57.745  INFO 908 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 18:59:57.749  INFO 908 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:00:01.623  INFO 8396 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 8396 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:00:01.625  INFO 8396 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:00:02.203  INFO 8396 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:00:02.247  INFO 8396 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 39 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:00:02.456  INFO 8396 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:00:02.489  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:00:02.490  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:00:02.490  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:00:02.490  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:00:02.491  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:00:02.491  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:00:02.491  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:00:02.491  INFO 8396 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:00:02.784  INFO 8396 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:00:02.792  INFO 8396 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:00:02.793  INFO 8396 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:00:02.888  INFO 8396 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:00:02.888  INFO 8396 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1222 ms
+2023-04-13 19:00:02.922  INFO 8396 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:00:02.924  INFO 8396 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:00:03.103  INFO 8396 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:00:03.250  INFO 8396 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:00:03.400  INFO 8396 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:00:03.481  INFO 8396 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:00:03.612  INFO 8396 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:00:03.650  INFO 8396 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:00:03.739  INFO 8396 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 19:00:03.795  INFO 8396 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 19:00:03.956  INFO 8396 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 19:00:04.056  INFO 8396 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 19:00:04.626  INFO 8396 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 19:00:04.634  INFO 8396 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:00:05.609  WARN 8396 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 19:00:06.417  INFO 8396 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 19:00:06.514  INFO 8396 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 5.223 seconds (JVM running for 5.762)
+2023-04-13 19:07:09.851  INFO 8396 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:07:09.853  INFO 8396 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 19:07:09.858  INFO 8396 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:07:15.384  INFO 3808 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 3808 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:07:15.386  INFO 3808 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:07:15.968  INFO 3808 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:07:16.010  INFO 3808 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:07:16.199  INFO 3808 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:07:16.235  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:07:16.236  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:07:16.236  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:07:16.236  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:07:16.237  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:07:16.237  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:07:16.237  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:07:16.237  INFO 3808 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:07:16.535  INFO 3808 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:07:16.543  INFO 3808 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:07:16.543  INFO 3808 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:07:16.649  INFO 3808 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:07:16.649  INFO 3808 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1222 ms
+2023-04-13 19:07:16.687  INFO 3808 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:07:16.689  INFO 3808 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:07:16.859  INFO 3808 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:07:16.996  INFO 3808 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:07:17.153  INFO 3808 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:07:17.234  INFO 3808 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:07:17.372  INFO 3808 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:07:17.440  INFO 3808 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:07:17.441  WARN 3808 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+2023-04-13 19:07:17.441  INFO 3808 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 19:07:17.449  INFO 3808 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:07:17.451  INFO 3808 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-04-13 19:07:17.461  INFO 3808 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-13 19:07:17.501 ERROR 3808 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.9.jar:2.7.9]
+	at com.example.animalclinicbot.AnimalClinicBotApplication.main(AnimalClinicBotApplication.java:10) ~[classes/:na]
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:126) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.lambda$null$0(Liquibase.java:265) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:243) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:264) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:2405) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:211) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:197) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:314) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:269) ~[liquibase-core-4.9.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.25.jar:5.3.25]
+	... 18 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:696) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:56) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:113) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:112) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:243) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:243) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:247) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65) ~[liquibase-core-4.9.1.jar:na]
+	... 36 common frames omitted
+Caused by: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:397) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:151) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1279) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1261) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:661) ~[liquibase-core-4.9.1.jar:na]
+	... 56 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ОШИБКА: отношение "person_dog" не существует
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286) ~[postgresql-42.3.2.jar:42.3.2]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-4.0.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-4.0.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:393) ~[liquibase-core-4.9.1.jar:na]
+	... 61 common frames omitted
+
+2023-04-13 19:08:40.307  INFO 8188 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 8188 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:08:40.309  INFO 8188 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:08:40.863  INFO 8188 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:08:40.904  INFO 8188 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:08:41.056  INFO 8188 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:08:41.098  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:08:41.099  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:08:41.099  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:08:41.100  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:08:41.100  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:08:41.100  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:08:41.100  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:08:41.100  INFO 8188 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:08:41.385  INFO 8188 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:08:41.393  INFO 8188 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:08:41.394  INFO 8188 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:08:41.490  INFO 8188 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:08:41.491  INFO 8188 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1141 ms
+2023-04-13 19:08:41.523  INFO 8188 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:08:41.526  INFO 8188 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:08:41.667  INFO 8188 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:08:41.908  INFO 8188 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:08:42.009  INFO 8188 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:08:42.085  INFO 8188 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:08:42.225  INFO 8188 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:08:42.280  INFO 8188 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:08:42.281  WARN 8188 --- [main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+2023-04-13 19:08:42.282  INFO 8188 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 19:08:42.311  INFO 8188 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:08:42.312  INFO 8188 --- [main] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2023-04-13 19:08:42.324  INFO 8188 --- [main] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2023-04-13 19:08:42.339 ERROR 8188 --- [main] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.25.jar:5.3.25]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.7.9.jar:2.7.9]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.7.9.jar:2.7.9]
+	at com.example.animalclinicbot.AnimalClinicBotApplication.main(AnimalClinicBotApplication.java:10) ~[classes/:na]
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:126) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.lambda$null$0(Liquibase.java:265) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:243) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:264) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.runInScope(Liquibase.java:2405) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:211) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Liquibase.update(Liquibase.java:197) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:314) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:269) ~[liquibase-core-4.9.1.jar:na]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.25.jar:5.3.25]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.25.jar:5.3.25]
+	... 18 common frames omitted
+Caused by: liquibase.exception.MigrationFailedException: Migration failed for change set liquibase/scripts/users.sql::1::stacey29:
+     Reason: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:696) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:56) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:113) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:112) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:243) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.lambda$child$0(Scope.java:180) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:189) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:179) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:158) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:243) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.Scope.child(Scope.java:247) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65) ~[liquibase-core-4.9.1.jar:na]
+	... 36 common frames omitted
+Caused by: liquibase.exception.DatabaseException: ОШИБКА: отношение "person_dog" не существует [Failed SQL: (0) CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+)]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:397) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:83) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor.execute(JdbcExecutor.java:151) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1279) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1261) ~[liquibase-core-4.9.1.jar:na]
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:661) ~[liquibase-core-4.9.1.jar:na]
+	... 56 common frames omitted
+Caused by: org.postgresql.util.PSQLException: ОШИБКА: отношение "person_dog" не существует
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2675) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2365) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:355) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:490) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:408) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:329) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeCachedSql(PgStatement.java:315) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.executeWithFlags(PgStatement.java:291) ~[postgresql-42.3.2.jar:42.3.2]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:286) ~[postgresql-42.3.2.jar:42.3.2]
+	at com.zaxxer.hikari.pool.ProxyStatement.execute(ProxyStatement.java:94) ~[HikariCP-4.0.3.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyStatement.execute(HikariProxyStatement.java) ~[HikariCP-4.0.3.jar:na]
+	at liquibase.executor.jvm.JdbcExecutor$ExecuteStatementCallback.doInStatement(JdbcExecutor.java:393) ~[liquibase-core-4.9.1.jar:na]
+	... 61 common frames omitted
+
+2023-04-13 19:09:37.971  INFO 5824 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 5824 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:09:37.974  INFO 5824 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:09:38.611  INFO 5824 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:09:38.656  INFO 5824 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:09:38.810  INFO 5824 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:09:38.849  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:09:38.850  INFO 5824 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:09:39.148  INFO 5824 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:09:39.156  INFO 5824 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:09:39.157  INFO 5824 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:09:39.252  INFO 5824 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:09:39.252  INFO 5824 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1238 ms
+2023-04-13 19:09:39.290  INFO 5824 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:09:39.293  INFO 5824 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:09:39.435  INFO 5824 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:09:39.562  INFO 5824 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:09:39.667  INFO 5824 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:09:39.745  INFO 5824 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:09:39.875  INFO 5824 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:09:39.945  INFO 5824 --- [main] liquibase.changelog                      : Custom SQL executed
+2023-04-13 19:09:39.946  INFO 5824 --- [main] liquibase.changelog                      : ChangeSet liquibase/scripts/users.sql::1::stacey29 ran successfully in 37ms
+2023-04-13 19:09:39.962  INFO 5824 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:09:40.043  INFO 5824 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 19:09:40.109  INFO 5824 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 19:09:40.266  INFO 5824 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 19:09:40.375  INFO 5824 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 19:09:40.967  INFO 5824 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 19:09:40.977  INFO 5824 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:09:41.971  WARN 5824 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 19:09:42.767  INFO 5824 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 19:09:42.865  INFO 5824 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 5.2 seconds (JVM running for 5.708)
+2023-04-13 19:13:43.807  INFO 5824 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:13:43.809  INFO 5824 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 19:13:43.813  INFO 5824 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:13:48.967  INFO 13524 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 13524 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:13:48.969  INFO 13524 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:13:49.514  INFO 13524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:13:49.557  INFO 13524 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 37 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:13:49.714  INFO 13524 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:13:49.752  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:13:49.753  INFO 13524 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:13:50.012  INFO 13524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:13:50.020  INFO 13524 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:13:50.020  INFO 13524 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:13:50.110  INFO 13524 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:13:50.110  INFO 13524 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1104 ms
+2023-04-13 19:13:50.143  INFO 13524 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:13:50.145  INFO 13524 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:13:50.289  INFO 13524 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:13:50.416  INFO 13524 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:13:50.525  INFO 13524 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:13:50.601  INFO 13524 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:13:50.723  INFO 13524 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:13:50.761  INFO 13524 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:13:50.837  INFO 13524 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 19:13:50.882  INFO 13524 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 19:13:51.022  INFO 13524 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 19:13:51.105  INFO 13524 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 19:13:51.607  INFO 13524 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 19:13:51.615  INFO 13524 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:13:52.491  WARN 13524 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 19:13:53.262  INFO 13524 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 19:13:53.357  INFO 13524 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 4.727 seconds (JVM running for 5.351)
+2023-04-13 19:14:13.462  INFO 13524 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:14:13.464  INFO 13524 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 19:14:13.469  INFO 13524 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:14:16.533  INFO 13484 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 13484 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:14:16.536  INFO 13484 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:14:17.086  INFO 13484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:14:17.125  INFO 13484 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:14:17.273  INFO 13484 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:14:17.309  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:14:17.311  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:14:17.311  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:14:17.311  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:17.312  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:17.312  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:14:17.312  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:17.312  INFO 13484 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:17.569  INFO 13484 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:14:17.579  INFO 13484 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:14:17.579  INFO 13484 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:14:17.681  INFO 13484 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:14:17.682  INFO 13484 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1102 ms
+2023-04-13 19:14:17.719  INFO 13484 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:14:17.722  INFO 13484 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:14:17.869  INFO 13484 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:14:17.993  INFO 13484 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:14:18.119  INFO 13484 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:14:18.193  INFO 13484 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:14:18.318  INFO 13484 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:14:18.360  INFO 13484 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:14:18.441  INFO 13484 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 19:14:18.484  INFO 13484 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 19:14:18.621  INFO 13484 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 19:14:18.705  INFO 13484 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 19:14:19.202  INFO 13484 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 19:14:19.210  INFO 13484 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:14:20.103  WARN 13484 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 19:14:20.888  INFO 13484 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 19:14:21.001  INFO 13484 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 4.789 seconds (JVM running for 5.297)
+2023-04-13 19:14:45.555  INFO 13484 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:14:45.557  INFO 13484 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-13 19:14:45.560  INFO 13484 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2023-04-13 19:14:48.550  INFO 972 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on DESKTOP-T9SD1GK with PID 972 (C:\Users\User\Desktop\telegram-bot\AnimalClinicBot\target\classes started by User in C:\Users\User\Desktop\telegram-bot\AnimalClinicBot)
+2023-04-13 19:14:48.553  INFO 972 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-13 19:14:49.096  INFO 972 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-13 19:14:49.139  INFO 972 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 36 ms. Found 3 JPA repository interfaces.
+2023-04-13 19:14:49.305  INFO 972 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-13 19:14:49.341  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-13 19:14:49.342  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:14:49.342  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:14:49.343  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:49.343  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:49.343  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-13 19:14:49.343  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:49.343  INFO 972 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-13 19:14:49.614  INFO 972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-13 19:14:49.621  INFO 972 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-13 19:14:49.621  INFO 972 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-13 19:14:49.712  INFO 972 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-13 19:14:49.712  INFO 972 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1122 ms
+2023-04-13 19:14:49.745  INFO 972 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-13 19:14:49.747  INFO 972 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-13 19:14:49.885  INFO 972 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-13 19:14:50.015  INFO 972 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-13 19:14:50.122  INFO 972 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-13 19:14:50.200  INFO 972 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-13 19:14:50.316  INFO 972 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-13 19:14:50.366  INFO 972 --- [main] liquibase.changelog                      : Custom SQL executed
+2023-04-13 19:14:50.368  INFO 972 --- [main] liquibase.changelog                      : ChangeSet liquibase/scripts/users.sql::1::stacey29 ran successfully in 22ms
+2023-04-13 19:14:50.386  INFO 972 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-13 19:14:50.463  INFO 972 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-13 19:14:50.504  INFO 972 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-13 19:14:50.658  INFO 972 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-13 19:14:50.745  INFO 972 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-13 19:14:51.252  INFO 972 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-13 19:14:51.260  INFO 972 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-13 19:14:52.160  WARN 972 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-13 19:14:52.921  INFO 972 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-13 19:14:53.013  INFO 972 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 4.779 seconds (JVM running for 5.25)

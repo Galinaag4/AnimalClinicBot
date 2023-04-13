@@ -10,17 +10,6 @@ CREATE TYPE  status  AS ENUM (
     'SEARCH'
     );
 
-CREATE TABLE IF NOT EXISTS dog(
-                                  id BIGSERIAL PRIMARY KEY,
-                                  breed VARCHAR,
-                                  description VARCHAR,
-                                  name_dog VARCHAR,
-                                  year_of_birth INTEGER NOT NULL ,
-                                  person_id BIGSERIAL REFERENCES person_dog (id),
-                                  report_id BIGSERIAL REFERENCES report (id)
-
-);
-
 CREATE TABLE IF NOT EXISTS person_dog(
                                          id BIGSERIAL PRIMARY KEY,
                                          address VARCHAR,
@@ -46,3 +35,15 @@ CREATE TABLE IF NOT EXISTS report(
                                      ration VARCHAR
 
 );
+
+CREATE TABLE IF NOT EXISTS dog(
+                                  id BIGSERIAL PRIMARY KEY,
+                                  breed VARCHAR,
+                                  description VARCHAR,
+                                  name_dog VARCHAR,
+                                  year_of_birth INTEGER NOT NULL ,
+                                  person_id BIGSERIAL REFERENCES person_dog (id),
+                                  report_id BIGSERIAL REFERENCES report (id)
+
+);
+
