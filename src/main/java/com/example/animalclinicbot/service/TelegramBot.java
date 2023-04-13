@@ -1,6 +1,8 @@
 package com.example.animalclinicbot.service;
 
 import com.example.animalclinicbot.configuration.TelegramBotConfiguration;
+import com.example.animalclinicbot.constants.BotMessageEnum;
+import com.example.animalclinicbot.constants.ButtonNameEnum;
 import com.example.animalclinicbot.model.PersonDog;
 
 import com.example.animalclinicbot.repository.PersonDogRepository;
@@ -21,6 +23,7 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -35,22 +38,12 @@ public class TelegramBot extends TelegramLongPollingBot {
     private PersonDogRepository personDogRepository;
     final TelegramBotConfiguration botConfiguration;
 
-    static final String HELP_TEXT = "Этот бот поможет ответить на ваши вопросы о том, что нужно знать," +
-            " чтобы забрать животное из приюта.\n\n" +
-            "Вы можете использовать эти комманды из меню слева или ввеcти команду:\n\n" +
-            "Нажми /start чтобы увидеть сообщение приветствие\n\n" +
-            "Нажми /info чтобы увидеть информацию о приюте\n\n" +
-            "Нажми /volunteer позвать волонтера на помощь";
-
-    static final String YES_BUTTON = "YES_BUTTON";
-    static final String NO_BUTTON = "NO_BUTTON";
-
 
     public TelegramBot(TelegramBotConfiguration botConfiguration) {
         this.botConfiguration = botConfiguration;
         List<BotCommand> listofCommands = new ArrayList<>();
         listofCommands.add(new BotCommand("/start", "сообщение приветсвие"));
-        listofCommands.add(new BotCommand("/info", "информация о боте"));
+        listofCommands.add(new BotCommand("/info", "информация о приюте"));
         try {
             this.execute(new SetMyCommands(listofCommands, new BotCommandScopeDefault(), null));
         } catch (TelegramApiException e) {
@@ -90,34 +83,21 @@ public class TelegramBot extends TelegramLongPollingBot {
 
                     case "/info":
 
-                        prepareAndSendMessage(chatId, HELP_TEXT);
+                        prepareAndSendMessage(chatId,BotMessageEnum.INFO_SHELTER.getMessage());
                         break;
 
                     default:
 
-                        prepareAndSendMessage(chatId, "Sorry, command was not recognized");
+                        prepareAndSendMessage(chatId, "Извините, команда не поддреживается!");
 
                 }
             }
-        } else if (update.hasCallbackQuery()) {
-            String callbackData = update.getCallbackQuery().getData();
-            long messageId = update.getCallbackQuery().getMessage().getMessageId();
-            long chatId = update.getCallbackQuery().getMessage().getChatId();
-
-            if (callbackData.equals(YES_BUTTON)) {
-                String text = "You pressed YES button";
-                executeEditMessageText(text, chatId, messageId);
-            } else if (callbackData.equals(NO_BUTTON)) {
-                String text = "You pressed NO button";
-                executeEditMessageText(text, chatId, messageId);
-            }
         }
 
-
-    }
+            }
 
     private void startCommandReceived(long chatId, String name) {
-        String answer = EmojiParser.parseToUnicode("Привет, " + name + ", я расскажу тебе о приюте!" + " :blush:");
+        String answer = BotMessageEnum.HELP_MESSAGE.getMessage();
 
 
         sendMessage(chatId, answer);
@@ -134,7 +114,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         KeyboardRow row = new KeyboardRow();
 
-        row.add("позвать волонтера");
+        row.add(new KeyboardButton(ButtonNameEnum.CALL_VOLUNTEER_BUTTON.getButtonName()));
 // второй ряд кнопок
 //        keyboardRows.add(row);
 //
