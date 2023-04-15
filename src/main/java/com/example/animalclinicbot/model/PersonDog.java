@@ -20,30 +20,39 @@ public class PersonDog {
     /**
      * имя хозяина животного
      */
+    @Column (name = "name", nullable = false)
     private String name;
     /**
      * дата рождения владельца
      */
+    @Column (name = "year_of_birth", nullable = false)
     private int yearOfBirth;
     /**
      * номер телефона хозяина животного
      */
+
+    @Column (name = "phone", nullable = false)
     private String phone;
     /**
      * email хозяина животного
      */
+    @Column (name = "mail", nullable = false)
     private String mail;
     /**
      * адрес хозяина животного
      */
+    @Column (name = "address", nullable = false)
     private String address;
     /**
      * идентификатор чата в телеграмм
      */
+
+    @Column (name = "chat_id", nullable = false)
     private Long chatId;
     /**
      * статус нахождения животного
      */
+    @Column (name = "status", nullable = false)
     private Status status;
     /**
      * ID питомца

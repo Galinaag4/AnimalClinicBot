@@ -19,18 +19,22 @@ public class Dog {
     /**
      * имя животного
      */
+    @Column (name = "name_dog", nullable = false)
     private String nameDog;
     /**
      * порода животного
      */
+    @Column (name = "breed", nullable = false)
     private String breed;
     /**
      * год рождения животного
      */
+    @Column (name = "year_of_birth", nullable = false)
     private int yearOfBirth;
     /**
      * описание животного
      */
+    @Column (name = "description", nullable = false)
     private String description;
 
 

@@ -15,46 +15,62 @@ public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     /**
      * идентификатор чата в телеграмм
      */
+
+    @Column(name = "chat_id", nullable = false)
     private Long chatId;
     /**
      * рацион питомца
      */
+    @Column (name = "ration", nullable = false)
     private String ration;
     /**
      * здоровье питомца
      */
+    @Column (name = "health", nullable = false)
     private String health;
     /**
      * привычки животного
      */
+    @Column (name = "habits", nullable = false)
     private String habits;
     /**
      * время испытательного срока
      */
+
+    @Column (name = "days", nullable = false)
     private Long days;
     /**
      * путь к фото
      */
+    @Column (name = "file_path", nullable = false)
     private String filePath;
     /**
      * размер фото
      */
+
+    @Column (name = "file_size", nullable = false)
     private Long fileSize;
     /**
      * сам файл, массив байт
      */
     @Lob
+    @Column (name = "data", nullable = false)
     private byte[] data;
     /**
      * подпись к фото
      */
+
+    @Column (name = "caption", nullable = false)
     private String caption;
     /**
      * дата последнего сообщения
      */
+
+    @Column (name = "last_message", nullable = false)
     private Date lastMessage;
 
 
