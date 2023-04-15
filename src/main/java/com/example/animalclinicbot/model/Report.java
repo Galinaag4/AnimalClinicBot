@@ -21,7 +21,7 @@ public class Report {
      */
 
     @Column(name = "chat_id", nullable = false)
-    private Long chatId;
+    private long chatId;
     /**
      * рацион питомца
      */
@@ -74,7 +74,7 @@ public class Report {
     private Date lastMessage;
 
 
-    public Report(long id, Long chatId, String ration, String health, String habits, long days, String filePath, long fileSize, byte[] data, String caption, Date lastMessage) {
+    public Report(long id, long chatId, String ration, String health, String habits, long days, String filePath, long fileSize, byte[] data, String caption, Date lastMessage) {
         this.id = id;
         this.chatId = chatId;
         this.ration = ration;
@@ -101,11 +101,11 @@ public class Report {
         this.id = id;
     }
 
-    public Long getChatId() {
+    public long getChatId() {
         return chatId;
     }
 
-    public void setChatId(Long chatId) {
+    public void setChatId(long chatId) {
         this.chatId = chatId;
     }
 
@@ -187,7 +187,13 @@ public class Report {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Report report)) return false;
-        return getId() == report.getId() && getDays() == report.getDays() && getFileSize() == report.getFileSize() && Objects.equals(getChatId(), report.getChatId()) && Objects.equals(getRation(), report.getRation()) && Objects.equals(getHealth(), report.getHealth()) && Objects.equals(getHabits(), report.getHabits()) && Objects.equals(getFilePath(), report.getFilePath()) && Arrays.equals(getData(), report.getData()) && Objects.equals(getCaption(), report.getCaption()) && Objects.equals(getLastMessage(), report.getLastMessage());
+        return getId() == report.getId() && getDays() == report.getDays()
+                && getFileSize() == report.getFileSize() && Objects.equals(getChatId(),
+                report.getChatId()) && Objects.equals(getRation(), report.getRation()) &&
+                Objects.equals(getHealth(), report.getHealth()) && Objects.equals(getHabits(),
+                report.getHabits()) && Objects.equals(getFilePath(), report.getFilePath()) &&
+                Arrays.equals(getData(), report.getData()) && Objects.equals(getCaption(),
+                report.getCaption()) && Objects.equals(getLastMessage(), report.getLastMessage());
     }
 
     @Override

@@ -65,6 +65,7 @@ public class DogServiceTest {
     void testUpdate() {
         Long id = 1L;
         Dog dog = new Dog(id, "Buddy");
+
         when(dogRepository.findById(id)).thenReturn(Optional.of(dog));
         when(dogRepository.save(dog)).thenReturn(dog);
         Dog result = dogService.update(dog);
