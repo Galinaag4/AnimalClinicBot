@@ -43,3 +43,41 @@ You may wish to exclude one of them to ensure predictable runtime behavior
 2023-04-10 12:51:05.909  INFO 6548 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
 2023-04-10 12:51:05.924  INFO 6548 --- [main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 14 ms
 2023-04-10 12:51:06.047  INFO 6548 --- [main] c.e.a.serviceTest.DogServiceTest         : Started DogServiceTest in 14.606 seconds (JVM running for 20.558)
+2023-04-15 12:53:04.128  INFO 13428 --- [main] c.e.a.AnimalClinicBotApplication         : Starting AnimalClinicBotApplication using Java 17.0.5 on PCofGOD with PID 13428 (C:\Users\God\IdeaProjects\Animal_Clinic_Bot\target\classes started by God in C:\Users\God\IdeaProjects\Animal_Clinic_Bot)
+2023-04-15 12:53:04.129  INFO 13428 --- [main] c.e.a.AnimalClinicBotApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-04-15 12:53:04.748  INFO 13428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-15 12:53:04.791  INFO 13428 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 35 ms. Found 3 JPA repository interfaces.
+2023-04-15 12:53:04.937  INFO 13428 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2023-04-15 12:53:04.972  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2023-04-15 12:53:04.973  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-15 12:53:04.973  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2023-04-15 12:53:04.974  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-15 12:53:04.974  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-15 12:53:04.974  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2023-04-15 12:53:04.974  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-15 12:53:04.974  INFO 13428 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource class path resource [application.properties] [org.springframework.core.io.support.ResourcePropertySource] to EncryptableMapPropertySourceWrapper
+2023-04-15 12:53:05.249  INFO 13428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2023-04-15 12:53:05.256  INFO 13428 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-15 12:53:05.256  INFO 13428 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.71]
+2023-04-15 12:53:05.341  INFO 13428 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-15 12:53:05.341  INFO 13428 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1179 ms
+2023-04-15 12:53:05.381  INFO 13428 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2023-04-15 12:53:05.383  INFO 13428 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2023-04-15 12:53:05.570  INFO 13428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-04-15 12:53:05.810  INFO 13428 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-04-15 12:53:05.979  INFO 13428 --- [main] liquibase.database                       : Set default schema name to public
+2023-04-15 12:53:06.048  INFO 13428 --- [main] liquibase.lockservice                    : Successfully acquired change log lock
+2023-04-15 12:53:06.167  INFO 13428 --- [main] liquibase.changelog                      : Reading from public.databasechangelog
+2023-04-15 12:53:06.189  INFO 13428 --- [main] liquibase.lockservice                    : Successfully released change log lock
+2023-04-15 12:53:06.252  INFO 13428 --- [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-15 12:53:06.308  INFO 13428 --- [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-04-15 12:53:06.437  INFO 13428 --- [main] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-04-15 12:53:06.538  INFO 13428 --- [main] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2023-04-15 12:53:06.963  INFO 13428 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-15 12:53:06.970  INFO 13428 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-15 12:53:07.913  WARN 13428 --- [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-15 12:53:08.469  INFO 13428 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-04-15 12:53:08.534  INFO 13428 --- [main] c.e.a.AnimalClinicBotApplication         : Started AnimalClinicBotApplication in 4.683 seconds (JVM running for 5.227)
+2023-04-15 12:53:12.102  INFO 13428 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-15 12:53:12.103  INFO 13428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2023-04-15 12:53:12.104  INFO 13428 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
