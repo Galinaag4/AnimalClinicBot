@@ -1,6 +1,7 @@
 package com.example.animalclinicbot.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -42,11 +43,18 @@ public class Dog {
     @JsonBackReference
     private PersonDog personDog;
 
-    public Dog(long id, String nameDog, String breed, int yearOfBirth, String description) {
+    @OneToOne
+    @JoinColumn(name = "report_id")
+    private Report report;
+
+
+    public Dog(Long id, String nameDog, String breed, int yearOfBirth, String description, PersonDog personDog, Report report) {
         this.nameDog = nameDog;
         this.breed = breed;
         this.yearOfBirth = yearOfBirth;
         this.description = description;
+        this.personDog = personDog;
+        this.report = report;
     }
 
     public Dog() {

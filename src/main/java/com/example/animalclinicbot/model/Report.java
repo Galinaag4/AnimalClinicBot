@@ -14,7 +14,8 @@ public class Report {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
     /**
      * идентификатор чата в телеграмм
      */
@@ -39,6 +40,7 @@ public class Report {
     /**
      * время испытательного срока
      */
+
     @Column (name = "days", nullable = false)
     private Long days;
     /**
@@ -49,6 +51,7 @@ public class Report {
     /**
      * размер фото
      */
+
     @Column (name = "file_size", nullable = false)
     private Long fileSize;
     /**

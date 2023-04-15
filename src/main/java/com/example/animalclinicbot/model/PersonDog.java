@@ -1,5 +1,6 @@
 package com.example.animalclinicbot.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -65,6 +66,7 @@ public class PersonDog {
     @JsonManagedReference
     private List <Dog> dogs;
 
+
     /**
      * ID отчета
      */
@@ -72,6 +74,7 @@ public class PersonDog {
     @JoinTable(name = "person_report_data",
             joinColumns = @JoinColumn(name = "person_null"),
             inverseJoinColumns = @JoinColumn(name = "report_data_id"))
+    @JoinColumn(name = "id")
     private Report report;
 
 
@@ -87,7 +90,7 @@ public class PersonDog {
         this.status = status;
 //        this.dog = dog;
         this.dogs = dogs;
-        this.report = report;
+
     }
 
     public PersonDog(long l, String petr, int i, String s, String s1, String moscow, int i1, Status search) {
@@ -173,13 +176,13 @@ public class PersonDog {
 //        this.dog = dog;
 //    }
 
-    public Report getReport() {
-        return report;
-    }
-
-    public void setReport(Report report) {
-        this.report = report;
-    }
+//    public Report getReport() {
+//        return report;
+//    }
+//
+//    public void setReport(Report report) {
+//        this.report = report;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -190,13 +193,13 @@ public class PersonDog {
                 personDog.getPhone()) && Objects.equals(getMail(), personDog.getMail()) &&
                 Objects.equals(getAddress(), personDog.getAddress()) && Objects.equals(getChatId(),
                 personDog.getChatId()) && getStatus() == personDog.getStatus() && Objects.equals(getDogs(),
-                personDog.getDogs()) && Objects.equals(getReport(), personDog.getReport());
+                personDog.getDogs()) ;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getYearOfBirth(), getPhone(), getMail(),
-                getAddress(), getChatId(), getStatus(), getDogs(), getReport());
+                getAddress(), getChatId(), getStatus(), getDogs());
     }
 
     @Override
@@ -211,7 +214,6 @@ public class PersonDog {
                 ", chatId=" + chatId +
                 ", status=" + status +
                 ", dog=" + dogs +
-                ", report=" + report +
                 '}';
     }
 }

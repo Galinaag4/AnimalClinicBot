@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -108,5 +109,21 @@ public class DogController {
     public Collection<Dog> getAll() {
         return this.service.getAll();
     }
-
+    @Operation(summary = "Просмотр всех собак по id владельца",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Все собаки, полученные по id владельца",
+                            content = @Content(
+                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+                                    schema = @Schema(implementation = Dog.class)
+                            )
+                    )
+            },
+            tags = "Dog"
+    )
+    @GetMapping("/byPersonDog/{id}")
+    public ResponseEntity<Collection<Dog>> findDogsByPersonDogId(@PathVariable Long id) {
+        return ResponseEntity.ok(this.service.findDogsByPersonDogId(id));
+    }
 }
