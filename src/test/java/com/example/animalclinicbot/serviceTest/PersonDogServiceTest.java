@@ -1,97 +1,96 @@
 package com.example.animalclinicbot.serviceTest;
 
-import com.example.animalclinicbot.model.Dog;
+
 import com.example.animalclinicbot.model.PersonDog;
-import com.example.animalclinicbot.model.Status;
-import com.example.animalclinicbot.repository.DogRepository;
+
 import com.example.animalclinicbot.repository.PersonDogRepository;
 import com.example.animalclinicbot.service.PersonDogService;
-import org.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collection;
+
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.*;
 
-@WebMvcTest(PersonDogService.class)
+
+@ExtendWith(MockitoExtension.class)
 public class PersonDogServiceTest {
-    @Autowired
-    private MockMvc mockMvc;
-    @MockBean
+    @InjectMocks
+    private PersonDogService personDogService;
+    @Mock
     private PersonDogRepository personDogRepository;
-    private PersonDog personDog;
-    private JSONObject personObject;
+
 
     @Test
-    public void testPersonDog() throws Exception {
-        personDog = new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH);
-        personObject = new JSONObject();
-        personObject.put("id", 1L);
-        personObject.put("name", "Petr");
-        personObject.put("yearOfBirth", 1998);
-        personObject.put("phone", "89524568974");
-        personObject.put("mail", "Pony@mail.ru");
-        personObject.put("address", "Moscow");
-        personObject.put("chatId", 111111);
-        personObject.put("status", Status.SEARCH);
-        when(personDogRepository.save(any(PersonDog.class))).thenReturn(personDog);
-        when(personDogRepository.findById(eq(1L))).thenReturn(Optional.of(personDog));
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post("/personDog/{id}",1L)
-                        .content(personObject.toString())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("Petr"))
-                .andExpect(jsonPath("$.yearOfBirth").value(1998))
-                .andExpect(jsonPath("$.phoneNumber").value("89524568974"))
-                .andExpect(jsonPath("$.email").value("Pony@mail.ru"))
-                .andExpect(jsonPath("$.address").value("Moscow"))
-                .andExpect(jsonPath("$.passportNumber").value(111111))
-                .andExpect(jsonPath("$.status").value("SEARCH"));
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .put("/personDog")
-                        .content(personObject.toString())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("Petr"))
-                .andExpect(jsonPath("$.yearOfBirth").value(1998))
-                .andExpect(jsonPath("$.phoneNumber").value("89524568974"))
-                .andExpect(jsonPath("$.email").value("Pony@mail.ru"))
-                .andExpect(jsonPath("$.address").value("Moscow"))
-                .andExpect(jsonPath("$.passportNumber").value(111111))
-                .andExpect(jsonPath("$.status").value("SEARCH"));
-        mockMvc.perform(MockMvcRequestBuilders
-                        .get("/personDog")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.name").value("Petr"))
-                .andExpect(jsonPath("$.yearOfBirth").value(1998))
-                .andExpect(jsonPath("$.phoneNumber").value("89524568974"))
-                .andExpect(jsonPath("$.email").value("Pony@mail.ru"))
-                .andExpect(jsonPath("$.address").value("Moscow"))
-                .andExpect(jsonPath("$.passportNumber").value(111111))
-                .andExpect(jsonPath("$.status").value("SEARCH"));
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .delete("/personDog/{id}")
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk());
+    void addNewPersonDog() {
+        PersonDog expected = new PersonDog("Andrew");
+        when(personDogRepository.save(any())).thenReturn(expected);
+        PersonDog actual = personDogService.create(expected);
+        assertThat(actual).isEqualTo(expected);
+        verify(personDogRepository, Mockito.only()).save(expected);
     }
+
+    @Test
+    void getAllPersonDog() {
+        Collection<PersonDog> expected = List.of(new PersonDog("Maxim"));
+        when(personDogRepository.findAll()).thenReturn((List<PersonDog>) expected);
+        Collection<PersonDog> actual = personDogService.getAll();
+        assertThat(actual).isEqualTo(expected);
+        verify(personDogRepository, Mockito.only()).findAll();
+    }
+
+    @Test
+    void testGetById() {
+        Long id = 1L;
+        PersonDog personDog = new PersonDog(id, "Maxim");
+        when(personDogRepository.findById(id)).thenReturn(Optional.of(personDog));
+        PersonDog result = personDogService.getById(id);
+        assertEquals(personDog, result);
+        verify(personDogRepository, times(1)).findById(id);
+    }
+
+    @Test
+    void testUpdate() {
+        Long id = 1L;
+        PersonDog personDog = new PersonDog(id, "George");
+        when(personDogRepository.findById(id)).thenReturn(Optional.of(personDog));
+        when(personDogRepository.save(personDog)).thenReturn(personDog);
+        PersonDog result = personDogService.update(personDog);
+        assertEquals(personDog, result);
+        verify(personDogRepository, times(1)).findById(id);
+        verify(personDogRepository, times(1)).save(personDog);
+    }
+
+    @Test
+    void testRemoveById() {
+        Long id = 1L;
+        doNothing().when(personDogRepository).deleteById(id);
+        personDogService.removeById(id);
+        verify(personDogRepository, times(1)).deleteById(id);
+    }
+
+    @Test
+    void testGetByChatId() {
+        Long id = 1L;
+        Collection<PersonDog> expected = Set.of(new PersonDog(id, "Maxim"));
+        when(personDogRepository.findByChatId(id)).thenReturn((Set<PersonDog>) expected);
+        Collection<PersonDog> result = personDogService.getByChatId(id);
+        assertEquals(expected, result);
+        verify(personDogRepository, times(1)).findByChatId(id);
+    }
+
+
 }

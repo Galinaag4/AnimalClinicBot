@@ -100,8 +100,19 @@ public class PersonDog {
 
     }
 
+    public PersonDog(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+
+
     public Long getId() {
         return id;
+    }
+
+    public PersonDog(String name) {
+        this.name = name;
     }
 
     public void setId(Long id) {
