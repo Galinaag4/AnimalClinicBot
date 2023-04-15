@@ -110,7 +110,7 @@ public class ReportService {
      * @return {@link ReportRepository#findByChatId(Long)}
      * @see ReportService
      */
-    public Report findByChatId(Long chatId) {
+    public Report findByChatId(long chatId) {
         logger.info("Был вызван метод поиска отчета по id чата={}", chatId);
 
         return this.reportRepository.findByChatId(chatId);
@@ -122,7 +122,7 @@ public class ReportService {
      * @return {@link ReportRepository#findListByChatId(Long)}
      * @see ReportService
      */
-    public Collection<Report> findListByChatId(Long chatId) {
+    public Collection<Report> findListByChatId(long chatId) {
         logger.info("Был вызван метод поиска отчетов по id чата={}", chatId);
 
         return this.reportRepository.findListByChatId(chatId);
