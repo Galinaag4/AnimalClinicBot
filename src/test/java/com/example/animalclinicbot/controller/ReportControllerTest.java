@@ -1,9 +1,6 @@
-package com.example.animalclinicbot.controllerTest;
+package com.example.animalclinicbot.controller;
 
-import com.example.animalclinicbot.controller.ReportController;
-import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Report;
-import com.example.animalclinicbot.service.PersonDogService;
 import com.example.animalclinicbot.service.ReportService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

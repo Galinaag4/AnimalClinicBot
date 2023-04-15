@@ -89,14 +89,14 @@ public class DogService {
 
         this.dogRepository.deleteById(id);
     }
-    /**
-     * метод получения собак по id владельца
-     *
-     * @param id
-     */
-    public Collection<Dog> findDogsByPersonDogId(Long id) {
-        logger.info("Был вызван метод получения собак по id владельца {}", id);
-        Collection<Dog> dogs = this.dogRepository.findDogsByPersonDog_Id(id);
-        return dogs;
-    }
+//    /**
+//     * метод получения собак по id владельца
+//     *
+//     * @param id
+//     */
+//    public Collection<Dog> findDogsByPersonDogId(Long id) {
+//        logger.info("Был вызван метод получения собак по id владельца {}", id);
+//        Collection<Dog> dogs = this.dogRepository.findDogsByPersonDog_Id(id);
+//        return dogs;
+//    }
 }

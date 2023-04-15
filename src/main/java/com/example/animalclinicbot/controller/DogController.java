@@ -109,21 +109,22 @@ public class DogController {
     public Collection<Dog> getAll() {
         return this.service.getAll();
     }
-    @Operation(summary = "Просмотр всех собак по id владельца",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Все собаки, полученные по id владельца",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Dog.class)
-                            )
-                    )
-            },
-            tags = "Dog"
-    )
-    @GetMapping("/byPersonDog/{id}")
-    public ResponseEntity<Collection<Dog>> findDogsByPersonDogId(@PathVariable Long id) {
-        return ResponseEntity.ok(this.service.findDogsByPersonDogId(id));
-    }
+
+//    @Operation(summary = "Просмотр всех собак по id владельца",
+//            responses = {
+//                    @ApiResponse(
+//                            responseCode = "200",
+//                            description = "Все собаки, полученные по id владельца",
+//                            content = @Content(
+//                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
+//                                    schema = @Schema(implementation = Dog.class)
+//                            )
+//                    )
+//            },
+//            tags = "Dog"
+//    )
+//    @GetMapping("/byPersonDog/{id}")
+//    public ResponseEntity<Collection<Dog>> findDogsByPersonDogId(@PathVariable Long id) {
+//        return ResponseEntity.ok(this.service.findDogsByPersonDogId(id));
+//    }
 }
