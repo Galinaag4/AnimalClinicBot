@@ -1,6 +1,7 @@
 package com.example.animalclinicbot.serviceTest;
 
 import com.example.animalclinicbot.model.Dog;
+import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.repository.ReportRepository;
 import com.example.animalclinicbot.service.ReportService;
@@ -55,17 +56,18 @@ public class ReportServiceTest {
         assertEquals(report, reportService.findByChatId(chatId));
     }
 
-//    @Test
-//    void shouldReturnTheCollectionOfReportsWhenItIsFoundByChatId() //следует вернуть коллекцию отчетов, когда они
-//    // будут найдены по идентификатору чата
-//    {
-//        Long id = Long.valueOf(1);
-//        Collection<Report> reportList = new ArrayList<>();
-//        reportList.add(new Report(1, 1, "сухой корм", "здоров", "любит мячики",
-//                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12)));
-//        when(reportRepository.findByChatId(id)).thenReturn((Report) reportList);
-//        assertEquals(reportList, reportService.findListByChatId(id));
-//    }
+    @Test
+    void shouldReturnTheCollectionOfReportsWhenItIsFoundByChatId() //следует вернуть коллекцию отчетов, когда они
+    // будут найдены по идентификатору чата
+    {
+        Long id = 1L;
+        Collection<Report> reportList = Set.of(new Report(1, 1, "сухой корм", "здоров", "любит мячики",
+                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12)));
+
+        when(reportRepository.findListByChatId(id)).thenReturn(reportList);
+        assertEquals(reportList, reportService.findListByChatId(id));
+
+    }
 
     @Test
     void shouldCallRepositoryMethodWhenSave() //следует вызвать метод репозитория сохранения отчета
