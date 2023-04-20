@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 import java.util.Objects;
 /**
- * Класс с данными о владельце животного
+ * Класс с данными о владельце собаки
  */
 @Entity
 public class PersonDog {

@@ -1,13 +1,13 @@
 package com.example.animalclinicbot.repository;
 
-import com.example.animalclinicbot.model.Dog;
+import com.example.animalclinicbot.model.Cat;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
 @Repository
-public interface DogRepository extends JpaRepository<Dog, Long> {
+public interface CatRepository extends JpaRepository <Cat, Long> {
 
-    Collection<Dog> findDogsByPersonDog_Id(Long id);
+    Collection<Cat> findCatsByPersonCat_Id(Long id);
 }
