@@ -94,6 +94,15 @@ public class PersonCat {
 
     }
 
+    public PersonCat(String namePersonCat) {
+        this.namePersonCat = namePersonCat;
+    }
+
+    public PersonCat(Long id, String namePersonCat) {
+        this.id = id;
+        this.namePersonCat = namePersonCat;
+    }
+
     public Long getId() {
         return id;
     }
