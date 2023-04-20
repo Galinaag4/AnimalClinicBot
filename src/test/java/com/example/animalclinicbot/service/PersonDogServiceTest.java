@@ -1,10 +1,9 @@
-package com.example.animalclinicbot.serviceTest;
+package com.example.animalclinicbot.service;
 
 
 import com.example.animalclinicbot.model.PersonDog;
 
 import com.example.animalclinicbot.repository.PersonDogRepository;
-import com.example.animalclinicbot.service.PersonDogService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

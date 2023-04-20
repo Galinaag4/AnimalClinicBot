@@ -1,16 +1,11 @@
-package com.example.animalclinicbot.serviceTest;
+package com.example.animalclinicbot.service;
 
-import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.repository.ReportRepository;
-import com.example.animalclinicbot.service.ReportService;
-import net.minidev.json.JSONObject;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.*;
@@ -19,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 
 @ExtendWith(MockitoExtension.class)

@@ -1,6 +1,5 @@
-package com.example.animalclinicbot.controllerTest;
+package com.example.animalclinicbot.controller;
 
-import com.example.animalclinicbot.controller.PersonDogController;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Status;
 import com.example.animalclinicbot.service.PersonDogService;

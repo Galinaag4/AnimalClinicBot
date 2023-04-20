@@ -1,10 +1,8 @@
-package com.example.animalclinicbot.serviceTest;
+package com.example.animalclinicbot.service;
 
 
-import com.example.animalclinicbot.exceptions.DogException;
 import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.repository.DogRepository;
-import com.example.animalclinicbot.service.DogService;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
