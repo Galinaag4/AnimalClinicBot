@@ -56,6 +56,15 @@ public class Cat {
         this.personCat = personCat;
     }
 
+    public Cat(String nameCat) {
+        this.nameCat = nameCat;
+    }
+
+    public Cat(Long id, String nameCat) {
+        this.id = id;
+        this.nameCat = nameCat;
+    }
+
     public Long getId() {
         return id;
     }

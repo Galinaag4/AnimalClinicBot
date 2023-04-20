@@ -46,7 +46,7 @@ public class CatService {
      * @see CatService
      */
     public Cat createCat(Cat cat) {
-        logger.info("Был вызван метод создания собаки");
+        logger.info("Был вызван метод создания кота");
 
         return this.catRepository.save(cat);
     }
@@ -94,12 +94,12 @@ public class CatService {
     }
 
     /**
-     * метод получения собак по id владельца
+     * метод получения котов по id владельца
      *
      * @param id
      */
     public Collection<Cat> findCatsByIdPersonCat (Long id) {
-        logger.info("Был вызван метод получения всех котов по id владельца {}", id);
+        logger.info("Был вызван метод получения всех котов по id чата владельца {}", id);
 
         Collection<Cat> cats = this.catRepository.findCatsByPersonCat_Id(id);
         return cats;
