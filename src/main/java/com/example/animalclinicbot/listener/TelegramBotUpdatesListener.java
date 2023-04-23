@@ -125,6 +125,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 Long lastMessageTime = reportRepository.findAll().stream()
                         .filter(s -> s.getChatId() == chatId)
                         .map(Report::getLastMessage)
+                        .map(date -> date.getTime()/1000)
                         .max(Long::compare)
                         .orElseGet(() -> null);
                 if (lastMessageTime != null) {
@@ -366,9 +367,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     .sorted(Comparator
                             .comparing(Report::getChatId))
                     .max(Comparator
-                            .comparing(Report::getLastMessageMs));
+                            .comparing(Report::getLastMessage));
             getDistinct.stream()
-                    .filter(i -> i.getLastMessageMs() * 1000 < nowTime)
+                    .filter(i -> i.getLastMessage().getTime() * 1000 < nowTime)
                     .forEach(s -> sendMessage(s.getChatId(), "Мы так и не получили ваш отчет!" +
                             " Отправьте его как можно скорее"));
         }

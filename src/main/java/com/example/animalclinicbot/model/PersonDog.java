@@ -104,6 +104,9 @@ public class PersonDog {
         this.name = name;
     }
 
+    public PersonDog() {
+
+    }
 
 
     public Long getId() {
