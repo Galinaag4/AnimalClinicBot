@@ -1,8 +1,11 @@
 package com.example.animalclinicbot.service;
 
 import com.example.animalclinicbot.exceptions.PersonCatException;
+import com.example.animalclinicbot.exceptions.PersonDogException;
 import com.example.animalclinicbot.model.PersonCat;
+import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.repository.PersonCatRepository;
+import com.example.animalclinicbot.repository.PersonDogRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -49,6 +52,24 @@ public class PersonCatService {
         logger.info("Метод создания владельца кота");
 
         return this.personCatRepository.save(personCat);
+    }
+    /**
+     * метод обновления данных владельца собаки
+     *
+     * @param personCat
+     * @return {@link PersonCatRepository#save(Object)}
+     * @throws PersonCatException
+     * @see PersonCatService
+     */
+    public PersonCat update(PersonCat personCat) {
+        logger.info("Метод обновления данных владельца собаки");
+
+        if (personCat.getId() != null) {
+            if (getByIdPersonCat(personCat.getId()) != null) {
+                return this.personCatRepository.save(personCat);
+            }
+        }
+        throw new PersonCatException();
     }
 
     /**

@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ import java.util.Collection;
 @RestController
 @RequestMapping("cat")
 public class CatController {
-
+    @Autowired
     private final CatService catService;
 
     public CatController(CatService catService) {
@@ -37,7 +38,7 @@ public class CatController {
                     tags = "Cat"
             )
     @GetMapping("/{id}")
-    public Cat getById(@Parameter(description = "cat id") @PathVariable Long id) {
+    public Cat getById(@Parameter (description = "cat id") @PathVariable Long id) {
         return this.catService.getByIdCat(id);
     }
 
@@ -52,8 +53,8 @@ public class CatController {
             ),
             tags = "Cat"
     )
-    @PostMapping("/createCat")
-    public Cat createCat (@RequestBody Cat cat) {
+    @PostMapping()
+    public Cat save (@RequestBody Cat cat) {
         return this.catService.createCat(cat);
     }
 
@@ -68,7 +69,7 @@ public class CatController {
             ),
             tags = "Cat"
     )
-    @PutMapping("/updateCat")
+    @PutMapping()
     public Cat updateCat (@RequestBody Cat cat) {
         return this.catService.updateCat(cat);
     }
@@ -87,7 +88,7 @@ public class CatController {
             },
             tags = "Cat"
     )
-    @DeleteMapping("/{id}deleteCat")
+    @DeleteMapping("/{id}")
     public void delete (@Parameter(description = "cat id") @PathVariable Long id) {
         this.catService.deleteCatById(id);
     }
@@ -106,9 +107,9 @@ public class CatController {
             },
             tags = "Cat"
     )
-    @GetMapping("/allCat")
+    @GetMapping("/all")
     public Collection <Cat> getAll() {
-        return this.catService.findAll();
+        return this.catService.getAll();
     }
 
     @Operation(summary = "Просмотр всех котов по id владельца",
@@ -124,7 +125,7 @@ public class CatController {
             },
             tags = "Cat"
     )
-    @GetMapping("/PersonCat/{id}")
+    @GetMapping("/cat/{id}")
     public ResponseEntity<Collection<Cat>> findCatsByPersonCatId(@PathVariable Long id) {
         return ResponseEntity.ok(this.catService.findCatsByIdPersonCat(id));
     }

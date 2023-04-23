@@ -76,9 +76,10 @@ public class PersonCat {
     @JoinColumn(name = "id")
     private Report report;
 
-    public PersonCat(String namePersonCat, int yearOfBirthPersonCat, String phonePersonCat,
+    public PersonCat(Long id,String namePersonCat, int yearOfBirthPersonCat, String phonePersonCat,
                      String mailPersonCat, String addressPersonCat, Long chatIdPersonCat,
                      Status statusCat, List<Cat> cats, Report report) {
+        this.id = id;
         this.namePersonCat = namePersonCat;
         this.yearOfBirthPersonCat = yearOfBirthPersonCat;
         this.phonePersonCat = phonePersonCat;
@@ -90,7 +91,7 @@ public class PersonCat {
         this.report = report;
     }
 
-    public PersonCat() {
+    public PersonCat(long l, String petr, int i, String s, String s1, String moscow, int i1, Status search) {
 
     }
 
@@ -101,6 +102,10 @@ public class PersonCat {
     public PersonCat(Long id, String namePersonCat) {
         this.id = id;
         this.namePersonCat = namePersonCat;
+    }
+
+    public PersonCat() {
+
     }
 
     public Long getId() {

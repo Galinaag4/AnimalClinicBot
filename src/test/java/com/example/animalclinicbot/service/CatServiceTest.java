@@ -40,7 +40,7 @@ public class CatServiceTest {
     void getAllCat() {
         Collection<Cat> expected = List.of(new Cat("Mars"));
         when(catRepository.findAll()).thenReturn((List<Cat>) expected);
-        Collection<Cat> actual = catService.findAll();
+        Collection<Cat> actual = catService.getAll();
         assertThat(actual).isEqualTo(expected);
         verify(catRepository, Mockito.only()).findAll();
     }

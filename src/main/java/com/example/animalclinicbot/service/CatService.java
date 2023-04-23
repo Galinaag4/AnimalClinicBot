@@ -76,7 +76,7 @@ public class CatService {
      * @return {@link CatRepository#findAll()}
      * @see CatService
      */
-    public Collection<Cat> findAll() {
+    public Collection<Cat> getAll() {
         logger.info("Был вызван метод получения всех котов");
 
         return this.catRepository.findAll();

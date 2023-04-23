@@ -1,6 +1,7 @@
 package com.example.animalclinicbot.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -13,7 +14,7 @@ import java.util.Objects;
 public class Cat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue/*(strategy = GenerationType.IDENTITY)*/
     private Long id;
     /**
      * имя животного
@@ -38,6 +39,10 @@ public class Cat {
      */
     @Column (name = "description_cat", nullable = false)
     private String descriptionCat;
+    @OneToOne
+    @JoinColumn(name = "report_id")
+    private Report report;
+
 
     @ManyToOne
     @JoinColumn (name = "personCat_id")
@@ -48,12 +53,13 @@ public class Cat {
 
     }
 
-    public Cat(String nameCat, String breedCat, int yearOfBirthCat, String descriptionCat, PersonCat personCat) {
+    public Cat(Long id, String nameCat, String breedCat, int yearOfBirthCat, String descriptionCat, PersonCat personCat, Report report) {
         this.nameCat = nameCat;
         this.breedCat = breedCat;
         this.yearOfBirthCat = yearOfBirthCat;
         this.descriptionCat = descriptionCat;
         this.personCat = personCat;
+        this.report = report;
     }
 
     public Cat(String nameCat) {
@@ -63,6 +69,14 @@ public class Cat {
     public Cat(Long id, String nameCat) {
         this.id = id;
         this.nameCat = nameCat;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public void setReport(Report report) {
+        this.report = report;
     }
 
     public Long getId() {
@@ -116,16 +130,13 @@ public class Cat {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cat cat = (Cat) o;
-        return yearOfBirthCat == cat.yearOfBirthCat && id.equals(cat.id) &&
-                nameCat.equals(cat.nameCat) && breedCat.equals(cat.breedCat) &&
-                descriptionCat.equals(cat.descriptionCat) && personCat.equals(cat.personCat);
+        if (!(o instanceof Cat cat)) return false;
+        return getYearOfBirthCat() == cat.getYearOfBirthCat() && Objects.equals(getId(), cat.getId()) && Objects.equals(getNameCat(), cat.getNameCat()) && Objects.equals(getBreedCat(), cat.getBreedCat()) && Objects.equals(getDescriptionCat(), cat.getDescriptionCat()) && Objects.equals(getReport(), cat.getReport()) && Objects.equals(getPersonCat(), cat.getPersonCat());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameCat, breedCat, yearOfBirthCat, descriptionCat, personCat);
+        return Objects.hash(getId(), getNameCat(), getBreedCat(), getYearOfBirthCat(), getDescriptionCat(), getReport(), getPersonCat());
     }
 
     @Override
@@ -136,6 +147,7 @@ public class Cat {
                 ", breedCat='" + breedCat + '\'' +
                 ", yearOfBirthCat=" + yearOfBirthCat +
                 ", descriptionCat='" + descriptionCat + '\'' +
+                ", report=" + report +
                 ", personCat=" + personCat +
                 '}';
     }
