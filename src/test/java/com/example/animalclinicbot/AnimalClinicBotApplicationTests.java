@@ -1,7 +1,5 @@
 package com.example.animalclinicbot;
 
-import com.example.animalclinicbot.listener.TelegramBotUpdateListener;
-import com.example.animalclinicbot.service.TelegramBot;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import liquibase.repackaged.net.sf.jsqlparser.statement.update.Update;
 import org.assertj.core.api.Assertions;

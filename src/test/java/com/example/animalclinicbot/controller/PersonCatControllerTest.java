@@ -52,7 +52,7 @@ public class PersonCatControllerTest {
     }
     @Test
     void getById() throws Exception {
-        PersonCat personCat = new PersonCat(name, phone, finalChatId);
+        PersonCat personCat = new PersonCat("Murzik");
         personCat.setId(1L);
 
         when(personCatService.getByIdPersonCat(anyLong())).thenReturn(personCat);
