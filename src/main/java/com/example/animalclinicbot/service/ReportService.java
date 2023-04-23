@@ -35,18 +35,18 @@ public class ReportService {
      * @param personId
      * @param pictureFile
      * @param file
-     *
      * @param ration
      * @param health
      * @param habits
      * @param filePath
      * @param dateSendMessage
+     * @param timeDate
      * @param daysOfReports
      * @throws IOException
      * @see ReportService
      */
     public void uploadReportData(Long personId, byte[] pictureFile, File file, String ration, String health,
-                                 String habits, String filePath, Date dateSendMessage, long daysOfReports) throws IOException {
+                                 String habits, String filePath, Date dateSendMessage, Long timeDate, long daysOfReports) throws IOException {
         logger.info("Был вызван метод загрузки отчета");
 
         Report report = new Report();
@@ -65,6 +65,7 @@ public class ReportService {
 
     /**
      * Был вызван метод загрузки отчета
+     *
      * @param personId
      * @param pictureFile
      * @param file

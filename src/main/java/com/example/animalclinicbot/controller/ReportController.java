@@ -1,6 +1,6 @@
 package com.example.animalclinicbot.controller;
 
-import com.example.animalclinicbot.listener.TelegramBotUpdateListener;
+import com.example.animalclinicbot.listener.TelegramBotUpdatesListener;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.service.ReportService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -26,6 +26,9 @@ import java.util.Collection;
 public class ReportController {
 
     private final ReportService reportService;
+
+    @Autowired
+    private TelegramBotUpdatesListener telegramBotUpdatesListener;
 
 
     private final String fileType = "image/jpeg";
@@ -66,7 +69,7 @@ public class ReportController {
             tags = "Reports"
     )
     @DeleteMapping("/{id}")
-    public void remove(@Parameter (description = "report id") @PathVariable Long id) {
+    public void remove(@Parameter(description = "report id") @PathVariable Long id) {
         this.reportService.remove(id);
     }
 
@@ -89,13 +92,13 @@ public class ReportController {
     }
 
     @Operation(summary = "Просмотр фото по id отчета",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody (
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "Фото, найденное по id отчета"
             ),
             tags = "Report"
     )
     @GetMapping("/{id}/photo-from-db")
-    public ResponseEntity<byte[]> downloadPhotoFromDB(@Parameter (description = "report id") @PathVariable Long id) {
+    public ResponseEntity<byte[]> downloadPhotoFromDB(@Parameter(description = "report id") @PathVariable Long id) {
         Report report = this.reportService.findById(id);
 
         HttpHeaders headers = new HttpHeaders();
@@ -105,6 +108,13 @@ public class ReportController {
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(report.getData());
     }
 
+    @GetMapping("/message-to-person")
+    public void sendMessageToPerson(@Parameter(description = "id чата с пользователем", example = "3984892310")
+                                    @RequestParam Long chat_Id,
+                                    @Parameter(description = "Ваше сообщение")
+                                    @RequestParam String message) {
+        this.telegramBotUpdatesListener.sendMessage(chat_Id, message);
+    }
 
 
 }

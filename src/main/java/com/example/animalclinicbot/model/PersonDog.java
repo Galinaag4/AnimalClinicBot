@@ -1,6 +1,5 @@
 package com.example.animalclinicbot.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -96,7 +95,7 @@ public class PersonDog {
     public PersonDog(long l, String petr, int i, String s, String s1, String moscow, int i1, Status search) {
     }
 
-    public PersonDog() {
+    public PersonDog(String name, String phone, long finalChatId) {
 
     }
 

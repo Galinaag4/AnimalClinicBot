@@ -97,7 +97,7 @@ public class PersonCatService {
     }
 
     /**
-     * Метод получения всех владельцев собак по id
+     * Метод получения всех владельцев котов по id
      *
      * @param chatIdPersonCat
      * @return {@link PersonCatRepository#findByChatIdPersonCat(Long)}

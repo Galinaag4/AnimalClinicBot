@@ -1,24 +1,17 @@
 package com.example.animalclinicbot.controller;
 
-import com.example.animalclinicbot.model.Cat;
 import com.example.animalclinicbot.model.PersonCat;
 
-import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.model.Status;
 import com.example.animalclinicbot.repository.PersonCatRepository;
 import com.example.animalclinicbot.service.PersonCatService;
 
 
-import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 
@@ -59,7 +52,7 @@ public class PersonCatControllerTest {
     }
     @Test
     void getById() throws Exception {
-        PersonCat personCat = new PersonCat();
+        PersonCat personCat = new PersonCat(name, phone, finalChatId);
         personCat.setId(1L);
 
         when(personCatService.getByIdPersonCat(anyLong())).thenReturn(personCat);

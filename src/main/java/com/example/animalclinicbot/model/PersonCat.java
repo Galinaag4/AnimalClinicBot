@@ -104,7 +104,7 @@ public class PersonCat {
         this.namePersonCat = namePersonCat;
     }
 
-    public PersonCat() {
+    public PersonCat(String name, String phone, long finalChatId) {
 
     }
 
