@@ -1,8 +1,9 @@
-package com.example.animalclinicbot.serviceTest;
+//package com.example.animalclinicbot.serviceTest;
 
 import com.example.animalclinicbot.repository.PersonDogRepository;
-import com.example.animalclinicbot.service.TelegramBot;
+
 import com.google.common.base.Optional;
+import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
@@ -17,13 +18,13 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import static org.json.XMLTokener.entity;
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@OpenAPIDefinition
-public class TelegramBotTest {
-    @Autowired
-    private TelegramBot telegramBot;
-    @Autowired
-    private PersonDogRepository personDogRepository;
-
-}
+//@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@OpenAPIDefinition
+//public class TelegramBotTest {
+//    @Autowired
+//    private TelegramBot telegramBot;
+//    @Autowired
+//    private PersonDogRepository personDogRepository;
+//
+//}
