@@ -7,6 +7,7 @@ import com.pengrad.telegrambot.model.request.ParseMode;
 import com.pengrad.telegrambot.model.request.ReplyKeyboardMarkup;
 import com.pengrad.telegrambot.request.SendMessage;
 import com.pengrad.telegrambot.response.SendResponse;
+import com.vdurmont.emoji.EmojiParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,11 @@ public class KeyBoardService {
      */
     public void chooseMenu(long chatId) {
         logger.info("Method sendMessage has been run: {}, {}", chatId, "Вызвано меню выбора ");
-
+        String emoji_cat = EmojiParser.parseToUnicode(":cat:");
+        String emoji_dog = EmojiParser.parseToUnicode(":dog:");
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
-                new KeyboardButton(" CAT"));
-        replyKeyboardMarkup.addRow(new KeyboardButton(" DOG"));
+                new KeyboardButton(emoji_cat + " CAT"));
+        replyKeyboardMarkup.addRow(new KeyboardButton(emoji_dog + " DOG"));
         returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Выберите, кого хотите приютить:");
     }
 
