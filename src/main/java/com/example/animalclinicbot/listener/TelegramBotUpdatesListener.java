@@ -15,6 +15,7 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.ForwardMessage;
 import com.pengrad.telegrambot.request.GetFile;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.SendPhoto;
 import com.pengrad.telegrambot.response.GetFileResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -183,7 +187,16 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                         keyBoardService.sendMenu(chatId);
                         break;
                     case "Информация о приюте":
-                        sendMessage(chatId, INFO_SHELTER);
+                        try {
+                            byte[] photo = Files.readAllBytes(
+                                    Paths.get(KeyBoardService.class.getResource("/Priyut.jpg").toURI())
+                            );
+                            SendPhoto sendPhoto = new SendPhoto(chatId, photo);
+                            sendPhoto.caption(INFO_SHELTER);
+                            telegramBot.execute(sendPhoto);
+                        } catch (IOException | URISyntaxException e) {
+                            throw  new RuntimeException(e);
+                        }
                         break;
                     case "Содержание и уход":
                         if (isCat) {
