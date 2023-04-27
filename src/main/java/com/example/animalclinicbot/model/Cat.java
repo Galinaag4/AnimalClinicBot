@@ -44,7 +44,7 @@ public class Cat {
     private Report report;
 
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "personCat_id")
     @JsonBackReference
     private PersonCat personCat;

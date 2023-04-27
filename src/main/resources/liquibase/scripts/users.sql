@@ -1,7 +1,8 @@
 -- liquibase formatted sql
 -- changeset stacey29:1
 
-DROP TYPE IF EXISTS status;
+DROP TYPE IF EXISTS status CASCADE;
+
 
 CREATE TYPE  status  AS ENUM (
     'APPROVED',
