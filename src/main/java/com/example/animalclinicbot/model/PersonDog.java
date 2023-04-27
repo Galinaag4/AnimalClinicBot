@@ -51,15 +51,12 @@ public class PersonDog {
     /**
      * статус нахождения животного
      */
-    @Column (name = "status", nullable = false)
+    @Column (columnDefinition = "Status", name = "status", nullable = false)
     private Status status;
     /**
      * ID питомца
      */
-//    @JsonBackReference
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "dog_id")
-//    private Dog dog;
+
 
     @OneToMany(mappedBy = "personDog")
     @JsonManagedReference

@@ -1,7 +1,8 @@
 -- liquibase formatted sql
 -- changeset scherbakova:1
 
-DROP TYPE IF EXISTS status;
+DROP TYPE IF EXISTS status CASCADE;
+
 
 CREATE TYPE  status  AS ENUM (
     'APPROVED',
@@ -9,7 +10,6 @@ CREATE TYPE  status  AS ENUM (
     'TRIAL_PERIOD',
     'SEARCH'
     );
-
 
 CREATE TABLE IF NOT EXISTS person_cat(
                                          id BIGSERIAL PRIMARY KEY,
@@ -37,14 +37,16 @@ CREATE TABLE IF NOT EXISTS report(
 
 );
 
-CREATE TABLE IF NOT EXISTS cat(
+CREATE TABLE IF NOT EXISTS Cat(
                                   id BIGSERIAL PRIMARY KEY,
                                   breed_cat VARCHAR,
                                   description_cat VARCHAR,
                                   name_cat VARCHAR,
                                   year_of_birth_cat INTEGER NOT NULL ,
                                   personCat_id BIGSERIAL REFERENCES person_cat (id),
-    report_id BIGSERIAL REFERENCES report (id)
+                                  report_id BIGSERIAL REFERENCES report (id)
 
-    );
+);
+
+
 

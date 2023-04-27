@@ -10,6 +10,7 @@ import java.util.Objects;
  * Класс с данными о владельце кота
  */
 @Entity
+@Table (name = "personCat")
 public class PersonCat {
 
     /**
@@ -58,7 +59,7 @@ public class PersonCat {
     /**
      * статус нахождения животного
      */
-    @Column(name = "status_cat", nullable = false)
+    @Column(columnDefinition = "Status", name = "status_cat", nullable = false)
     private Status statusCat;
 
     @OneToMany (mappedBy = "personCat")
@@ -105,6 +106,10 @@ public class PersonCat {
     }
 
     public PersonCat(String name, String phone, long finalChatId) {
+
+    }
+
+    public PersonCat() {
 
     }
 
