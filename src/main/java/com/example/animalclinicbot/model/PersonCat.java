@@ -17,7 +17,7 @@ public class PersonCat {
      * идентификатор записи
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     /**

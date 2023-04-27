@@ -14,7 +14,7 @@ public class PersonDog {
      * идентификатор записи
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     /**
      * имя хозяина животного
