@@ -48,7 +48,7 @@ public class PersonCatService {
      * @return {@link PersonCatRepository#save(Object)}
      * @see PersonCatService
      */
-    public PersonCat createPersonCat (PersonCat personCat) {
+    public PersonCat createPersonCat(PersonCat personCat) {
         logger.info("Метод создания владельца кота");
 
         return this.personCatRepository.save(personCat);
