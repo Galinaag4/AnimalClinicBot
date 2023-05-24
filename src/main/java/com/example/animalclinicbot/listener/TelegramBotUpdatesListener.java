@@ -3,9 +3,11 @@ package com.example.animalclinicbot.listener;
 import com.example.animalclinicbot.model.PersonCat;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Report;
+import com.example.animalclinicbot.model.UserContext;
 import com.example.animalclinicbot.repository.PersonCatRepository;
 import com.example.animalclinicbot.repository.PersonDogRepository;
 import com.example.animalclinicbot.repository.ReportRepository;
+import com.example.animalclinicbot.repository.UserContextRepository;
 import com.example.animalclinicbot.service.KeyBoardService;
 import com.example.animalclinicbot.service.ReportService;
 import com.pengrad.telegrambot.TelegramBot;
@@ -22,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -94,6 +97,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     @Autowired
     private ReportService reportService;
     @Autowired
+    private UserContextRepository userContextRepository;
+    @Autowired
     private TelegramBot telegramBot;
 
     public TelegramBotUpdatesListener(TelegramBot telegramBot) {
@@ -105,7 +110,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         telegramBot.setUpdatesListener(this);
     }
 
-    private boolean isCat = false;
 
     /**
      * Организация процесса общения с пользователем
@@ -171,14 +175,29 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                         break;
 
                     case "\uD83D\uDC31 CAT":
-
-                        isCat = true;
+                        if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
+                            userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
+                                    update.callbackQuery().message().chat().firstName(),
+                                    true));
+                        }else {
+                                UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
+                                userContext.setCatShelter(false);
+                                userContextRepository.save(userContext);
+                            }
                         keyBoardService.sendMenu(chatId);
                         sendMessage(chatId, "Вы выбрали кошку.");
                         break;
                     case "\uD83D\uDC36 DOG":
+                        if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
+                            userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
+                                    update.callbackQuery().message().chat().firstName(),
+                                    false));
+                        }else {
+                            UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
+                            userContext.setCatShelter(true);
+                            userContextRepository.save(userContext);
+                        }
 
-                        isCat = false;
                         keyBoardService.sendMenu(chatId);
                         sendMessage(chatId, "Вы выбрали собаку.");
                         break;
@@ -199,14 +218,19 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                         }
                         break;
                     case "Содержание и уход":
-                        if (isCat) {
+                        if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
+                            userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
+                                    update.callbackQuery().message().chat().firstName(),
+                                    false));
                             sendMessage(chatId, ADOPT_DOG_INFO);
-                            ;
                             break;
-                        } else {
+                            }else {
+                                UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
+                                userContext.setCatShelter(true);
+                                userContextRepository.save(userContext);
+                            }
                             sendMessage(chatId, ADOPT_CAT_INFO);
                             break;
-                        }
                     case "Прислать отчет о питомце":
                         sendMessage(chatId, REPORT_CASE);
                         sendMessage(chatId, REPORT_CASE_EXAMPLE);
@@ -296,17 +320,29 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             }
             if (lastName != null) {
                 String name = firstName + " " + lastName + " " + username;
-                if (isCat) {
+                if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
+                    userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
+                            update.callbackQuery().message().chat().firstName(),
+                            true));
                     personCatRepository.save(new PersonCat(name, phone, finalChatId));
-                } else {
+                }else {
+                    UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
+                    userContext.setCatShelter(false);
+                    userContextRepository.save(userContext);
                     personDogRepository.save(new PersonDog(name, phone, finalChatId));
                 }
                 sendMessage(finalChatId, "Вас успешно добавили в базу. Скоро вам перезвонят.");
                 return;
             }
-            if (isCat) {
+            if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
+                userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
+                        update.callbackQuery().message().chat().firstName(),
+                        false));
                 personCatRepository.save(new PersonCat(firstName, phone, finalChatId));
-            } else {
+            }else {
+                UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
+                userContext.setCatShelter(true);
+                userContextRepository.save(userContext);
                 personDogRepository.save(new PersonDog(firstName, phone, finalChatId));
             }
             sendMessage(finalChatId, "Вас успешно добавили в базу! Скоро вам перезвонят.");
@@ -315,6 +351,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             sendForwardMessage(finalChatId, update.message().messageId());
         }
     }
+
+
 
     /**
      * Метод получения отчетов.
