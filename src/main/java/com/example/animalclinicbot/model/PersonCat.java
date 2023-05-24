@@ -71,6 +71,7 @@ public class PersonCat {
     /**
      * ID отчета
      */
+
     @OneToOne(orphanRemoval = true)
     @JoinTable(name = "person_cat_report_data",
             joinColumns = @JoinColumn(name = "person_cat_null"),

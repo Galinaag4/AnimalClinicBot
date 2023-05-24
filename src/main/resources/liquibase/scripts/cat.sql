@@ -3,7 +3,6 @@
 
 DROP TYPE IF EXISTS status CASCADE;
 
-
 CREATE TABLE IF NOT EXISTS person_cat(
                                          id BIGSERIAL PRIMARY KEY,
                                          address_person_cat VARCHAR,

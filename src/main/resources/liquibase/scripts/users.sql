@@ -2,7 +2,6 @@
 -- changeset stacey29:1
 DROP TYPE IF EXISTS status CASCADE;
 
-
 CREATE TABLE IF NOT EXISTS person_dog(
                                          id BIGSERIAL PRIMARY KEY,
                                          address VARCHAR,

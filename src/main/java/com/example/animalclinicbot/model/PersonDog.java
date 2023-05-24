@@ -45,7 +45,6 @@ public class PersonDog {
     /**
      * идентификатор чата в телеграмм
      */
-
     @Column (name = "chat_id", nullable = false)
     private Long chatId;
     /**
