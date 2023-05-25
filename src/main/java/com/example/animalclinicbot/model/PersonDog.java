@@ -51,7 +51,8 @@ public class PersonDog {
     /**
      * статус нахождения животного
      */
-    @Column (columnDefinition = "Status", name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private Status status;
     /**
      * ID питомца

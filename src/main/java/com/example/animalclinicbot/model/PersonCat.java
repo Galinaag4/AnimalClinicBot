@@ -59,7 +59,8 @@ public class PersonCat {
     /**
      * статус нахождения животного
      */
-    @Column(columnDefinition = "Status", name = "status_cat", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status_cat", nullable = false)
     private Status statusCat;
 
     @OneToMany (mappedBy = "personCat")

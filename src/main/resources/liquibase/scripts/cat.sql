@@ -4,13 +4,6 @@
 DROP TYPE IF EXISTS status CASCADE;
 
 
-CREATE TYPE  status  AS ENUM (
-    'APPROVED',
-    'REFUSED',
-    'TRIAL_PERIOD',
-    'SEARCH'
-    );
-
 CREATE TABLE IF NOT EXISTS person_cat(
                                          id BIGSERIAL PRIMARY KEY,
                                          address_person_cat VARCHAR,
@@ -18,7 +11,7 @@ CREATE TABLE IF NOT EXISTS person_cat(
                                          mail_person_cat VARCHAR,
                                          name_person_cat VARCHAR,
                                          phone_person_cat VARCHAR,
-                                         status_cat status,
+                                         status_cat VARCHAR(12),
                                          year_of_birth_person_cat INTEGER NOT NULL
 );
 
@@ -47,6 +40,7 @@ CREATE TABLE IF NOT EXISTS Cat(
                                   report_id BIGSERIAL REFERENCES report (id)
 
 );
-
+ALTER TABLE report ALTER COLUMN data TYPE bytea USING data::bytea;
+ALTER TABLE report ALTER COLUMN last_message TYPE TIMESTAMP;
 
 
