@@ -2,7 +2,12 @@
 -- changeset scherbakova:1
 
 DROP TYPE IF EXISTS status CASCADE;
-
+CREATE TABLE if not exists user_context
+(
+    chat_id     BIGINT PRIMARY KEY,
+    cat_shelter BOOLEAN,
+    dog_shelter BOOLEAN
+);
 CREATE TABLE IF NOT EXISTS person_cat(
                                          id BIGSERIAL PRIMARY KEY,
                                          address_person_cat VARCHAR,

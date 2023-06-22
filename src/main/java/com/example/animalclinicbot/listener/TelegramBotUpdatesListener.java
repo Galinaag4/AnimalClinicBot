@@ -1,7 +1,5 @@
 package com.example.animalclinicbot.listener;
 
-import com.example.animalclinicbot.model.PersonCat;
-import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.model.UserContext;
 import com.example.animalclinicbot.repository.PersonCatRepository;
@@ -55,16 +53,20 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             "✅ ознакомить о правилах содержания животных\n\n" +
             "И помните мы в ответе за тех кого приручили\n\n" +
             "Удачи!\n\n";
-    private static final String INFO_SHELTER = "Приют для животных находится по адресу г.Москва, ул.Ленина 25, стр.2," +
+    private static final String INFO_SHELTER_CAT = "Приют для животных находится по адресу г.Москва, ул.Ленина 25, стр.2," +
             "контакты: 8(495) 333 33 33 - директор Морозова Людмила Федоровна.\n\n" +
             "8(495) 222 22 22 - горячая линия приюта\n" +
             "для помощи животным: р/с 42200053355655554578\n\n" +
             "Нужды приюта: сухие корма, ветпрепараты, дез.средства";
-    private static final String ADOPT_DOG_INFO = "Правила содержания и ухода \nhttps://google.com \n" +
+    private static final String INFO_SHELTER_DOG = "Приют для животных находится по адресу г.Москва, ул.Ленина 25, стр.2," +
+            "контакты: 8(495) 111 11 11 - директор Николаева Людмила Викторовна.\n\n" +
+            "8(495) 333 33 33 - горячая линия приюта\n" +
+            "для помощи животным: р/с 42200053355655554579\n\n" +
+            "Нужды приюта: сухие корма, ветпрепараты, дез.средства";
+    private static final String ADOPT_CAT_INFO = "Правила содержания и ухода кот \nhttps://google.com \n" +
             "Список документов \nhttps://yandex.ru\n" +
             "";
-
-    private static final String ADOPT_CAT_INFO = "Правила содержания и ухода \nhttps://google.com \n" +
+    private static final String ADOPT_DOG_INFO = "Правила содержания и ухода собака \nhttps://google.com \n" +
             "Список документов \nhttps://yandex.ru\n" +
             "";
     private static final String VOLUNTEER_CONTACT = "Контактные данные волонтера  \n @anna_ivanova \n" +
@@ -82,6 +84,18 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     private static final String REGEX_MESSAGE = "(Рацион:)(\\s)(\\W+)(;)\n" +
             "(Самочувствие:)(\\s)(\\W+)(;)\n" +
             "(Поведение:)(\\s)(\\W+)(;)";
+    private static final String TAKE_CAT = "Как выбрать кошку из приюта:*\n" +
+            "1. Определитесь с возрастом. \n" +
+            "2. Выберите пол.\n" +
+            "3. Выберите породу\n\n" +
+            "4. Познакомтесь с кошкой.\n\n" +
+            "5. Хорошо взвесте все за и против!\n\n";
+    private static final String TAKE_DOG = "Как выбрать собаку из приюта:*\n" +
+            "1. Определитесь с возрастом. \n" +
+            "2. Выберите пол.\n" +
+            "3. Выберите породу\n\n" +
+            "4. Познакомтесь с собакой.\n\n" +
+            "5. Хорошо взвесте все за и против!\n\n";
 
     private static final long telegramChatVolunteers = -748879962L;
 
@@ -133,7 +147,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 Long lastMessageTime = reportRepository.findAll().stream()
                         .filter(s -> s.getChatId() == chatId)
                         .map(Report::getLastMessage)
-                        .map(date -> date.getTime()/1000)
+                        .map(date -> date.getTime() / 1000)
                         .max(Long::compare)
                         .orElseGet(() -> null);
                 if (lastMessageTime != null) {
@@ -173,76 +187,87 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                         sendMessage(chatId, nameUser + START_TEXT);
                         keyBoardService.chooseMenu(chatId);
                         break;
-
                     case "\uD83D\uDC31 CAT":
-                        if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
-                            userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
-                                    update.callbackQuery().message().chat().firstName(),
-                                    true));
-                        }else {
-                                UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
-                                userContext.setCatShelter(false);
-                                userContextRepository.save(userContext);
-                            }
-                        keyBoardService.sendMenu(chatId);
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(true)) ;
                         sendMessage(chatId, "Вы выбрали кошку.");
+                        keyBoardService.sendMenuCat(chatId);
                         break;
                     case "\uD83D\uDC36 DOG":
-                        if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
-                            userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
-                                    update.callbackQuery().message().chat().firstName(),
-                                    false));
-                        }else {
-                            UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
-                            userContext.setCatShelter(true);
-                            userContextRepository.save(userContext);
-                        }
-
-                        keyBoardService.sendMenu(chatId);
+                        if (userContextRepository.findByChatId(chatId)
+                                .map(UserContext::isCatShelter)
+                                .orElse(false)) ;
+                        keyBoardService.sendMenuDog(chatId);
                         sendMessage(chatId, "Вы выбрали собаку.");
                         break;
-
                     case "Главное меню":
-                        keyBoardService.sendMenu(chatId);
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(true)) ;
+                        keyBoardService.sendMenuInfoShelterCat(chatId);
+                        sendMessage(chatId,INFO_SHELTER_CAT);
                         break;
-                    case "Информация о приюте":
+                    case "Информация о приюте для кошек":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(true)) ;
+                        keyBoardService.sendMenuInfoShelterCat(chatId);
                         try {
                             byte[] photo = Files.readAllBytes(
                                     Paths.get(KeyBoardService.class.getResource("/Priyut.jpg").toURI())
                             );
                             SendPhoto sendPhoto = new SendPhoto(chatId, photo);
-                            sendPhoto.caption(INFO_SHELTER);
+                            sendPhoto.caption(INFO_SHELTER_CAT);
                             telegramBot.execute(sendPhoto);
                         } catch (IOException | URISyntaxException e) {
-                            throw  new RuntimeException(e);
+                            throw new RuntimeException(e);
                         }
                         break;
-                    case "Содержание и уход":
-                        if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
-                            userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
-                                    update.callbackQuery().message().chat().firstName(),
-                                    false));
-                            sendMessage(chatId, ADOPT_DOG_INFO);
-                            break;
-                            }else {
-                                UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
-                                userContext.setCatShelter(true);
-                                userContextRepository.save(userContext);
-                            }
-                            sendMessage(chatId, ADOPT_CAT_INFO);
-                            break;
-                    case "Прислать отчет о питомце":
+                    case "Информация о приюте для собак":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(false)) ;
+                        keyBoardService.sendMenuInfoShelterDog(chatId);
+                        try {
+                            byte[] photo = Files.readAllBytes(
+                                    Paths.get(KeyBoardService.class.getResource("/Priyut.jpg").toURI())
+                            );
+                            SendPhoto sendPhoto = new SendPhoto(chatId, photo);
+                            sendPhoto.caption(INFO_SHELTER_DOG);
+                            telegramBot.execute(sendPhoto);
+                        } catch (IOException | URISyntaxException e) {
+                            throw new RuntimeException(e);
+                        }
+                        break;
+                    case "Как взять кошку из приюта":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(true)) ;
+                        keyBoardService.sendMenuTakeCat(chatId);
+                        sendMessage(chatId, TAKE_CAT);
+                        break;
+                    case "Как взять собаку из приюта":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(false)) ;
+                        keyBoardService.sendMenuTakeDog(chatId);
+                        sendMessage(chatId, TAKE_DOG);
+                        break;
+                    case "Содержание и уход за кошкой":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(true)) ;
+                        keyBoardService.sendMenuTakeCat(chatId);
+                        sendMessage(chatId, ADOPT_CAT_INFO);
+                        break;
+
+                    case "Содержание и уход за собакой":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(false)) ;
+                        keyBoardService.sendMenuTakeDog(chatId);
+                        sendMessage(chatId, ADOPT_DOG_INFO);
+                        break;
+                    case "Прислать отчет о кошке":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(true)) ;
                         sendMessage(chatId, REPORT_CASE);
                         sendMessage(chatId, REPORT_CASE_EXAMPLE);
                         break;
-                    case "Как взять питомца из приюта":
-                        keyBoardService.sendMenuTakeAnimal(chatId);
+                    case "Прислать отчет о собаке":
+                        if (userContextRepository.findByChatId(chatId).map(UserContext::isCatShelter).orElse(false)) ;
+                        sendMessage(chatId, REPORT_CASE);
+                        sendMessage(chatId, REPORT_CASE_EXAMPLE);
                         break;
                     case "Информация о возможностях бота":
                         sendMessage(chatId, ABOUT_BOT);
                         break;
                     case "Вернуться в меню":
-                        keyBoardService.sendMenu(chatId);
+                        keyBoardService.chooseMenu(chatId);
                         break;
                     case "Приветствую!":
                         if (messageId != null) {
@@ -264,7 +289,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                         break;
                 }
             } catch (NullPointerException e) {
-                System.out.println("Ошибка");
+                e.printStackTrace();
             }
 
         });
@@ -320,30 +345,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             }
             if (lastName != null) {
                 String name = firstName + " " + lastName + " " + username;
-                if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
-                    userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
-                            update.callbackQuery().message().chat().firstName(),
-                            true));
-                    personCatRepository.save(new PersonCat(name, phone, finalChatId));
-                }else {
-                    UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
-                    userContext.setCatShelter(false);
-                    userContextRepository.save(userContext);
-                    personDogRepository.save(new PersonDog(name, phone, finalChatId));
-                }
                 sendMessage(finalChatId, "Вас успешно добавили в базу. Скоро вам перезвонят.");
                 return;
-            }
-            if (userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id()) == null){
-                userContextRepository.save(new UserContext(update.callbackQuery().message().chat().id(),
-                        update.callbackQuery().message().chat().firstName(),
-                        false));
-                personCatRepository.save(new PersonCat(firstName, phone, finalChatId));
-            }else {
-                UserContext userContext = userContextRepository.findUserByChatId(update.callbackQuery().message().chat().id());
-                userContext.setCatShelter(true);
-                userContextRepository.save(userContext);
-                personDogRepository.save(new PersonDog(firstName, phone, finalChatId));
             }
             sendMessage(finalChatId, "Вас успешно добавили в базу! Скоро вам перезвонят.");
             // Сообщение в чат волонтерам
@@ -351,7 +354,6 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             sendForwardMessage(finalChatId, update.message().messageId());
         }
     }
-
 
 
     /**
@@ -404,6 +406,13 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 System.out.println("Ошибка загрузки фото!");
             }
         }
+    }
+
+    private void chooseCatShelter(Long chatId) {
+        UserContext userContext = new UserContext();
+        userContext.setChatId(chatId);
+        userContext.setCatShelter(true);
+        userContextRepository.save(userContext);
     }
 
     /**

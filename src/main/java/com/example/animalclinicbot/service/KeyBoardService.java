@@ -32,6 +32,7 @@ public class KeyBoardService {
         logger.info("Method sendMessage has been run: {}, {}", chatId, "Вызвано меню выбора ");
         String emoji_cat = EmojiParser.parseToUnicode(":cat:");
         String emoji_dog = EmojiParser.parseToUnicode(":dog:");
+
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
                 new KeyboardButton(emoji_cat + " CAT"));
         replyKeyboardMarkup.addRow(new KeyboardButton(emoji_dog + " DOG"));
@@ -42,38 +43,67 @@ public class KeyBoardService {
      * Меню вызова кнопок.
      *
      */
-    public void sendMenu(long chatId) {
-        logger.info("Method sendMessage has been run: {}, {}", chatId, "Вызвано основное меню ");
+    public void sendMenuCat(long chatId) {
+        logger.info("Method sendMessage has been run: {}, {}", chatId, "Вызвано основное меню кошки ");
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
-                new KeyboardButton("Информация о возможностях бота"),
-                new KeyboardButton("Информация о приюте"));
-        replyKeyboardMarkup.addRow(new KeyboardButton("Как взять питомца из приюта"),
-                new KeyboardButton("Прислать отчет о питомце"));
+                new KeyboardButton("Информация о приюте для кошек"));
+        replyKeyboardMarkup.addRow(new KeyboardButton("Как взять кошку из приюта"),
+                new KeyboardButton("Прислать отчет о кошке"));
+        replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера на помощь"));
+
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Главное меню");
+    }
+    public void sendMenuDog(long chatId) {
+        logger.info("Method sendMessage has been run: {}, {}", chatId, "Вызвано основное меню Собаки ");
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
+                new KeyboardButton("Информация о приюте для собак"));
+        replyKeyboardMarkup.addRow(new KeyboardButton("Как взять собаку из приюта"),
+                new KeyboardButton("Прислать отчет о собаке"));
         replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера на помощь"));
 
         returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Главное меню");
     }
 
-    public void sendMenuInfoShelter(long chatId) {
-        logger.info("Method sendMenuInfoShelter has been run: {}, {}", chatId, "Вызвали ~Информация о приюте~");
+    public void sendMenuInfoShelterCat(long chatId) {
+        logger.info("Method sendMenuInfoShelterCat has been run: {}, {}", chatId, "Вызвали ~Информация о приюте для кошек~");
 
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(new KeyboardButton("Информация о приюте"),
-                new KeyboardButton("Оставить контактные данные").requestContact(true));
-        replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера"),
-                new KeyboardButton("Вернуться в меню"));
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Информация о приюте");
-    }
-
-    public void sendMenuTakeAnimal(long chatId) {
-        logger.info("Method sendMenuTakeAnimal has been run: {}, {}", chatId, "вызвали ~Как взять питомца из приюта~");
-
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
-                new KeyboardButton("Содержание и уход"),
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(new KeyboardButton("Информация о приюте для кошек"),
                 new KeyboardButton("Оставить контактные данные").requestContact(true));
         replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера на помощь"),
                 new KeyboardButton("Вернуться в меню"));
-        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Как взять питомца из приюта");
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Информация о приюте для кошек");
+    }
+    public void sendMenuInfoShelterDog(long chatId) {
+        logger.info("Method sendMenuInfoShelterDog has been run: {}, {}", chatId, "Вызвали ~Информация о приюте для собак~");
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(new KeyboardButton("Информация о приюте для собак"),
+                new KeyboardButton("Оставить контактные данные").requestContact(true));
+        replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера на помощь"),
+                new KeyboardButton("Вернуться в меню"));
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Информация о приюте для собак");
+    }
+
+    public void sendMenuTakeCat(long chatId) {
+        logger.info("Method sendMenuTakeCat has been run: {}, {}", chatId, "вызвали ~Как взять кошку из приюта~");
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
+                new KeyboardButton("Содержание и уход за кошкой"),
+                new KeyboardButton("Оставить контактные данные").requestContact(true));
+        replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера на помощь"),
+                new KeyboardButton("Вернуться в меню"));
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Как взять кошку из приюта");
+    }
+    public void sendMenuTakeDog(long chatId) {
+        logger.info("Method sendMenuTakeDog has been run: {}, {}", chatId, "вызвали ~Как взять собаку из приюта~");
+
+        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup(
+                new KeyboardButton("Содержание и уход за собакой"),
+                new KeyboardButton("Оставить контактные данные").requestContact(true));
+        replyKeyboardMarkup.addRow(new KeyboardButton("Позвать волонтера на помощь"),
+                new KeyboardButton("Вернуться в меню"));
+        returnResponseReplyKeyboardMarkup(replyKeyboardMarkup, chatId, "Как взять собаку из приюта");
     }
 
     public void returnResponseReplyKeyboardMarkup(ReplyKeyboardMarkup replyKeyboardMarkup, Long chatId, String text) {
