@@ -14,7 +14,7 @@ public class PersonDog {
      * идентификатор записи
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * имя хозяина животного
@@ -45,18 +45,21 @@ public class PersonDog {
     /**
      * идентификатор чата в телеграмм
      */
+
     @Column (name = "chat_id", nullable = false)
     private Long chatId;
     /**
      * статус нахождения животного
      */
-    @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column (name = "status", nullable = false)
     private Status status;
     /**
      * ID питомца
      */
-
+//    @JsonBackReference
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "dog_id")
+//    private Dog dog;
 
     @OneToMany(mappedBy = "personDog")
     @JsonManagedReference

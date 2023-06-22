@@ -1,7 +1,5 @@
 package com.example.animalclinicbot.model;
 
-import liquibase.repackaged.net.sf.jsqlparser.statement.create.table.ColumnDefinition;
-
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Date;
@@ -60,7 +58,7 @@ public class Report {
      * сам файл, массив байт
      */
     @Lob
-    @Column (columnDefinition = "bytea", name = "data", nullable = false)
+    @Column (name = "data", nullable = false)
     private byte[] data;
     /**
      * подпись к фото

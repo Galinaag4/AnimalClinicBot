@@ -1,6 +1,14 @@
 -- liquibase formatted sql
 -- changeset stacey29:1
-DROP TYPE IF EXISTS status CASCADE;
+
+DROP TYPE IF EXISTS status;
+
+CREATE TYPE  status  AS ENUM (
+    'APPROVED',
+    'REFUSED',
+    'TRIAL_PERIOD',
+    'SEARCH'
+    );
 
 CREATE TABLE IF NOT EXISTS person_dog(
                                          id BIGSERIAL PRIMARY KEY,
@@ -9,7 +17,7 @@ CREATE TABLE IF NOT EXISTS person_dog(
                                          mail VARCHAR,
                                          name VARCHAR,
                                          phone VARCHAR,
-                                         status VARCHAR(12),
+                                         status status,
                                          year_of_birth INTEGER NOT NULL
 );
 
