@@ -10,13 +10,14 @@ import java.util.Objects;
  * Класс с данными о владельце кота
  */
 @Entity
+@Table (name = "personCat")
 public class PersonCat {
 
     /**
      * идентификатор записи
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
 
     /**
@@ -58,6 +59,7 @@ public class PersonCat {
     /**
      * статус нахождения животного
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "status_cat", nullable = false)
     private Status statusCat;
 
@@ -69,6 +71,7 @@ public class PersonCat {
     /**
      * ID отчета
      */
+
     @OneToOne(orphanRemoval = true)
     @JoinTable(name = "person_cat_report_data",
             joinColumns = @JoinColumn(name = "person_cat_null"),
@@ -105,6 +108,10 @@ public class PersonCat {
     }
 
     public PersonCat(String name, String phone, long finalChatId) {
+
+    }
+
+    public PersonCat() {
 
     }
 

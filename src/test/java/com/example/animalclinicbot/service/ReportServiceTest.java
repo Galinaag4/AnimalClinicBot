@@ -1,17 +1,20 @@
 package com.example.animalclinicbot.service;
 
+import com.example.animalclinicbot.exceptions.ReportException;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.repository.ReportRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -43,6 +46,12 @@ class ReportServiceTest {
                 7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12));
         when(reportRepository.findById(recordId)).thenReturn(Optional.of(report));
         assertEquals(report, reportService.findById(recordId));
+    }
+    @Test
+    public void findByIdExceptionTest() {
+        Mockito.when(reportRepository.findById(any(Long.class))).thenThrow(ReportException.class);
+
+        org.junit.jupiter.api.Assertions.assertThrows(ReportException.class, () -> reportService.findById(1L));
     }
 
     @Test
