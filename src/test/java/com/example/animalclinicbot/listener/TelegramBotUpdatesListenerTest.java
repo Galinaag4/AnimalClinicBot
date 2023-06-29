@@ -1,5 +1,6 @@
 package com.example.animalclinicbot.listener;
 
+<<<<<<< HEAD
 import com.example.animalclinicbot.constant.TypeOfShelter;
 import com.example.animalclinicbot.model.*;
 import com.example.animalclinicbot.service.*;
@@ -622,3 +623,43 @@ class TelegramBotUpdatesListenerTest {
     }
 }
 
+=======
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class TelegramBotUpdatesListenerTest {
+
+    @Test
+    void init() {
+    }
+
+    @Test
+    void process() {
+    }
+
+    @Test
+    void sendReplyMessage() {
+    }
+
+    @Test
+    void sendForwardMessage() {
+    }
+
+    @Test
+    void sendMessage() {
+    }
+
+    @Test
+    void shareContact() {
+    }
+
+    @Test
+    void getReport() {
+    }
+
+    @Test
+    void checkResults() {
+    }
+}
+>>>>>>> origin/2_feature

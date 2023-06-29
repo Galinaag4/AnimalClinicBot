@@ -1,8 +1,8 @@
 package com.example.animalclinicbot.service;
 
+import com.example.animalclinicbot.exceptions.ReportException;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.repository.ReportRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,94 +15,102 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-
-/**
- * Класс тестов для сервиса репортов
- * @author Агуреева Галина
- **/
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ReportServiceTest {
-    @Mock
-    private ReportRepository repository;
+
 
     @InjectMocks
-    private ReportService service;
+    private ReportService reportService;
+
+    @Mock
+    private ReportRepository reportRepository;
+
 
     @Test
-    void findById() {
-        long testId = 1;
-        Report report = new Report();
-        report.setId(testId);
-        Mockito.when(repository.findById(testId)).thenReturn(Optional.of(report));
-        Report result = service.findById(testId);
-        Assertions.assertEquals(report, result);
+    void uploadReportData() {
     }
 
     @Test
-    void findByChatId() {
-        long testId = 1;
-        long testChatId = 3243242;
-        Report report = new Report();
-        report.setId(testId);
-        report.setChatId(testChatId);
-        Mockito.when(repository.findByChatId(testChatId)).thenReturn(report);
-        Report result = service.findByChatId(testChatId);
-        Assertions.assertEquals(report, result);
+    void testUploadReportData() {
     }
 
     @Test
-    void findListByChatId() {
-        long testId = 1;
-        long testChatId = 3243242;
-        Report report = new Report();
-        report.setId(testId);
-        report.setChatId(testChatId);
+    void findById()  //следует вернуть отчет,
+    // когда он будет найден по идентификатору записи
+    {
+        Long recordId = Long.valueOf(1);
+        Report report = new Report(1, 1, "сухой корм", "здоров", "любит мячики",
+                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12));
+        when(reportRepository.findById(recordId)).thenReturn(Optional.of(report));
+        assertEquals(report, reportService.findById(recordId));
+    }
+    @Test
+    public void findByIdExceptionTest() {
+        Mockito.when(reportRepository.findById(any(Long.class))).thenThrow(ReportException.class);
 
-        Set<Report> list = new HashSet<>();
-        list.add(report);
-
-        Mockito.when(repository.findListByChatId(testChatId)).thenReturn(list);
-        Collection<Report> result = service.findListByChatId(testChatId);
-        Assertions.assertEquals(list, result);
+        org.junit.jupiter.api.Assertions.assertThrows(ReportException.class, () -> reportService.findById(1L));
     }
 
     @Test
-    void save() {
-        long testId = 1;
-        Report report = new Report();
-        report.setId(testId);
-        Mockito.when(repository.save(report)).thenReturn(report);
-        Report createdReportData = service.save(report);
-        Mockito.verify(repository, Mockito.times(1)).save(report);
-        Assertions.assertEquals(report.getId(), createdReportData.getId());
+    void findByChatId()//следует вернуть отчет,
+    // когда он будет найден по идентификатору чата
+    {
+        Long chatId = Long.valueOf(1);
+        Report report = new Report(1, 1, "сухой корм", "здоров", "любит мячики",
+                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12));
+
+        when(reportRepository.findByChatId(chatId)).thenReturn(report);
+        assertEquals(report, reportService.findByChatId(chatId));
     }
 
     @Test
-    void removeById() {
-        long testId = 1;
-        Report reportData = new Report();
-        reportData.setId(testId);
+    void findListByChatId() //следует вернуть коллекцию отчетов, когда они
+    // будут найдены по идентификатору чата
+    {
+        Long id = 1L;
+        Collection<Report> reportList = Set.of(new Report(1, 1, "сухой корм", "здоров", "любит мячики",
+                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12)));
 
-        ReportRepository mockRepository = mock(ReportRepository.class);
-        doNothing().when(mockRepository).deleteById(testId);
-        ReportService service = new ReportService(mockRepository);
-        service.remove(testId);
-        Mockito.verify(mockRepository, Mockito.times(1)).deleteById(testId);
+        when(reportRepository.findListByChatId(id)).thenReturn(reportList);
+        assertEquals(reportList, reportService.findListByChatId(id));
     }
 
     @Test
-    void getAll() {
-        List<Report> reportDataList =  new ArrayList<>();
-        Report report1 = new Report();
-        report1.setId(1);
-        Report report2 = new Report();
-        report1.setId(2);
-        Mockito.when(repository.findAll()).thenReturn(reportDataList);
-        ReportService service = new ReportService(repository);
-        Collection<Report> result = service.getAll();
-        Assertions.assertEquals(reportDataList, result);
-        Mockito.verify(repository, Mockito.times(1)).findAll();
+    void save() //следует вызвать метод репозитория сохранения отчета
+    {
+        Long id = Long.valueOf(1);
+        Report report = new Report(1, 1, "сухой корм", "здоров", "любит мячики",
+                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12));
+        when(reportRepository.save(report)).thenReturn(report);
+        assertEquals(report, reportService.save(report));
+    }
+
+    @Test
+    void remove() //следует вызвать метод репозитория удаления отчета по идентификатору
+    {
+        Long id = Long.valueOf(1);
+        Report report = new Report(1, 1, "сухой корм", "здоров", "любит мячики",
+                7, "", 1, new byte[]{1, 2, 3}, "11.11.2022", new Date(2022 - 12 - 12));
+
+        doNothing().when(reportRepository).deleteById(id);
+        reportService.remove(id);
+    }
+
+    @Test
+    void getAll() //следует вызвать метод репозитория получения всех отчетов
+    {
+        List<Report> reportList = new ArrayList<>();
+        reportList.add(new Report());
+        when(reportRepository.findAll()).thenReturn(reportList);
+        assertEquals(reportList, reportService.getAll());
+    }
+
+    @Test
+    void getAllReports() //следует вызвать метод репозитория получения всех отчетов по номеру страницы
+     {
+
     }
 }
