@@ -27,10 +27,6 @@ public class ReportController {
 
     private final ReportService reportService;
 
-    @Autowired
-    private TelegramBotUpdatesListener telegramBotUpdatesListener;
-
-
     private final String fileType = "image/jpeg";
 
     public ReportController(ReportService reportService) {
@@ -50,7 +46,7 @@ public class ReportController {
             },
             tags = "Reports"
     )
-    @GetMapping("/{id}/report")
+    @GetMapping("/{id}")
     public Report downloadReport(@Parameter(description = "report id") @PathVariable Long id) {
         return this.reportService.findById(id);
     }
@@ -91,6 +87,7 @@ public class ReportController {
         return ResponseEntity.ok(this.reportService.getAll());
     }
 
+
     @Operation(summary = "Просмотр фото по id отчета",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     description = "Фото, найденное по id отчета"
@@ -104,18 +101,8 @@ public class ReportController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(fileType));
         headers.setContentLength(report.getData().length);
-
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(report.getData());
     }
-
-    @GetMapping("/message-to-person")
-    public void sendMessageToPerson(@Parameter(description = "id чата с пользователем", example = "3984892310")
-                                    @RequestParam Long chat_Id,
-                                    @Parameter(description = "Ваше сообщение")
-                                    @RequestParam String message) {
-        this.telegramBotUpdatesListener.sendMessage(chat_Id, message);
-    }
-
 
 }
 

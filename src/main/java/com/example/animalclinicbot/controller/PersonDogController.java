@@ -3,12 +3,11 @@ package com.example.animalclinicbot.controller;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.service.PersonDogService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
@@ -39,7 +38,7 @@ public class PersonDogController {
             tags = "PersonDog"
     )
     @GetMapping("/{id}")
-    public PersonDog getById(@Parameter(description = "PersonDog id")@PathVariable Long id) {
+    public PersonDog getById(@PathVariable Long id) {
         return this.service.getById(id);
     }
 
@@ -55,7 +54,7 @@ public class PersonDogController {
     )
     @PostMapping
     public PersonDog save(@RequestBody PersonDog personDog) {
-        return this.service.create(personDog);
+        return this.service.save(personDog);
     }
 
     @Operation(summary = "Изменение данных пользователя",
@@ -70,7 +69,7 @@ public class PersonDogController {
     )
     @PutMapping
     public PersonDog update(@RequestBody PersonDog personDog) {
-        return this.service.update(personDog);
+        return this.service.save(personDog);
     }
 
     @Operation(summary = "Удаление пользователей по id",
@@ -87,8 +86,9 @@ public class PersonDogController {
             tags = "PersonDog"
     )
     @DeleteMapping("/{id}")
-    public void remove(@Parameter(description = "PersonDog id") @PathVariable Long id) {
-        this.service.removeById(id);
+    public ResponseEntity<Void> remove(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Просмотр всех пользователей",
@@ -107,8 +107,9 @@ public class PersonDogController {
     @GetMapping("/all")
     public Collection<PersonDog> getAll(@RequestParam(required = false) Long chatId) {
         if (chatId != null) {
-            return this.service.getByChatId(chatId);
+            return service.getByChatId(chatId);
         }
-        return this.service.getAll();
+        return service.getAll();
     }
+
 }

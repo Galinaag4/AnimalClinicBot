@@ -20,10 +20,11 @@ import java.util.Collection;
 @RestController
 @RequestMapping("dog")
 public class DogController {
-    private final DogService service;
 
-    public DogController(DogService service) {
-        this.service = service;
+    private final DogService dogService;
+
+    public DogController(DogService dogService) {
+        this.dogService = dogService;
     }
 
     @Operation(summary = "Получение питомца по id",
@@ -40,8 +41,8 @@ public class DogController {
             tags = "Dog"
     )
     @GetMapping("/{id}")
-    public Dog getById(@Parameter(description = "dog id") @PathVariable Long id) {
-        return this.service.getById(id);
+    public Dog getDogById(@Parameter(description = "dog id") @PathVariable Long id) {
+        return this.dogService.getById(id);
     }
 
     @Operation(summary = "Создание собаки",
@@ -55,8 +56,8 @@ public class DogController {
             tags = "Dog"
     )
     @PostMapping()
-    public Dog save(@RequestBody Dog dog) {
-        return this.service.create(dog);
+    public Dog saveDog(@RequestBody Dog dog) {
+        return this.dogService.create(dog);
     }
 
     @Operation(summary = "Изменение данных у собаки",
@@ -70,8 +71,8 @@ public class DogController {
             tags = "Dog"
     )
     @PutMapping()
-    public Dog update(@RequestBody Dog dog) {
-        return this.service.update(dog);
+    public Dog updateDog(@RequestBody Dog dog) {
+        return this.dogService.update(dog);
     }
 
     @Operation(summary = "Удаление собаки по id",
@@ -88,8 +89,8 @@ public class DogController {
             tags = "Dog"
     )
     @DeleteMapping("/{id}")
-    public void remove(@Parameter(description = "dog id") @PathVariable Long id) {
-        this.service.removeById(id);
+    public void removeDog(@Parameter(description = "dog id") @PathVariable Long id) {
+        this.dogService.removeById(id);
     }
 
     @Operation(summary = "Просмотр всех собак",
@@ -106,8 +107,8 @@ public class DogController {
             tags = "Dog"
     )
     @GetMapping("/all")
-    public Collection<Dog> getAll() {
-        return this.service.getAll();
+    public Collection<Dog> getAllDogs() {
+        return this.dogService.getAll();
     }
     @Operation(summary = "Просмотр всех собак по id владельца",
             responses = {
@@ -124,6 +125,6 @@ public class DogController {
     )
     @GetMapping("/byPersonDog/{id}")
     public ResponseEntity<Collection<Dog>> findDogsByPersonDogId(@PathVariable Long id) {
-        return ResponseEntity.ok(this.service.findDogsByPersonDogId(id));
+        return ResponseEntity.ok(this.dogService.findDogsByPersonDogId(id));
     }
 }

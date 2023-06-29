@@ -59,9 +59,9 @@ class CatControllerTest {
     void save() throws Exception {
         Cat cat = new Cat();
         cat.setId(1L);
-        cat.setNameCat("cat");
-        cat.setBreedCat("aaa");
-        cat.setYearOfBirthCat(2010);
+        cat.setName("cat");
+        cat.setBreed("aaa");
+        cat.setYearOfBirth(2010);
         JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
         userObject.put("nameCat", "cat");
@@ -86,9 +86,9 @@ class CatControllerTest {
     void update() throws Exception {
        Cat cat = new Cat();
        cat.setId(1L);
-       cat.setNameCat("cat");
-       cat.setBreedCat("aaa");
-       cat.setYearOfBirthCat(2010);
+       cat.setName("cat");
+       cat.setBreed("aaa");
+       cat.setYearOfBirth(2010);
        JSONObject userObject = new JSONObject();
        userObject.put("id", 1L);
        userObject.put("nameCat", "cat");

@@ -5,13 +5,9 @@ import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.service.DogService;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -34,7 +30,7 @@ public class DogControllerTest {
     public void saveDog() throws Exception {
         Dog dog = new Dog();
         dog.setId(1L);
-        dog.setNameDog("Tuzik");
+        dog.setName("Tuzik");
         JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
         userObject.put("nameDog", "Tuzik");
@@ -58,7 +54,7 @@ public class DogControllerTest {
     public void testUpdateDog() throws Exception {
         Dog dog = new Dog();
         dog.setId(1L);
-        dog.setNameDog("Bobik");
+        dog.setName("Bobik");
         JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
         userObject.put("nameDog", "Bobik");
