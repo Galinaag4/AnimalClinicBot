@@ -53,8 +53,8 @@ public class PersonCat {
     /**
      * идентификатор чата в телеграмм
      */
-
-    private Long chatId;
+    @Column(name = "chat_id_person_cat", nullable = false)
+    private Long chatIdPersonCat;
 
     /**
      * статус нахождения животного
@@ -67,27 +67,28 @@ public class PersonCat {
     @JsonManagedReference
     private List <Cat> cats;
 
+
     /**
      * ID отчета
      */
 
     @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "person_cat_report",
+    @JoinTable(name = "person_cat_report_data",
             joinColumns = @JoinColumn(name = "person_cat_null"),
-            inverseJoinColumns = @JoinColumn(name = "report_id"))
+            inverseJoinColumns = @JoinColumn(name = "report_data_id"))
     @JoinColumn(name = "id")
     private Report report;
 
     public PersonCat(Long id,String namePersonCat, int yearOfBirthPersonCat, String phonePersonCat,
                      String mailPersonCat, String addressPersonCat, Long chatIdPersonCat,
-                     Status statusCat, List<Cat> cats,Long chatId, Report report) {
+                     Status statusCat, List<Cat> cats, Report report) {
         this.id = id;
         this.namePersonCat = namePersonCat;
         this.yearOfBirthPersonCat = yearOfBirthPersonCat;
         this.phonePersonCat = phonePersonCat;
         this.mailPersonCat = mailPersonCat;
         this.addressPersonCat = addressPersonCat;
-        this.chatId = chatId;
+        this.chatIdPersonCat = chatIdPersonCat;
         this.statusCat = statusCat;
         this.cats = cats;
         this.report = report;
@@ -163,11 +164,11 @@ public class PersonCat {
     }
 
     public Long getChatIdPersonCat() {
-        return chatId;
+        return chatIdPersonCat;
     }
 
-    public void setChatIdPersonCat(Long chatIdt) {
-        this.chatId = chatId;
+    public void setChatIdPersonCat(Long chatIdPersonCat) {
+        this.chatIdPersonCat = chatIdPersonCat;
     }
 
     public Status getStatusCat() {
@@ -194,14 +195,6 @@ public class PersonCat {
         this.report = report;
     }
 
-    public Long getChatId() {
-        return chatId;
-    }
-
-    public void setChatId(Long chatId) {
-        this.chatId = chatId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -211,7 +204,7 @@ public class PersonCat {
                 && namePersonCat.equals(personCat.namePersonCat) &&
                 phonePersonCat.equals(personCat.phonePersonCat) && mailPersonCat.equals(personCat.mailPersonCat)
                 && addressPersonCat.equals(personCat.addressPersonCat) &&
-                chatId.equals(personCat.chatId) &&
+                chatIdPersonCat.equals(personCat.chatIdPersonCat) &&
                 statusCat == personCat.statusCat && cats.equals(personCat.cats) &&
                 report.equals(personCat.report);
     }
@@ -219,7 +212,7 @@ public class PersonCat {
     @Override
     public int hashCode() {
         return Objects.hash(id, namePersonCat, yearOfBirthPersonCat, phonePersonCat,
-                mailPersonCat, addressPersonCat, chatId, statusCat, cats, report);
+                mailPersonCat, addressPersonCat, chatIdPersonCat, statusCat, cats, report);
     }
 
     @Override
@@ -231,7 +224,7 @@ public class PersonCat {
                 ", phonePersonCat='" + phonePersonCat + '\'' +
                 ", mailPersonCat='" + mailPersonCat + '\'' +
                 ", addressPersonCat='" + addressPersonCat + '\'' +
-                ", chatIdPersonCat=" + chatId +
+                ", chatIdPersonCat=" + chatIdPersonCat +
                 ", statusCat=" + statusCat +
                 ", cats=" + cats +
                 ", report=" + report +

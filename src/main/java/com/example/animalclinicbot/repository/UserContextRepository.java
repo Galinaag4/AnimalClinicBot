@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 
-public interface UserContextRepository extends JpaRepository<UserContext,Long> {
+public interface UserContextRepository extends CrudRepository<UserContext,Long> {
     Optional<UserContext> findByChatId(Long chatId);
 }
