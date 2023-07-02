@@ -27,74 +27,65 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-class DogServiceTest {
-    @Mock
-    private DogRepository repository;
+public class DogServiceTest {
     @InjectMocks
-    private DogService service;
+    private DogService dogService;
+    @Mock
+    private DogRepository dogRepository;
+
+
 
     @Test
-    public void testGetById() {
-        Long testId = 1L;
-        Dog dog = new Dog(testId, "Собака", "Порода", 2020, "Описание");
-        Mockito.when(repository.findById(testId)).thenReturn(Optional.of(dog));
-        Dog result = service.getById(testId);
-        Assertions.assertEquals(dog, result);
+    void addNewDog() {
+        Dog expected = new Dog("Tuzik");
+        when(dogRepository.save(any())).thenReturn(expected);
+        Dog actual = dogService.create(expected);
+        assertThat(actual).isEqualTo(expected);
+        verify(dogRepository, Mockito.only()).save(expected);
     }
 
     @Test
-    public void testCreateDog() {
-        Long testId = 1L;
-        Dog dog = new Dog(testId, "Собака", "Порода", 2020, "Описание");
-        Mockito.when(repository.save(dog)).thenReturn(dog);
-        Dog createdDog = service.create(dog);
-        Mockito.verify(repository, Mockito.times(1)).save(dog);
-        Assertions.assertEquals(dog.getName(), createdDog.getName());
-        Assertions.assertEquals(dog.getId(), createdDog.getId());
+    void getAllDog() {
+        Collection<Dog> expected = List.of(new Dog("Bobik"));
+        when(dogRepository.findAll()).thenReturn((List<Dog>) expected);
+        Collection<Dog> actual = dogService.getAll();
+        assertThat(actual).isEqualTo(expected);
+        verify(dogRepository, Mockito.only()).findAll();
+    }
+    @Test
+    void testGetById() {
+        Long id = 1L;
+        Dog dog = new Dog(id, "Tuzik");
+        when(dogRepository.findById(id)).thenReturn(Optional.of(dog));
+        Dog result = dogService.getById(id);
+        assertEquals(dog, result);
+        verify(dogRepository, times(1)).findById(id);
+    }
+    @Test
+    void testUpdate() {
+        Long id = 1L;
+        Dog dog = new Dog(id, "Buddy");
+
+        when(dogRepository.findById(id)).thenReturn(Optional.of(dog));
+        when(dogRepository.save(dog)).thenReturn(dog);
+        Dog result = dogService.update(dog);
+        assertEquals(dog, result);
+        verify(dogRepository, times(1)).findById(id);
+        verify(dogRepository, times(1)).save(dog);
+    }
+    @Test
+    void testRemoveById() {
+        Long id = 1L;
+        doNothing().when(dogRepository).deleteById(id);
+        dogService.removeById(id);
+        verify(dogRepository, times(1)).deleteById(id);
     }
 
-    @Test
-    public void testUpdateDog() {
-        Dog dog1 = new Dog();
-        dog1.setName("Собака1");
-        dog1.setBreed("Порода1");
-        dog1.setYearOfBirth(2021);
-        dog1.setDescription("Описание1");
-        dog1.setId(1L);
-        Dog dog2 = new Dog();
-        dog2.setName("Собака2");
-        dog2.setBreed("Порода2");
-        dog2.setYearOfBirth(2022);
-        dog2.setDescription("Описание2");
-        dog2.setId(2L);
-        Dog dog3 = new Dog();
-        dog3.setName("Собака3");
-        dog3.setBreed("Порода3");
-        dog3.setYearOfBirth(2020);
-        dog3.setDescription("Описание3");
-        dog3.setId(3L);
-        Mockito.when(repository.getById(1L)).thenReturn(dog1);
-        Dog updatedDog1 = service.update(dog1);
-        Dog updatedDog2 = service.update(dog2);
-        Dog updatedDog3 = service.update(dog3);
-        Assertions.assertEquals(updatedDog1.getName(), "Собака1");
-        Assertions.assertEquals(updatedDog1.getBreed(), "Порода1");
-        Assertions.assertEquals(updatedDog1.getYearOfBirth(), 2021);
-        Assertions.assertEquals(updatedDog1.getDescription(), "Описание1");
-        Assertions.assertEquals(updatedDog1.getId(), Long.valueOf(1L));
-        Assertions.assertEquals(updatedDog2.getName(), "Собака2");
-        Assertions.assertEquals(updatedDog2.getBreed(), "Порода2");
-        Assertions.assertEquals(updatedDog2.getYearOfBirth(), 2022);
-        Assertions.assertEquals(updatedDog2.getDescription(), "Описание2");
-        Assertions.assertEquals(updatedDog2.getId(), Long.valueOf(2L));
-        Assertions.assertEquals(updatedDog3.getName(), "Собака3");
-        Assertions.assertEquals(updatedDog3.getBreed(), "Порода3");
-        Assertions.assertEquals(updatedDog3.getYearOfBirth(), 2020);
-        Assertions.assertEquals(updatedDog3.getDescription(), "Описание3");
-        Assertions.assertEquals(updatedDog3.getId(), Long.valueOf(3L));
-        Dog dog4 = new Dog();
-        Assertions.assertThrows(DogException.class, () -> {
-            service.update(dog4);
-        });
-    }
+
+
+
+
+
+
+
 }

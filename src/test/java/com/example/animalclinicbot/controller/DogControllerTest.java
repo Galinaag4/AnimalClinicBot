@@ -30,7 +30,7 @@ public class DogControllerTest {
     public void saveDog() throws Exception {
         Dog dog = new Dog();
         dog.setId(1L);
-        dog.setName("Tuzik");
+        dog.setNameDog("Tuzik");
         JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
         userObject.put("nameDog", "Tuzik");
@@ -54,7 +54,7 @@ public class DogControllerTest {
     public void testUpdateDog() throws Exception {
         Dog dog = new Dog();
         dog.setId(1L);
-        dog.setName("Bobik");
+        dog.setNameDog("Bobik");
         JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
         userObject.put("nameDog", "Bobik");
@@ -69,13 +69,11 @@ public class DogControllerTest {
     }
     @Test
     public void testGetAllDogs() throws Exception {
-            when(dogService.getAll()).thenReturn(List.of(new Dog()));
+        when(dogService.getAll()).thenReturn(List.of(new Dog()));
 
-            mockMvc.perform(
-                            get("/dog/all"))
-                    .andExpect(status().isOk());
-        }
-
+        mockMvc.perform(
+                        get("/dog/all"))
+                .andExpect(status().isOk());
     }
 
-
+}

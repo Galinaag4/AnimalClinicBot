@@ -59,9 +59,9 @@ class CatControllerTest {
     void save() throws Exception {
         Cat cat = new Cat();
         cat.setId(1L);
-        cat.setName("cat");
-        cat.setBreed("aaa");
-        cat.setYearOfBirth(2010);
+        cat.setNameCat("cat");
+        cat.setBreedCat("aaa");
+        cat.setYearOfBirthCat(2010);
         JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
         userObject.put("nameCat", "cat");
@@ -82,21 +82,21 @@ class CatControllerTest {
                 .andExpect(jsonPath("$.breedCat").value("aaa"))
                 .andExpect(jsonPath("$.yearOfBirthCat").value(2010));
     }
-   @Test
+    @Test
     void update() throws Exception {
-       Cat cat = new Cat();
-       cat.setId(1L);
-       cat.setName("cat");
-       cat.setBreed("aaa");
-       cat.setYearOfBirth(2010);
-       JSONObject userObject = new JSONObject();
-       userObject.put("id", 1L);
-       userObject.put("nameCat", "cat");
-       userObject.put("breedCat", "aaa");
-       userObject.put("yearOfBirthCat", 2010);
+        Cat cat = new Cat();
+        cat.setId(1L);
+        cat.setNameCat("cat");
+        cat.setBreedCat("aaa");
+        cat.setYearOfBirthCat(2010);
+        JSONObject userObject = new JSONObject();
+        userObject.put("id", 1L);
+        userObject.put("nameCat", "cat");
+        userObject.put("breedCat", "aaa");
+        userObject.put("yearOfBirthCat", 2010);
 
 
-       when(catService.updateCat(cat)).thenReturn(cat);
+        when(catService.updateCat(cat)).thenReturn(cat);
 
         mockMvc.perform(MockMvcRequestBuilders
                         .put("/cat")
