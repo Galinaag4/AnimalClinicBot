@@ -1,12 +1,18 @@
 package com.example.animalclinicbot.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 import java.util.Objects;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 /**
- * Класс содержит данные о питомце
+ * Класс содержит данные о собаке
  */
 @Entity
 public class Dog {

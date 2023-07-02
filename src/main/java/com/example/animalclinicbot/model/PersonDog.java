@@ -14,7 +14,7 @@ public class PersonDog {
      * идентификатор записи
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private Long id;
     /**
      * имя хозяина животного
@@ -42,43 +42,28 @@ public class PersonDog {
      */
     @Column (name = "address", nullable = false)
     private String address;
+
     /**
      * идентификатор чата в телеграмм
      */
-
-    @Column (name = "chat_id", nullable = false)
     private Long chatId;
     /**
      * статус нахождения животного
      */
-    @Column (name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
     private Status status;
     /**
      * ID питомца
      */
-//    @JsonBackReference
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "dog_id")
-//    private Dog dog;
 
     @OneToMany(mappedBy = "personDog")
     @JsonManagedReference
     private List <Dog> dogs;
 
 
-    /**
-     * ID отчета
-     */
-    @OneToOne(orphanRemoval = true)
-    @JoinTable(name = "person_report_data",
-            joinColumns = @JoinColumn(name = "person_null"),
-            inverseJoinColumns = @JoinColumn(name = "report_data_id"))
-    @JoinColumn(name = "id")
-    private Report report;
-
-
     public PersonDog(Long id, String name, int yearOfBirth, String phone, String mail, String address,
-                     Long chatId, Status status, Dog dog, Report report,List<Dog> dogs) {
+                     Long chatId, Status status, Dog dog,List<Dog> dogs) {
         this.id = id;
         this.name = name;
         this.yearOfBirth = yearOfBirth;
@@ -180,6 +165,7 @@ public class PersonDog {
     public void setStatus(Status status) {
         this.status = status;
     }
+
 
 //    public Dog getDog() {
 //        return dog;

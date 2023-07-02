@@ -1,9 +1,11 @@
 package com.example.animalclinicbot.service;
 
 
+import com.example.animalclinicbot.exceptions.DogException;
 import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.repository.DogRepository;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -27,7 +29,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class DogServiceTest {
     @InjectMocks
-   private DogService dogService;
+    private DogService dogService;
     @Mock
     private DogRepository dogRepository;
 

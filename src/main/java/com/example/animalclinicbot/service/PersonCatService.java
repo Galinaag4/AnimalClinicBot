@@ -54,7 +54,7 @@ public class PersonCatService {
         return this.personCatRepository.save(personCat);
     }
     /**
-     * метод обновления данных владельца собаки
+     * метод обновления данных владельца кота
      *
      * @param personCat
      * @return {@link PersonCatRepository#save(Object)}

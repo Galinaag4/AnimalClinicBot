@@ -1,13 +1,17 @@
 package com.example.animalclinicbot.listener;
 
+import com.example.animalclinicbot.constant.Button;
+import com.example.animalclinicbot.constant.TypeOfShelter;
+import com.example.animalclinicbot.keyboard.KeyBoardService;
 import com.example.animalclinicbot.model.PersonCat;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Report;
+import com.example.animalclinicbot.model.UserContext;
 import com.example.animalclinicbot.repository.PersonCatRepository;
 import com.example.animalclinicbot.repository.PersonDogRepository;
 import com.example.animalclinicbot.repository.ReportRepository;
-import com.example.animalclinicbot.service.KeyBoardService;
-import com.example.animalclinicbot.service.ReportService;
+import com.example.animalclinicbot.repository.UserContextRepository;
+import com.example.animalclinicbot.service.*;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.File;
@@ -15,14 +19,18 @@ import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.ForwardMessage;
 import com.pengrad.telegrambot.request.GetFile;
 import com.pengrad.telegrambot.request.SendMessage;
+import com.pengrad.telegrambot.request.SendPhoto;
 import com.pengrad.telegrambot.response.GetFileResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -37,7 +45,6 @@ import java.util.stream.Collectors;
 public class TelegramBotUpdatesListener implements UpdatesListener {
     private static final Logger logger = LoggerFactory.getLogger(TelegramBotUpdatesListener.class);
 
-    private static final String START_CMD = "/start";
 
     private static final String START_TEXT = "Приветствую вас! Этот бот поможет ответить на ваши вопросы о том, " +
             "что нужно знать,чтобы забрать животное из приюта";
@@ -48,16 +55,18 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             "✅ ознакомить о правилах содержания животных\n\n" +
             "И помните мы в ответе за тех кого приручили\n\n" +
             "Удачи!\n\n";
-    private static final String INFO_SHELTER = "Приют для животных находится по адресу г.Москва, ул.Ленина 25, стр.2," +
+    private static final String INFO_SHELTER_CAT = "Приют для животных находится по адресу г.Москва, ул.Ленина 25, стр.2," +
             "контакты: 8(495) 333 33 33 - директор Морозова Людмила Федоровна.\n\n" +
             "8(495) 222 22 22 - горячая линия приюта\n" +
             "для помощи животным: р/с 42200053355655554578\n\n" +
             "Нужды приюта: сухие корма, ветпрепараты, дез.средства";
-    private static final String ADOPT_DOG_INFO = "Правила содержания и ухода \nhttps://google.com \n" +
-            "Список документов \nhttps://yandex.ru\n" +
-            "";
+    private static final String INFO_SHELTER_DOG = "Приют для животных находится по адресу г.Москва, ул.Ленина 27, стр.1," +
+            "контакты: 8(495) 333 33 22 - директор Иванова Людмила Федоровна.\n\n" +
+            "8(495) 222 22 33 - горячая линия приюта\n" +
+            "для помощи животным: р/с 42200053355655554579\n\n" +
+            "Нужды приюта: сухие корма, ветпрепараты, дез.средства";
 
-    private static final String ADOPT_CAT_INFO = "Правила содержания и ухода \nhttps://google.com \n" +
+    private static final String ADOPT_INFO = "Правила содержания и ухода \nhttps://google.com \n" +
             "Список документов \nhttps://yandex.ru\n" +
             "";
     private static final String VOLUNTEER_CONTACT = "Контактные данные волонтера  \n @anna_ivanova \n" +
@@ -75,33 +84,77 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     private static final String REGEX_MESSAGE = "(Рацион:)(\\s)(\\W+)(;)\n" +
             "(Самочувствие:)(\\s)(\\W+)(;)\n" +
             "(Поведение:)(\\s)(\\W+)(;)";
+    private static final String TAKE_CAT = "Как выбрать кошку из приюта:*\n" +
+            "1. Определитесь с возрастом. \n" +
+            "2. Выберите пол.\n" +
+            "3. Выберите породу\n\n" +
+            "4. Познакомтесь с кошкой.\n\n" +
+            "5. Хорошо взвесте все за и против!\n\n";
+    private static final String TAKE_DOG = "Как выбрать собаку из приюта:*\n" +
+            "1. Определитесь с возрастом. \n" +
+            "2. Выберите пол.\n" +
+            "3. Выберите породу\n\n" +
+            "4. Познакомтесь с собакой.\n\n" +
+            "5. Хорошо взвесте все за и против!\n\n";
 
     private static final long telegramChatVolunteers = -748879962L;
 
     private long daysOfReports;
-    @Autowired
-    private ReportRepository reportRepository;
-    @Autowired
-    private PersonDogRepository personDogRepository;
-    @Autowired
-    private PersonCatRepository personCatRepository;
-    @Autowired
+
+
+
     private KeyBoardService keyBoardService;
-    @Autowired
+
     private ReportService reportService;
-    @Autowired
+
+    private PersonCatService personCatService;
+
+    private PersonDogService personDogService;
+
+    private UserContextService userContextService;
+
+    private UserContextRepository userContextRepository;
+    private PersonCatRepository personCatRepository;
+    private PersonDogRepository personDogRepository;
+    private ReportRepository reportRepository;
     private TelegramBot telegramBot;
 
-    public TelegramBotUpdatesListener(TelegramBot telegramBot) {
+    public TelegramBotUpdatesListener(KeyBoardService keyBoardService, ReportService reportService, PersonCatService personCatService, PersonDogService personDogService, UserContextService userContextService, UserContextRepository userContextRepository, PersonCatRepository personCatRepository, PersonDogRepository personDogRepository, ReportRepository reportRepository, TelegramBot telegramBot) {
+        this.keyBoardService = keyBoardService;
+        this.reportService = reportService;
+        this.personCatService = personCatService;
+        this.personDogService = personDogService;
+        this.userContextService = userContextService;
+        this.userContextRepository = userContextRepository;
+        this.personCatRepository = personCatRepository;
+        this.personDogRepository = personDogRepository;
+        this.reportRepository = reportRepository;
         this.telegramBot = telegramBot;
     }
+
 
     @PostConstruct
     public void init() {
         telegramBot.setUpdatesListener(this);
     }
 
-    private boolean isCat = false;
+    /**
+     * Метод предназначенный для switch-case,
+     * который принимает текст сообщения пользователя и сравнивает со значениями enum класса ButtonCommand
+     *
+     * @param buttonCommand
+     * @return
+     */
+    public static Button parse(String buttonCommand) {
+        Button[] values = Button.values();
+        for (Button command : values) {
+            if (command.getCommand().equals(buttonCommand)) {
+                return command;
+            }
+        }
+        return Button.NOTHING;
+    }
+
 
     /**
      * Организация процесса общения с пользователем
@@ -125,7 +178,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 Long lastMessageTime = reportRepository.findAll().stream()
                         .filter(s -> s.getChatId() == chatId)
                         .map(Report::getLastMessage)
-                        .map(date -> date.getTime()/1000)
+                        .map(date -> date.getTime() / 1000)
                         .max(Long::compare)
                         .orElseGet(() -> null);
                 if (lastMessageTime != null) {
@@ -159,75 +212,107 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     shareContact(update);
                 }
 
-                switch (textUpdate) {
+                    switch (parse(textUpdate)) {
 
-                    case START_CMD:
-                        sendMessage(chatId, nameUser + START_TEXT);
-                        keyBoardService.chooseMenu(chatId);
-                        break;
 
-                    case "\uD83D\uDC31 CAT":
+                        case START-> {
+                            if (userContextService.getByChatId(chatId).isEmpty()) {
+                                UserContext userContext = new UserContext();
+                                userContext.setChatId(chatId);
+                                userContextService.saveUserContext(userContext);
+                            }
 
-                        isCat = true;
-                        keyBoardService.sendMenu(chatId);
-                        sendMessage(chatId, "Вы выбрали кошку.");
-                        break;
-                    case "\uD83D\uDC36 DOG":
-
-                        isCat = false;
-                        keyBoardService.sendMenu(chatId);
-                        sendMessage(chatId, "Вы выбрали собаку.");
-                        break;
-
-                    case "Главное меню":
-                        keyBoardService.sendMenu(chatId);
-                        break;
-                    case "Информация о приюте":
-                        sendMessage(chatId, INFO_SHELTER);
-                        break;
-                    case "Содержание и уход":
-                        if (isCat) {
-                            sendMessage(chatId, ADOPT_DOG_INFO);
-                            ;
-                            break;
-                        } else {
-                            sendMessage(chatId, ADOPT_CAT_INFO);
-                            break;
+                            sendMessage(chatId, nameUser + START_TEXT);
+                            keyBoardService.chooseMenu(chatId);
                         }
-                    case "Прислать отчет о питомце":
-                        sendMessage(chatId, REPORT_CASE);
-                        sendMessage(chatId, REPORT_CASE_EXAMPLE);
-                        break;
-                    case "Как взять питомца из приюта":
-                        keyBoardService.sendMenuTakeAnimal(chatId);
-                        break;
-                    case "Информация о возможностях бота":
-                        sendMessage(chatId, ABOUT_BOT);
-                        break;
-                    case "Вернуться в меню":
-                        keyBoardService.sendMenu(chatId);
-                        break;
-                    case "Приветствую!":
-                        if (messageId != null) {
-                            sendReplyMessage(chatId, "Привет", messageId);
-                            break;
+                    case CAT-> {
+                        if (userContextService.getByChatId(chatId).isPresent()) {
+                            UserContext userContext = userContextService.getByChatId(chatId).get();
+                            if (userContext.getPersonCat() == null) {
+                                PersonCat personCat = new PersonCat();
+                                personCat.setChatId(chatId);
+                                personCatRepository.save(personCat);
+                                userContext.setPersonCat(personCat);
+                            }
+                            userContext.setTypeOfShelter(TypeOfShelter.CAT);
+                            userContextService.saveUserContext(userContext);
+                            sendMessage(chatId, "Вы выбрали кошку.");
+                            keyBoardService.shelterMainMenu(chatId);
                         }
-                    case "Позвать волонтера на помощь":
-                        sendMessage(chatId, "Я передал ваше сообщение волонтеру. " +
-                                "Если у вас закрытый профиль - поделитесь контактом. " +
-                                "Справа сверху 3 точки - отправить свой телефон");
-                        sendForwardMessage(chatId, messageId);
-                        break;
-                    case "":
-                        System.out.println("Нельзя");
-                        sendMessage(chatId, "Пустое сообщение");
-                        break;
-                    default:
-                        sendReplyMessage(chatId, "Я не знаю такой команды", messageId);
-                        break;
-                }
+                    }
+                    case DOG->{
+                        if (userContextService.getByChatId(chatId).isPresent()) {
+                            UserContext userContext = userContextService.getByChatId(chatId).get();
+                            if (userContext.getPersonDog() == null) {
+                                PersonDog personDog = new PersonDog();
+                                personDog.setChatId(chatId);
+                                personDogService.save(personDog);
+                                userContext.setPersonDog(personDog);
+                            }
+                            userContext.setTypeOfShelter(TypeOfShelter.DOG);
+                            userContextService.saveUserContext(userContext);
+                            sendMessage(chatId, "Вы выбрали собаку.");
+                            keyBoardService.shelterMainMenu(chatId);
+                        }
+                        }
+
+                    case MAIN_MENU-> {
+                        keyBoardService.shelterMainMenu(chatId);
+                    }
+                        case SHELTER_INFO_MENU -> {
+                            keyBoardService.shelterInfoMenu(chatId);
+                        }
+                        case HOW_ADOPT_PET_INFO -> {
+                            keyBoardService.shelterInfoHowAdoptPetMenu(chatId);
+                        }
+                        case SHELTER_INFO -> {
+                            if (userContextService.getByChatId(chatId).isPresent()) {
+                                UserContext userContext = userContextService.getByChatId(chatId).get();
+                                if (userContext.getTypeOfShelter().equals(TypeOfShelter.CAT)) {
+                                    sendMessage(chatId, INFO_SHELTER_CAT);
+                                } else if (userContext.getTypeOfShelter().equals(TypeOfShelter.DOG)) {
+                                    sendMessage(chatId, INFO_SHELTER_DOG);
+                                }
+                            }
+                        }
+                        case RECOMMENDATIONS_LIST -> {
+                            if (userContextService.getByChatId(chatId).isPresent()) {
+                                UserContext userContext = userContextService.getByChatId(chatId).get();
+                                if (userContext.getTypeOfShelter().equals(TypeOfShelter.CAT)) {
+                                    sendMessage(chatId, TAKE_CAT);
+                                } else if (userContext.getTypeOfShelter().equals(TypeOfShelter.DOG)) {
+                                    sendMessage(chatId, TAKE_DOG);
+                                }
+                            }
+                        }
+                        case DOCUMENTS_LIST -> {
+                            if (userContextService.getByChatId(chatId).isPresent()) {
+                                UserContext userContext = userContextService.getByChatId(chatId).get();
+                                if (userContext.getTypeOfShelter().equals(TypeOfShelter.CAT)) {
+                                    sendMessage(chatId, ADOPT_INFO);
+                                } else if (userContext.getTypeOfShelter().equals(TypeOfShelter.DOG)) {
+                                    sendMessage(chatId, ADOPT_INFO);
+                                }
+                            }
+                        }
+                        case VOLUNTEER -> {
+                            sendMessage(chatId, "Я передал ваше сообщение волонтеру. " +
+                                    "Если у вас закрытый профиль - поделитесь контактом. " +
+                                    "Справа сверху 3 точки - отправить свой телефон");
+                            sendForwardMessage(chatId, messageId);
+                        }
+                        case SEND_REPORT -> {
+                            sendMessage(chatId, REPORT_CASE+REPORT_CASE_EXAMPLE);
+                        }
+                        case NOTHING -> {
+                            System.out.println("Нельзя");
+                            sendMessage(chatId, "Пустое сообщение");
+                        }
+                        default-> sendReplyMessage(chatId, "Я не знаю такой команды", messageId);
+                    }
+
             } catch (NullPointerException e) {
-                System.out.println("Ошибка");
+                e.printStackTrace();
             }
 
         });
@@ -255,6 +340,13 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     /**
      * Метод отправки сообщений.
      */
+//            public void sendResponseMessage(long chatId, String text) {
+//                SendMessage sendMessage = new SendMessage(chatId, text);
+//                SendResponse sendResponse = telegramBot.execute(sendMessage);
+//                if (!sendResponse.isOk()) {
+//                    logger.error("Error during sending message: {}", sendResponse.description());
+//                }
+//            }
     public void sendMessage(long chatId, String text) {
         SendMessage message = new SendMessage(chatId, text);
         telegramBot.execute(message);
@@ -274,7 +366,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     .filter(i -> i.getChatId() == finalChatId)
                     .collect(Collectors.toList());
             var sortChatIdCat = personCatRepository.findAll().stream()
-                    .filter(i -> i.getChatIdPersonCat() == finalChatId)
+                    .filter(i -> i.getChatId() == finalChatId)
                     .collect(Collectors.toList());
 
             if (!sortChatId.isEmpty() || !sortChatIdCat.isEmpty()) {
@@ -283,18 +375,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             }
             if (lastName != null) {
                 String name = firstName + " " + lastName + " " + username;
-                if (isCat) {
-                    personCatRepository.save(new PersonCat(name, phone, finalChatId));
-                } else {
-                    personDogRepository.save(new PersonDog(name, phone, finalChatId));
-                }
                 sendMessage(finalChatId, "Вас успешно добавили в базу. Скоро вам перезвонят.");
                 return;
-            }
-            if (isCat) {
-                personCatRepository.save(new PersonCat(firstName, phone, finalChatId));
-            } else {
-                personDogRepository.save(new PersonDog(firstName, phone, finalChatId));
             }
             sendMessage(finalChatId, "Вас успешно добавили в базу! Скоро вам перезвонят.");
             // Сообщение в чат волонтерам
@@ -302,6 +384,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             sendForwardMessage(finalChatId, update.message().messageId());
         }
     }
+
 
     /**
      * Метод получения отчетов.
@@ -324,7 +407,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 long timeDate = update.message().date();
                 Date dateSendMessage = new Date(timeDate * 1000);
                 byte[] fileContent = telegramBot.getFileContent(file);
-                reportService.uploadReportData(update.message().chat().id(), fileContent, file,
+                reportService.uploadReport(update.message().chat().id(), fileContent, file,
                         ration, health, habits, fullPathPhoto, dateSendMessage, timeDate, daysOfReports);
 
                 telegramBot.execute(new SendMessage(update.message().chat().id(), "Отчет успешно принят!"));
@@ -344,7 +427,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                 long timeDate = update.message().date();
                 Date dateSendMessage = new Date(timeDate * 1000);
                 byte[] fileContent = telegramBot.getFileContent(file);
-                reportService.uploadReportData(update.message().chat().id(), fileContent, file, update.message().caption(),
+                reportService.uploadReport(update.message().chat().id(), fileContent, file, update.message().caption(),
                         fullPathPhoto, dateSendMessage, daysOfReports);
 
                 telegramBot.execute(new SendMessage(update.message().chat().id(), "Отчет успешно принят!"));

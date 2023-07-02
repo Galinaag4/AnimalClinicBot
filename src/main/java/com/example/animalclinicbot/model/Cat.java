@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.http.HttpStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
@@ -14,7 +15,7 @@ import java.util.Objects;
 public class Cat {
 
     @Id
-    @GeneratedValue/*(strategy = GenerationType.IDENTITY)*/
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     /**
      * имя животного
@@ -45,7 +46,7 @@ public class Cat {
 
 
     @ManyToOne
-    @JoinColumn (name = "personCat_id")
+    @JoinColumn (name = "person_сat_id")
     @JsonBackReference
     private PersonCat personCat;
 

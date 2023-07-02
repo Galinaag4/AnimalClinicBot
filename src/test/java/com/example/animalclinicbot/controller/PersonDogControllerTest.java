@@ -3,7 +3,7 @@ package com.example.animalclinicbot.controller;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Status;
 import com.example.animalclinicbot.service.PersonDogService;
-import net.minidev.json.JSONObject;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,69 +13,84 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(PersonDogController.class)
-public class PersonDogControllerTest {
+class PersonDogControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
-
     @MockBean
-    private PersonDogService personDogService;
+    private PersonDogService service;
+
     @Test
-    public void savePersonDog() throws Exception {
-        PersonDog personDog = new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH);
+    void getById() throws Exception {
+        PersonDog personDog = new PersonDog();
         personDog.setId(1L);
-        personDog.setName("petr");
-        JSONObject userObject = new JSONObject();
-        userObject.putIfAbsent("id", 1L);
-        userObject.putIfAbsent("name", "petr");
-        when(personDogService.create(personDog)).thenReturn(personDog);
+        service.save(personDog);
+        when(service.getById(anyLong())).thenReturn(personDog);
+        mockMvc.perform(
+                        get("/person-dog/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1));
+        verify(service).getById(1L);
+    }
+
+
+    @Test
+    void getAll() throws Exception {
+        when(service.getAll()).thenReturn(List.of(new PersonDog()));
+        mockMvc.perform(
+                        get("/person-dog/all"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void save() throws Exception {
+        PersonDog personDog = new PersonDog();
+        personDog.setId(1L);
+        personDog.setName("John");
+        org.json.JSONObject userObject = new org.json.JSONObject();
+        userObject.put("id", 1L);
+        userObject.put("name", "John");
+        when(service.save(personDog)).thenReturn(personDog);
         mockMvc.perform(
                         post("/person-dog")
                                 .content(userObject.toString())
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(userObject.toString()));
+        verify(service).save(personDog);
+    }
 
-        verify(personDogService).create(personDog);
-    }
     @Test
-    public void testDeletePersonDog() throws Exception {
-        mockMvc.perform(delete("/person-dog/{id}",1))
-                .andExpect(status().isOk());
-        verify(personDogService).removeById(1L);
-    }
-    @Test
-    public void testUpdatePersonDog() throws Exception {
-        PersonDog personDog = new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH);
+    void update() throws Exception {
+        PersonDog personDog = new PersonDog();
         personDog.setId(1L);
-        personDog.setName("petr");
-        JSONObject userObject = new JSONObject();
-        userObject.putIfAbsent("id", 1L);
-        userObject.putIfAbsent("name", "petr");
-        when(personDogService.update(personDog)).thenReturn(personDog);
-
-        mockMvc.perform(put("/person-dog")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(userObject.toString()))
+        personDog.setName("John");
+        org.json.JSONObject userObject = new JSONObject();
+        userObject.put("id", 1L);
+        userObject.put("name", "John");
+        when(service.save(personDog)).thenReturn(personDog);
+        mockMvc.perform(
+                        post("/person-dog")
+                                .content(userObject.toString())
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(userObject.toString()));
-        verify(personDogService).update(personDog);
+        verify(service).save(personDog);
     }
+
     @Test
-    public void testGetAllPersonDogs() throws Exception {
-        when(personDogService.getAll()).thenReturn(List.of(new PersonDog(1L, "Petr", 1998, "89524568974", "Pony@mail.ru", "Moscow", 111111, Status.SEARCH)));
-
+    void remove() throws Exception {
         mockMvc.perform(
-                        get("/person-dog/all"))
+                        delete("/person-dog/{id}", 1))
                 .andExpect(status().isOk());
+        verify(service).delete(1L);
     }
-
 }
-

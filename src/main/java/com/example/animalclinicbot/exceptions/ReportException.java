@@ -9,3 +9,4 @@ public class ReportException extends RuntimeException {
         super("Отчет не найден!");
     }
 }
+
