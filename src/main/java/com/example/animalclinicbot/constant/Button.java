@@ -2,7 +2,6 @@ package com.example.animalclinicbot.constant;
 
 public enum Button {
     START("/start"),
-
     CAT("Кошачий"),
     DOG("Собачий"),
     MAIN_MENU("Главное меню"),
