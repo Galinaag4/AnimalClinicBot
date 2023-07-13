@@ -23,74 +23,74 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(PersonDogController.class)
 class PersonDogControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-    @MockBean
-    private PersonDogService service;
+        @Autowired
+        private MockMvc mockMvc;
+        @MockBean
+        private PersonDogService service;
 
-    @Test
-    void getById() throws Exception {
-        PersonDog personDog = new PersonDog();
-        personDog.setId(1L);
-        service.save(personDog);
-        when(service.getById(anyLong())).thenReturn(personDog);
-        mockMvc.perform(
-                        get("/person-dog/{id}", 1L))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1));
-        verify(service).getById(1L);
+        @Test
+        void getById() throws Exception {
+            PersonDog personDog = new PersonDog();
+            personDog.setId(1L);
+            service.save(personDog);
+            when(service.getById(anyLong())).thenReturn(personDog);
+            mockMvc.perform(
+                            get("/person_dog/{id}", 1L))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.id").value(1));
+            verify(service).getById(1L);
+        }
+
+
+        @Test
+        void getAll() throws Exception {
+            when(service.getAll()).thenReturn(List.of(new PersonDog()));
+            mockMvc.perform(
+                            get("/perso_dog/all"))
+                    .andExpect(status().isOk());
+        }
+
+        @Test
+        void save() throws Exception {
+            PersonDog personDog = new PersonDog();
+            personDog.setId(1L);
+            personDog.setName("John");
+            JSONObject userObject = new JSONObject();
+            userObject.put("id", 1L);
+            userObject.put("name", "John");
+            when(service.save(personDog)).thenReturn(personDog);
+            mockMvc.perform(
+                            post("/person_dog")
+                                    .content(userObject.toString())
+                                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(content().json(userObject.toString()));
+            verify(service).save(personDog);
+        }
+
+        @Test
+        void update() throws Exception {
+            PersonDog personDog = new PersonDog();
+            personDog.setId(1L);
+            personDog.setName("John");
+            JSONObject userObject = new JSONObject();
+            userObject.put("id", 1L);
+            userObject.put("name", "John");
+            when(service.save(personDog)).thenReturn(personDog);
+            mockMvc.perform(
+                            post("/person_dog")
+                                    .content(userObject.toString())
+                                    .contentType(MediaType.APPLICATION_JSON))
+                    .andExpect(status().isOk())
+                    .andExpect(content().json(userObject.toString()));
+            verify(service).save(personDog);
+        }
+
+        @Test
+        void remove() throws Exception {
+            mockMvc.perform(
+                            delete("/person_dog/{id}", 1))
+                    .andExpect(status().isOk());
+            verify(service).delete(1L);
+        }
     }
-
-
-    @Test
-    void getAll() throws Exception {
-        when(service.getAll()).thenReturn(List.of(new PersonDog()));
-        mockMvc.perform(
-                        get("/person-dog/all"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void save() throws Exception {
-        PersonDog personDog = new PersonDog();
-        personDog.setId(1L);
-        personDog.setName("John");
-        org.json.JSONObject userObject = new org.json.JSONObject();
-        userObject.put("id", 1L);
-        userObject.put("name", "John");
-        when(service.save(personDog)).thenReturn(personDog);
-        mockMvc.perform(
-                        post("/person-dog")
-                                .content(userObject.toString())
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().json(userObject.toString()));
-        verify(service).save(personDog);
-    }
-
-    @Test
-    void update() throws Exception {
-        PersonDog personDog = new PersonDog();
-        personDog.setId(1L);
-        personDog.setName("John");
-        org.json.JSONObject userObject = new JSONObject();
-        userObject.put("id", 1L);
-        userObject.put("name", "John");
-        when(service.save(personDog)).thenReturn(personDog);
-        mockMvc.perform(
-                        post("/person-dog")
-                                .content(userObject.toString())
-                                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().json(userObject.toString()));
-        verify(service).save(personDog);
-    }
-
-    @Test
-    void remove() throws Exception {
-        mockMvc.perform(
-                        delete("/person-dog/{id}", 1))
-                .andExpect(status().isOk());
-        verify(service).delete(1L);
-    }
-}

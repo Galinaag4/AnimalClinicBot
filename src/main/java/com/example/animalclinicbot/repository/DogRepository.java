@@ -9,5 +9,4 @@ import java.util.Collection;
 @Repository
 public interface DogRepository extends JpaRepository<Dog, Long> {
 
-    Collection<Dog> findDogsByPersonDog_Id(Long id);
 }

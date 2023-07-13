@@ -3,7 +3,7 @@ package com.example.animalclinicbot.controller;
 
 import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.service.DogService;
-import net.minidev.json.JSONObject;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -21,59 +22,71 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(DogController.class)
-public class DogControllerTest {
+class DogControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private DogService dogService;
+    private DogService service;
+
     @Test
-    public void saveDog() throws Exception {
+    void getById() throws Exception {
         Dog dog = new Dog();
         dog.setId(1L);
-        dog.setNameDog("Tuzik");
-        JSONObject userObject = new JSONObject();
+        when(service.getById(anyLong())).thenReturn(dog);
+        mockMvc.perform(
+                        get("/dog/{id}", 1L))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id").value(1));
+        verify(service).getById(1L);
+    }
+
+    @Test
+    void save() throws Exception {
+        Dog dog = new Dog();
+        dog.setId(1L);
+        dog.setName("testDog");
+        org.json.JSONObject userObject = new org.json.JSONObject();
         userObject.put("id", 1L);
-        userObject.put("nameDog", "Tuzik");
-        when(dogService.create(dog)).thenReturn(dog);
+        userObject.put("name", "testDog");
+        userObject.put("breed", "testBreed");
+        userObject.put("yearOfBirth", 2020);
+        userObject.put("description", "test");
+        when(service.addDog(dog)).thenReturn(dog);
         mockMvc.perform(
                         post("/dog")
                                 .content(userObject.toString())
                                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(userObject.toString()));
+        verify(service).addDog(dog);
+    }
 
-        verify(dogService).create(dog);
-    }
     @Test
-    public void testDeleteDog() throws Exception {
-        mockMvc.perform(delete("/dog/{id}",1))
-                .andExpect(status().isOk());
-        verify(dogService).removeById(1L);
-    }
-    @Test
-    public void testUpdateDog() throws Exception {
+    void update() throws Exception {
         Dog dog = new Dog();
         dog.setId(1L);
-        dog.setNameDog("Bobik");
-        JSONObject userObject = new JSONObject();
+        dog.setName("testDog");
+        org.json.JSONObject userObject = new JSONObject();
         userObject.put("id", 1L);
-        userObject.put("nameDog", "Bobik");
-        when(dogService.update(dog)).thenReturn(dog);
-
-        mockMvc.perform(put("/dog")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(userObject.toString()))
+        userObject.put("name", "testDog");
+        when(service.update(dog)).thenReturn(dog);
+        mockMvc.perform(
+                        put("/dog")
+                                .content(userObject.toString())
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(userObject.toString()));
-        verify(dogService).update(dog);
+        verify(service).update(dog);
     }
+
     @Test
-    public void testGetAllDogs() throws Exception {
-        when(dogService.getAll()).thenReturn(List.of(new Dog()));
-
+    void remove() throws Exception {
         mockMvc.perform(
-                        get("/dog/all"))
+                        delete("dog/{id}", 1))
                 .andExpect(status().isOk());
+        verify(service).removeById(1L);
     }
 
-}
+    }
+

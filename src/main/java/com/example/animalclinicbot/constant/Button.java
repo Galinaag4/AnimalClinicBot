@@ -10,6 +10,7 @@ public enum Button {
     HOW_ADOPT_PET_INFO("Как взять животное из приюта"),
     VOLUNTEER("Позвать волонтера на помощь"),
     SHELTER_INFO("Общая информация"),
+    SHELTER_ADDRESS_SCHEDULE("Адрес и график работы приюта"),
     RECOMMENDATIONS_LIST("Список рекомендаций и советов"),
     DOCUMENTS_LIST("Список необходимых документов"),
     SEND_CONTACT("Отправить контактные данные"),

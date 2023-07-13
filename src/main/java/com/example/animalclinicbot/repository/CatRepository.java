@@ -9,5 +9,4 @@ import java.util.Collection;
 @Repository
 public interface CatRepository extends JpaRepository <Cat, Long> {
 
-    Collection<Cat> findCatsByPersonCat_Id(Long id);
 }

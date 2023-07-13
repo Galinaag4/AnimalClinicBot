@@ -8,5 +8,5 @@ import java.util.Set;
 
 public interface PersonCatRepository extends JpaRepository <PersonCat, Long> {
 
-    Set<PersonCat> findByChatIdPersonCat(Long chatIdPersonCat);
+    Set<PersonCat> findByChatId(Long chatId);
 }

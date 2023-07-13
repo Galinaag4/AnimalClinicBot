@@ -23,108 +23,32 @@ public class DogController {
 
     private final DogService dogService;
 
-    public DogController(DogService dogService) {
+    public DogController(DogService dogService)
+    {
         this.dogService = dogService;
     }
 
-    @Operation(summary = "Получение питомца по id",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Собака, найденная по id",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Dog.class)
-                            )
-                    )
-            },
-            tags = "Dog"
-    )
+    @Operation(summary = "Получение собаки по id")
     @GetMapping("/{id}")
-    public Dog getDogById(@Parameter(description = "dog id") @PathVariable Long id) {
-        return this.dogService.getById(id);
+    public Dog getDogById(@PathVariable Long id) {
+        return dogService.getById(id);
     }
 
-    @Operation(summary = "Создание собаки",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Созданная собака",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Dog.class)
-                    )
-            ),
-            tags = "Dog"
-    )
+    @Operation(summary = "Создание собаки")
     @PostMapping()
-    public Dog saveDog(@RequestBody Dog dog) {
-        return this.dogService.create(dog);
+    public Dog addDog(@RequestBody Dog dog) {
+        return dogService.addDog(dog);
     }
 
-    @Operation(summary = "Изменение данных у собаки",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Собака с измененными данными",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Dog.class)
-                    )
-            ),
-            tags = "Dog"
-    )
-    @PutMapping()
-    public Dog updateDog(@RequestBody Dog dog) {
-        return this.dogService.update(dog);
+    @Operation(summary = "Обновление данных собаки")
+    @PutMapping("/{id}")
+    public Dog updateDogById(@PathVariable Long id, @RequestBody Dog dog) {
+        return dogService.update(dog);
     }
 
-    @Operation(summary = "Удаление собаки по id",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Удаленная собака",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Dog.class)
-                            )
-                    )
-            },
-            tags = "Dog"
-    )
+    @Operation(summary = "Удаление собаки по id")
     @DeleteMapping("/{id}")
-    public void removeDog(@Parameter(description = "dog id") @PathVariable Long id) {
-        this.dogService.removeById(id);
-    }
-
-    @Operation(summary = "Просмотр всех собак",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Все собаки",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Dog.class)
-                            )
-                    )
-            },
-            tags = "Dog"
-    )
-    @GetMapping("/all")
-    public Collection<Dog> getAllDogs() {
-        return this.dogService.getAll();
-    }
-    @Operation(summary = "Просмотр всех собак по id владельца",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Все собаки, полученные по id владельца",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Dog.class)
-                            )
-                    )
-            },
-            tags = "Dog"
-    )
-    @GetMapping("/byPersonDog/{id}")
-    public ResponseEntity<Collection<Dog>> findDogsByPersonDogId(@PathVariable Long id) {
-        return ResponseEntity.ok(this.dogService.findDogsByPersonDogId(id));
+    public void removeDog(@PathVariable Long id) {
+        dogService.removeById(id);
     }
 }

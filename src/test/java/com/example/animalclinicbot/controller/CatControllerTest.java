@@ -3,7 +3,7 @@ package com.example.animalclinicbot.controller;
 import com.example.animalclinicbot.model.Cat;
 import com.example.animalclinicbot.repository.CatRepository;
 import com.example.animalclinicbot.service.CatService;
-import net.minidev.json.JSONObject;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -29,102 +29,60 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 
 @WebMvcTest(CatController.class)
-class CatControllerTest {
-
+public class CatControllerTest {
     @Autowired
     private MockMvc mockMvc;
     @MockBean
-    private CatRepository catRepository;
-
-    @MockBean
-    private CatService catService;
-
-
-
+    private CatService service;
     @Test
-    void getById() throws Exception {
+    void getCatByIdTest() throws Exception {
         Cat cat = new Cat();
         cat.setId(1L);
-
-        when(catService.getByIdCat(anyLong())).thenReturn(cat);
-
+        when(service.getById(anyLong())).thenReturn(cat);
         mockMvc.perform(
                         get("/cat/{id}", 1L))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(1));
-
-        verify(catService).getByIdCat(1L);
+        verify(service).getById(1L);
     }
     @Test
-    void save() throws Exception {
+    void addCatTest() throws Exception {
         Cat cat = new Cat();
         cat.setId(1L);
-        cat.setNameCat("cat");
-        cat.setBreedCat("aaa");
-        cat.setYearOfBirthCat(2010);
-        JSONObject userObject = new JSONObject();
+        cat.setName("CatTest1");
+        org.json.JSONObject userObject = new org.json.JSONObject();
         userObject.put("id", 1L);
-        userObject.put("nameCat", "cat");
-        userObject.put("breedCat", "aaa");
-        userObject.put("yearOfBirthCat", 2010);
-
-        when(catService.createCat(cat)).thenReturn(cat);
-
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .post("/cat")
-                        .content(userObject.toString())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1L))
-                .andExpect(jsonPath("$.nameCat").value("cat"))
-                .andExpect(jsonPath("$.breedCat").value("aaa"))
-                .andExpect(jsonPath("$.yearOfBirthCat").value(2010));
-    }
-    @Test
-    void update() throws Exception {
-        Cat cat = new Cat();
-        cat.setId(1L);
-        cat.setNameCat("cat");
-        cat.setBreedCat("aaa");
-        cat.setYearOfBirthCat(2010);
-        JSONObject userObject = new JSONObject();
-        userObject.put("id", 1L);
-        userObject.put("nameCat", "cat");
-        userObject.put("breedCat", "aaa");
-        userObject.put("yearOfBirthCat", 2010);
-
-
-        when(catService.updateCat(cat)).thenReturn(cat);
-
-        mockMvc.perform(MockMvcRequestBuilders
-                        .put("/cat")
-                        .content(userObject.toString())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+        userObject.put("name", "CatTest1");
+        when(service.addCat(cat)).thenReturn(cat);
+        mockMvc.perform(
+                        post("/cat")
+                                .content(userObject.toString())
+                                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().json(userObject.toString()));
-        verify(catService).updateCat(cat);
-
-
-
+        verify(service).addCat(cat);
     }
     @Test
-    void remove() throws Exception {
+    void updateCatByIdTest() throws Exception {
+        Cat cat = new Cat();
+        cat.setId(1L);
+        cat.setName("CatTest1");
+        org.json.JSONObject userObject = new JSONObject();
+        userObject.put("id", 1L);
+        userObject.put("name", "CatTest1");
+        when(service.update(cat)).thenReturn(cat);
+        mockMvc.perform(
+                        put("/cat")
+                                .content(userObject.toString())
+                                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json(userObject.toString()));
+        verify(service).update(cat);
+    }
+    @Test
+    void removeCatTest() throws Exception {
         mockMvc.perform(
                         delete("/cat/{id}", 1))
                 .andExpect(status().isOk());
-        verify(catService).deleteCatById(1L);
-    }
-    @Test
-    void getAll() throws Exception {
-        when(catService.getAll()).thenReturn(List.of(new Cat()));
-
-        mockMvc.perform(
-                        get("/cat/all"))
-                .andExpect(status().isOk());
-    }
-
-}
-
+        verify(service).removeById(1L);
+    }}

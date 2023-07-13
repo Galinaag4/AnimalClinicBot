@@ -15,94 +15,44 @@ import java.util.Collection;
  */
 @Service
 public class CatService {
+    private final CatRepository repository;
 
-    private CatRepository catRepository;
-    private static final Logger logger = LoggerFactory.getLogger(CatService.class);
-
-    public CatService(CatRepository catRepository) {
-        this.catRepository = catRepository;
+    public CatService(CatRepository repository) {
+        this.repository = repository;
     }
 
     /**
-     * метод получения кота по id
-     *
-     * @param id
-     * @return {@link CatRepository#findById(Object)}
-     * @throws CatException
-     * @see CatService
+     Добавление нового кота в список
      */
-    public Cat getByIdCat(Long id) {
-        logger.info("Был вызван метод получения кота по id={}", id);
-
-        return this.catRepository.findById(id)
-                .orElseThrow(CatException::new);
+    public Cat addCat(Cat cat) {
+        return this.repository.save(cat);
     }
 
     /**
-     * метод создания кота
-     *
-     * @param cat
-     * @return {@link CatRepository#save(Object)}
-     * @see CatService
+     получение кота по ID
+     @param id кота
      */
-    public Cat createCat(Cat cat) {
-        logger.info("Был вызван метод создания кота");
-
-        return this.catRepository.save(cat);
+    public Cat getById(Long id) {
+        return this.repository.findById(id).orElseThrow(CatException::new);
     }
-
     /**
-     * метод редактирования кота
-     *
-     * @param cat
-     * @return {@link CatRepository#save(Object)}
-     * @throws CatException
-     * @see CatService
+     * Обновление кота
      */
-    public Cat updateCat(Cat cat) {
-        logger.info("Был вызван метод редактирования данных кота");
 
-        if (cat.getId() != null) {
-            if (getByIdCat(cat.getId()) != null) {
-                return this.catRepository.save(cat);
-            }
+    public Cat update(Cat cat) {
+        if (cat.getId() != null && getById(cat.getId()) != null) {
+            return repository.save(cat);
         }
         throw new CatException();
     }
-
     /**
-     * метод получения всех котов
-     *
-     * @return {@link CatRepository#findAll()}
-     * @see CatService
+     * Удаление кота из списка по ID
+     * @param id кота
      */
-    public Collection<Cat> getAll() {
-        logger.info("Был вызван метод получения всех котов");
 
-        return this.catRepository.findAll();
+    public void removeById(Long id) {
+        this.repository.deleteById(id);
     }
 
-    /**
-     * метод удаления кота по id
-     *
-     * @param id
-     */
-    public void deleteCatById(Long id) {
-        logger.info("Был вызван метод удаления кота по id={}", id);
-
-        this.catRepository.deleteById(id);
-    }
-
-    /**
-     * метод получения котов по id владельца
-     *
-     * @param id
-     */
-    public Collection<Cat> findCatsByIdPersonCat (Long id) {
-        logger.info("Был вызван метод получения всех котов по id чата владельца {}", id);
-
-        Collection<Cat> cats = this.catRepository.findCatsByPersonCat_Id(id);
-        return cats;
-    }
 
 }

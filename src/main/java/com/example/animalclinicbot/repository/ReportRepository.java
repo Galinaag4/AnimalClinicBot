@@ -9,11 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
-    Collection<Report> findListByChatId(Long id);
-
+    Set<Report> findListByChatId(Long id);
     Report findByChatId(Long id);
 }

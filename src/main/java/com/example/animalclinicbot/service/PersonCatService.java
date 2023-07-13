@@ -18,96 +18,39 @@ import java.util.Collection;
 @Service
 public class PersonCatService {
 
-    private final PersonCatRepository personCatRepository;
-    private static final Logger logger = LoggerFactory.getLogger(PersonCatService.class);
-
-    public PersonCatService(PersonCatRepository personCatRepository) {
-        this.personCatRepository = personCatRepository;
+    private final PersonCatRepository repository;
+    private static final Logger logger = LoggerFactory.getLogger(PersonCatRepository.class);
+    public PersonCatService(PersonCatRepository repository) {
+        this.repository = repository;
     }
-
-    /**
-     * метод получения владельца кота по id
-     *
-     * @param id
-     * @return {@link PersonCatRepository#findById(Object)}
-     * @throws PersonCatException
-     * @see PersonCatService
-     */
-    public PersonCat getByIdPersonCat (Long id) {
-        logger.info("Был вызван метод получения владельца кота по id={}", id);
-
-        return this.personCatRepository.findById(id)
+    public PersonCat getById(Long id) {
+        logger.info("Was invoked method to get a CatOwners by id={}", id);
+        return this.repository.findById(id)
                 .orElseThrow(PersonCatException::new);
     }
-
-
-    /**
-     * метод создания владельца кота
-     *
-     * @param personCat
-     * @return {@link PersonCatRepository#save(Object)}
-     * @see PersonCatService
-     */
-    public PersonCat createPersonCat (PersonCat personCat) {
-        logger.info("Метод создания владельца кота");
-
-        return this.personCatRepository.save(personCat);
+    public PersonCat create(PersonCat personCat) {
+        logger.info("Was invoked method to create a catOwners");
+        return this.repository.save(personCat);
     }
-    /**
-     * метод обновления данных владельца кота
-     *
-     * @param personCat
-     * @return {@link PersonCatRepository#save(Object)}
-     * @throws PersonCatException
-     * @see PersonCatService
-     */
-    public PersonCat update(PersonCat personCat) {
-        logger.info("Метод обновления данных владельца собаки");
-
-        if (personCat.getId() != null) {
-            if (getByIdPersonCat(personCat.getId()) != null) {
-                return this.personCatRepository.save(personCat);
-            }
+    public PersonCat update(PersonCat personCat ) {
+        logger.info("Was invoked method to update a catOwners");
+        if (personCat.getId() != null && getById(personCat.getId()) != null) {
+            return repository.save(personCat);
         }
         throw new PersonCatException();
     }
-
-    /**
-     * метод удаления данных владельца кота по id
-     *
-     * @param id
-     */
-    public void deleteByIdPersonCat(Long id) {
-        logger.info("Метод удаления данных владельца кота по id={}", id);
-
-        this.personCatRepository.deleteById(id);
+    public void removeById(Long id) {
+        logger.info("Was invoked method to remove a catOwners by id={}", id);
+        this.repository.deleteById(id);
     }
+    public Collection<PersonCat> getAll() {
+        logger.info("Was invoked method to get all catOwners");
 
-
-    /**
-     * Метод получения всех владельцев котов
-     *
-     * @return {@link PersonCatRepository#findAll()}
-     * @see PersonCatService
-     */
-    public Collection<PersonCat> getAllPersonCat() {
-        logger.info("Метод получения всех владельцев котов");
-
-        return this.personCatRepository.findAll();
+        return this.repository.findAll();
     }
+    public Collection<PersonCat> getByChatId(Long chatId) {
+        logger.info("Was invoked method to remove a catOwners by chatId={}", chatId);
 
-    /**
-     * Метод получения всех владельцев котов по id
-     *
-     * @param chatIdPersonCat
-     * @return {@link PersonCatRepository#findByChatIdPersonCat(Long)}
-     * @see PersonCatService
-     */
-    public Collection<PersonCat> getByChatIdPersonCat (Long chatIdPersonCat) {
-        logger.info("Метод получения всех владельцев котов по id={}", chatIdPersonCat);
-
-        return this.personCatRepository.findByChatIdPersonCat(chatIdPersonCat);
+        return this.repository.findByChatId(chatId);
     }
-
-
 }

@@ -26,106 +26,28 @@ public class CatController {
         this.catService = catService;
     }
 
-    @Operation (summary = "Получение кота по id",
-                    responses =
-                            {@ApiResponse(responseCode = "200",
-                                    description = "Кот, найденный по id",
-                                    content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                            schema = @Schema(implementation = Cat.class)))
-                            },
-                    tags = "Cat"
-            )
+    @Operation(summary = "Создание кота")
+    @PostMapping
+    public Cat addCat(@RequestBody Cat cat) {
+        return catService.addCat(cat);
+    }
+
+
+    @Operation(summary = "Получение кота по id")
     @GetMapping("/{id}")
-    public Cat getCatById(@Parameter (description = "cat id") @PathVariable Long id) {
-        return this.catService.getByIdCat(id);
+    public Cat getCatById(@PathVariable Long id) {
+        return catService.getById(id);
     }
 
-
-    @Operation (summary = "Создание кота",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Созданный кот",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Cat.class)
-                    )
-            ),
-            tags = "Cat"
-    )
-    @PostMapping()
-    public Cat saveCat (@RequestBody Cat cat) {
-        return this.catService.createCat(cat);
+    @Operation(summary = "Обновление данных кота")
+    @PutMapping("/{id}")
+    public Cat updateCatById(@PathVariable Long id, @RequestBody Cat cat) {
+        return catService.update(cat);
     }
 
-
-    @Operation(summary = "Редактирование данных кота",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Кот с измененными данными",
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
-                            schema = @Schema(implementation = Cat.class)
-                    )
-            ),
-            tags = "Cat"
-    )
-    @PutMapping()
-    public Cat updateCat (@RequestBody Cat cat) {
-        return this.catService.updateCat(cat);
-    }
-
-
-    @Operation(summary = "Удаление кота по id",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Удаленный кот",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Cat.class)
-                            )
-                    )
-            },
-            tags = "Cat"
-    )
+    @Operation(summary = "Удаление кота по id")
     @DeleteMapping("/{id}")
-    public void deleteCat (@Parameter(description = "cat id") @PathVariable Long id) {
-        this.catService.deleteCatById(id);
+    public void removeCat(@PathVariable Long id) {
+        catService.removeById(id);
     }
-
-
-    @Operation(summary = "Просмотр всех котов",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Все коты",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Cat.class)
-                            )
-                    )
-            },
-            tags = "Cat"
-    )
-    @GetMapping("/all")
-    public Collection <Cat> getAllCats() {
-        return this.catService.getAll();
-    }
-
-    @Operation(summary = "Просмотр всех котов по id владельца",
-            responses = {
-                    @ApiResponse(
-                            responseCode = "200",
-                            description = "Все коты, полученные по id владельца",
-                            content = @Content(
-                                    mediaType = MediaType.APPLICATION_JSON_VALUE,
-                                    schema = @Schema(implementation = Cat.class)
-                            )
-                    )
-            },
-            tags = "Cat"
-    )
-    @GetMapping("/cat/{id}")
-    public ResponseEntity<Collection<Cat>> findCatsByPersonCatId(@PathVariable Long id) {
-        return ResponseEntity.ok(this.catService.findCatsByIdPersonCat(id));
-    }
-
 }
