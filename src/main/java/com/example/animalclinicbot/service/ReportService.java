@@ -1,13 +1,7 @@
 package com.example.animalclinicbot.service;
-
-import com.example.animalclinicbot.exceptions.ReportException;
 import com.example.animalclinicbot.exceptions.ReportNotFoundException;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.repository.ReportRepository;
-import com.pengrad.telegrambot.model.File;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
