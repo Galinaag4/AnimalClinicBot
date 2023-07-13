@@ -2,15 +2,11 @@ package com.example.animalclinicbot.listener;
 
 import com.example.animalclinicbot.constant.Button;
 import com.example.animalclinicbot.constant.TypeOfShelter;
-import com.example.animalclinicbot.keyboard.KeyBoardService;
 import com.example.animalclinicbot.model.PersonCat;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.model.UserContext;
-import com.example.animalclinicbot.service.PersonCatService;
-import com.example.animalclinicbot.service.PersonDogService;
-import com.example.animalclinicbot.service.ReportService;
-import com.example.animalclinicbot.service.UserContextService;
+import com.example.animalclinicbot.service.*;
 import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.*;
@@ -47,6 +43,7 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     private final TelegramBot telegramBot;
     private final KeyBoardService keyBoardService;
     private final UserContextService userContextService;
+
     private final PersonDogService personDogService;
     private final PersonCatService personCatService;
     private final ReportService reportService;

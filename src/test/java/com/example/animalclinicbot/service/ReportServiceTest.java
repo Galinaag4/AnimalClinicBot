@@ -1,6 +1,5 @@
 package com.example.animalclinicbot.service;
 
-import com.example.animalclinicbot.exceptions.ReportException;
 import com.example.animalclinicbot.model.Report;
 import com.example.animalclinicbot.repository.ReportRepository;
 import org.junit.jupiter.api.Assertions;
@@ -10,12 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.domain.PageRequest;
-
 import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)

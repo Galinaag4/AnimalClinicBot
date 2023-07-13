@@ -1,0 +1,12 @@
+{
+  "message": {
+    "chat": {
+      "id": 123
+    },
+    "message_id": 1,
+    "contact": {
+      "phone_number": "Роман",
+      "first_name":"+7-911-111-11-11"
+    }
+  }
+}

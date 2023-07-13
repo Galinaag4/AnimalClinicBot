@@ -1,6 +1,5 @@
 package com.example.animalclinicbot.listener;
 
-<<<<<<< HEAD
 import com.example.animalclinicbot.constant.TypeOfShelter;
 import com.example.animalclinicbot.model.*;
 import com.example.animalclinicbot.service.*;
@@ -386,7 +385,7 @@ class TelegramBotUpdatesListenerTest {
                 Path.of(TelegramBotUpdatesListener.class.getResource("report.json").toURI()));
         Update update = BotUtils.fromJson(json, Update.class);
         byte[] photo = Files.readAllBytes(
-                Path.of(TelegramBotUpdatesListenerTest.class.getResource("image/cat.jpg").toURI()));
+                Path.of(TelegramBotUpdatesListenerTest.class.getResource("com.example.animalclinicbot.listener/image/cat.jpg").toURI()));
         long chatId = update.message().chat().id();
         String petName = "Барсик";
         Date lastMessage = new Date(update.message().date() * 1000);
@@ -622,44 +621,3 @@ class TelegramBotUpdatesListenerTest {
         return BotUtils.fromJson(json.replace("%text%", text), Update.class);
     }
 }
-
-=======
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-class TelegramBotUpdatesListenerTest {
-
-    @Test
-    void init() {
-    }
-
-    @Test
-    void process() {
-    }
-
-    @Test
-    void sendReplyMessage() {
-    }
-
-    @Test
-    void sendForwardMessage() {
-    }
-
-    @Test
-    void sendMessage() {
-    }
-
-    @Test
-    void shareContact() {
-    }
-
-    @Test
-    void getReport() {
-    }
-
-    @Test
-    void checkResults() {
-    }
-}
->>>>>>> origin/2_feature
