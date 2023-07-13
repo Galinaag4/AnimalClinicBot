@@ -1,7 +1,9 @@
 package com.example.animalclinicbot.service;
 
+import com.example.animalclinicbot.exceptions.CatException;
 import com.example.animalclinicbot.model.Cat;
 import com.example.animalclinicbot.repository.CatRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -18,6 +20,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+/**
+ * Класс тестов сервисов для котов
+ * @author Агуреева Галина
+ **/
 @ExtendWith(MockitoExtension.class)
 public class CatServiceTest {
 

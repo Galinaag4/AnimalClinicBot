@@ -5,13 +5,9 @@ import com.example.animalclinicbot.model.Dog;
 import com.example.animalclinicbot.service.DogService;
 import net.minidev.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.MockBeans;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -73,13 +69,11 @@ public class DogControllerTest {
     }
     @Test
     public void testGetAllDogs() throws Exception {
-            when(dogService.getAll()).thenReturn(List.of(new Dog()));
+        when(dogService.getAll()).thenReturn(List.of(new Dog()));
 
-            mockMvc.perform(
-                            get("/dog/all"))
-                    .andExpect(status().isOk());
-        }
-
+        mockMvc.perform(
+                        get("/dog/all"))
+                .andExpect(status().isOk());
     }
 
-
+}

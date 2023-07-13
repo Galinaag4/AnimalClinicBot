@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +20,6 @@ import java.util.Collection;
 @RestController
 @RequestMapping("cat")
 public class CatController {
-    @Autowired
     private final CatService catService;
 
     public CatController(CatService catService) {
@@ -38,7 +36,7 @@ public class CatController {
                     tags = "Cat"
             )
     @GetMapping("/{id}")
-    public Cat getById(@Parameter (description = "cat id") @PathVariable Long id) {
+    public Cat getCatById(@Parameter (description = "cat id") @PathVariable Long id) {
         return this.catService.getByIdCat(id);
     }
 
@@ -54,7 +52,7 @@ public class CatController {
             tags = "Cat"
     )
     @PostMapping()
-    public Cat save (@RequestBody Cat cat) {
+    public Cat saveCat (@RequestBody Cat cat) {
         return this.catService.createCat(cat);
     }
 
@@ -89,7 +87,7 @@ public class CatController {
             tags = "Cat"
     )
     @DeleteMapping("/{id}")
-    public void delete (@Parameter(description = "cat id") @PathVariable Long id) {
+    public void deleteCat (@Parameter(description = "cat id") @PathVariable Long id) {
         this.catService.deleteCatById(id);
     }
 
@@ -108,7 +106,7 @@ public class CatController {
             tags = "Cat"
     )
     @GetMapping("/all")
-    public Collection <Cat> getAll() {
+    public Collection <Cat> getAllCats() {
         return this.catService.getAll();
     }
 

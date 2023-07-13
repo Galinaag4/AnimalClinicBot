@@ -3,18 +3,19 @@ package com.example.animalclinicbot.service;
 import com.example.animalclinicbot.exceptions.PersonDogException;
 import com.example.animalclinicbot.model.PersonDog;
 import com.example.animalclinicbot.repository.PersonDogRepository;
+import liquibase.pro.packaged.P;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * Класс сервис владельца собаки
  */
 @Service
 public class PersonDogService {
-
     private final PersonDogRepository repository;
 
     private static final Logger logger = LoggerFactory.getLogger(PersonDogService.class);
@@ -59,7 +60,7 @@ public class PersonDogService {
      * @throws PersonDogException
      * @see PersonDogService
      */
-    public PersonDog update(PersonDog personDog) {
+    public PersonDog save(PersonDog personDog) {
         logger.info("Метод обновления данных владельца собаки");
 
         if (personDog.getId() != null) {
@@ -75,7 +76,7 @@ public class PersonDogService {
      *
      * @param id
      */
-    public void removeById(Long id) {
+    public void delete(Long id) {
         logger.info("Метод удаления данных владельца собаки по id={}", id);
 
         this.repository.deleteById(id);
@@ -100,7 +101,7 @@ public class PersonDogService {
      * @return {@link PersonDogRepository#findByChatId(Long)}
      * @see PersonDogService
      */
-    public Collection<PersonDog> getByChatId(Long chatId) {
+    public Set<PersonDog> getByChatId(Long chatId) {
         logger.info("Метод получения всех владельцев собак по id={}", chatId);
 
         return this.repository.findByChatId(chatId);

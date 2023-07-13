@@ -14,21 +14,18 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
 /**
  * Класс сервис отчет
  */
 @Service
 @Transactional
 public class ReportService {
-
     private final ReportRepository reportRepository;
-
     private static final Logger logger = LoggerFactory.getLogger(ReportService.class);
-
     public ReportService(ReportRepository reportRepository) {
         this.reportRepository = reportRepository;
     }
-
 
     /**
      * метод получения отчета
@@ -45,7 +42,7 @@ public class ReportService {
      * @throws IOException
      * @see ReportService
      */
-    public void uploadReportData(Long personId, byte[] pictureFile, File file, String ration, String health,
+    public void uploadReport(Long personId, byte[] pictureFile, File file, String ration, String health,
                                  String habits, String filePath, Date dateSendMessage, Long timeDate, long daysOfReports) throws IOException {
         logger.info("Был вызван метод загрузки отчета");
 
@@ -76,7 +73,7 @@ public class ReportService {
      * @throws IOException
      * @see ReportService
      */
-    public void uploadReportData(Long personId, byte[] pictureFile, File file,
+    public void uploadReport(Long personId, byte[] pictureFile, File file,
                                  String caption, String filePath, Date dateSendMessage, long daysOfReports) throws IOException {
         logger.info("Был вызван метод загрузки отчета");
 
@@ -90,7 +87,6 @@ public class ReportService {
         report.setCaption(caption);
         this.reportRepository.save(report);
     }
-
     /**
      * метод получения отчета по идентификатору записи
      * @param id
@@ -104,31 +100,24 @@ public class ReportService {
         return this.reportRepository.findById(id)
                 .orElseThrow(ReportException::new);
     }
-
     /**
      * метод поиска отчета по id чата
      * @param chatId
      * @return {@link ReportRepository#findByChatId(Long)}
      * @see ReportService
      */
-    public Report findByChatId(long chatId) {
-        logger.info("Был вызван метод поиска отчета по id чата={}", chatId);
-
+    public Report findByChatId(Long chatId) {
         return this.reportRepository.findByChatId(chatId);
     }
-
     /**
      * метод поиска отчетов по id чата
      * @param chatId
      * @return {@link ReportRepository#findListByChatId(Long)}
      * @see ReportService
      */
-    public Collection<Report> findListByChatId(long chatId) {
-        logger.info("Был вызван метод поиска отчетов по id чата={}", chatId);
-
+    public Collection<Report> findListByChatId(Long chatId) {
         return this.reportRepository.findListByChatId(chatId);
     }
-
     /**
      * метод сохранения отчета
      * @param report
@@ -136,56 +125,24 @@ public class ReportService {
      * @see ReportService
      */
     public Report save(Report report) {
-        logger.info("Был вызван метод сохранения отчета");
-
         return this.reportRepository.save(report);
     }
-
     /**
      * метод удаления отчета по id
      * @param id
      * @see ReportService
      */
     public void remove(Long id) {
-        logger.info("Был вызван метод удаления отчета по id={}", id);
-
         this.reportRepository.deleteById(id);
     }
-
     /**
      * метод получения всех отчетов
      * @return {@link ReportRepository#findAll()}
      * @see ReportService
      */
     public List<Report> getAll() {
-        logger.info("метод получения всех отчетов");
-
         return this.reportRepository.findAll();
     }
 
-    /**
-     * метод получения всех отчетов по номеру страницы
-     * @param pageNumber
-     * @param pageSize
-     * @return {@link ReportRepository#findAll()}
-     * @see ReportService
-     */
-    public List<Report> getAllReports(Integer pageNumber, Integer pageSize) {
-        logger.info("Был вызван метод получения всех отчетов по номеру страницы");
-
-        PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize);
-        return this.reportRepository.findAll(pageRequest).getContent();
-    }
-
-    /**
-     * метод получения расширения
-     * @param fileName
-     * @see ReportService
-     */
-    private String getExtensions(String fileName) {
-        logger.info("Был вызван метод получения расширения ");
-
-        return fileName.substring(fileName.lastIndexOf(".") + 1);
-    }
 }
 
