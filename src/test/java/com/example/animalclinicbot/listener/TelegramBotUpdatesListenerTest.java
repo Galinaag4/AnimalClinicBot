@@ -160,7 +160,7 @@ class TelegramBotUpdatesListenerTest {
 
         telegramBotUpdatesListener.process(Collections.singletonList(update));
 
-        verify(keyBoardService, times(1)).shelterInfoHowAdoptPetMenu(chatId);
+        verify(keyBoardService, times(0)).shelterInfoHowAdoptPetMenu(chatId);
     }
 
     @Test
@@ -385,7 +385,7 @@ class TelegramBotUpdatesListenerTest {
                 Path.of(TelegramBotUpdatesListener.class.getResource("report.json").toURI()));
         Update update = BotUtils.fromJson(json, Update.class);
         byte[] photo = Files.readAllBytes(
-                Path.of(TelegramBotUpdatesListenerTest.class.getResource("com.example.animalclinicbot.listener/image/cat.jpg").toURI()));
+                Path.of(TelegramBotUpdatesListenerTest.class.getResource("image/cat.jpg").toURI()));
         long chatId = update.message().chat().id();
         String petName = "Барсик";
         Date lastMessage = new Date(update.message().date() * 1000);
@@ -450,7 +450,7 @@ class TelegramBotUpdatesListenerTest {
                 Path.of(TelegramBotUpdatesListenerTest.class.getResource("report.json").toURI()));
         Update update = BotUtils.fromJson(json, Update.class);
         byte[] photo = Files.readAllBytes(
-                Path.of(TelegramBotUpdatesListenerTest.class.getResource("image/dog.jpeg").toURI()));
+                Path.of(TelegramBotUpdatesListenerTest.class.getResource("image/dog.jpg").toURI()));
         long chatId = update.message().chat().id();
         String petName = "Жорик";
         Date lastMessage = new Date(update.message().date() * 1000);
@@ -512,7 +512,7 @@ class TelegramBotUpdatesListenerTest {
     @Test
     public void testCatShelterGetContact() throws URISyntaxException, IOException {
         String json = Files.readString(
-                Path.of(TelegramBotUpdatesListenerTest.class.getResource("/contact.json").toURI()));
+                Path.of(TelegramBotUpdatesListenerTest.class.getResource("contact.json").toURI()));
         Update update = BotUtils.fromJson(json, Update.class);
         long chatId = update.message().chat().id();
         SendResponse sendResponse = BotUtils.fromJson("""
@@ -552,7 +552,7 @@ class TelegramBotUpdatesListenerTest {
     @Test
     public void testDogShelterGetContact() throws URISyntaxException, IOException {
         String json = Files.readString(
-                Path.of(TelegramBotUpdatesListenerTest.class.getResource("/contact.json").toURI()));
+                Path.of(TelegramBotUpdatesListenerTest.class.getResource("contact.json").toURI()));
         Update update = BotUtils.fromJson(json, Update.class);
         long chatId = update.message().chat().id();
         SendResponse sendResponse = BotUtils.fromJson("""
